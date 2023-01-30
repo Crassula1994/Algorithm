@@ -29,7 +29,7 @@ public class Main {
 
 		// 같은 눈이 없는 경우 상금 출력
 		} else {
-			System.out.println(Math.max(Math.max(diceA, diceB), diceC));
+			System.out.println(Math.max(Math.max(diceA, diceB), diceC) * 100);
 		}
 
 		// close() 메서드를 사용해 Scanner 객체 종료
