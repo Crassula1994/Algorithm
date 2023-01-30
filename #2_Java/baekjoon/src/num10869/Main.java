@@ -1,4 +1,4 @@
-package num1001;
+package num10869;
 
 // 필요한 패키지 불러오기
 import java.util.Scanner;
@@ -16,8 +16,12 @@ public class Main {
 		int a = sc.nextInt();
 		int b = sc.nextInt();
 		
-		// 두 숫자를 뺀 결과를 출력
+		// 두 숫자의 사칙연산 결과를 차례로 출력
+		System.out.println(a + b);
 		System.out.println(a - b);
+		System.out.println(a * b);
+		System.out.println(a / b);
+		System.out.println(a % b);
 		
 		// close() 메서드를 사용해 Scanner 객체 종료
 		sc.close();

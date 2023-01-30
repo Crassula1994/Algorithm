@@ -1,4 +1,4 @@
-package num1001;
+package num1330;
 
 // 필요한 패키지 불러오기
 import java.util.Scanner;
@@ -16,8 +16,18 @@ public class Main {
 		int a = sc.nextInt();
 		int b = sc.nextInt();
 		
-		// 두 숫자를 뺀 결과를 출력
-		System.out.println(a - b);
+		// a가 b보다 큰 경우 '>' 출력
+		if (a > b) {
+			System.out.println(">");
+		
+		// a와 b가 같은 경우 '==' 출력 
+		} else if (a == b) {
+			System.out.println("==");			
+		
+		// b가 a보다 큰 경우 '<' 출력
+		} else {
+			System.out.println("<");				
+		}
 		
 		// close() 메서드를 사용해 Scanner 객체 종료
 		sc.close();
