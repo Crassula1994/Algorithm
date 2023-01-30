@@ -1,0 +1,226 @@
+########## Java ##########
+
+# Compiled Class File
+.class
+
+# Log File
+.log
+
+# BlueJ Files
+.ctxt
+
+# Mobile Tools for Java(J2ME)
+.mtj.tmp
+
+# Package Files
+.jar
+.war
+.nar
+.ear
+.zip
+.tar.gz
+.rar
+
+# Virtual Machine Crash Logs
+hs_err_pid
+replay_pid
+
+########## Python ##########
+
+# Byte-compiled  Optimized  DLL Files
+__pycache__
+.py[cod]
+$py.class
+
+# C Extensions
+.so
+
+# Distribution Packaging
+.Python
+build
+develop-eggs
+dist
+downloads
+eggs
+.eggs
+lib
+lib64
+parts
+sdist
+var
+wheels
+sharepython-wheels
+.egg-info
+.installed.cfg
+.egg
+MANIFEST
+
+# PyInstaller
+.manifest
+.spec
+
+# Installer Logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit Test Coverage Reports
+htmlcov
+.tox
+.nox
+.coverage
+.coverage.
+.cache
+nosetests.xml
+coverage.xml
+.cover
+.py,cover
+.hypothesis
+.pytest_cache
+cover
+
+# Translations
+.mo
+.pot
+
+# Django Stuff
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask Stuff
+instance
+.webassets-cache
+
+# Scrapy Stuff
+.scrapy
+
+# Sphinx Documentation
+docs_build
+
+# PyBuilder
+.pybuilder
+target
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default
+ipython_config.py
+
+# PDM
+.pdm.toml
+
+# PEP 582
+__pypackages__
+
+# Celery Stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath Parsed Files
+.sage.py
+
+# Environments
+.env
+.venv
+env
+venv
+ENV
+env.bak
+venv.bak
+
+# Spyder Project Settings
+.spyderproject
+.spyproject
+
+# Rope Project Settings
+.ropeproject
+
+# Mkdocs Documentation
+site
+
+# MyPy
+.mypy_cache
+.dmypy.json
+dmypy.json
+
+# Pyre Type Checker
+.pyre
+
+# Pytype Static Type Analyzer
+.pytype
+
+# Cython Debug Symbols
+cython_debug
+
+# Poetry Local Configuration File
+poetry.toml
+
+# Ruff
+.ruff_cache
+
+########## Eclipse ##########
+
+# Eclipse File
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.classpath
+.project
+
+# External Tool Builders
+.externalToolBuilders/
+
+# Locally Stored Eclipse Launch Configurations
+*.launch
+
+# PyDev Specific
+*.pydevproject
+
+# CDT-specific
+.cproject
+
+# CDT-autotools
+.autotools
+
+# Java Annotation Processor
+.factorypath
+
+# PDT-specific
+.buildpath
+
+# Sbteclipse Plugin
+.target
+
+# Tern Plugin
+.tern-project
+
+# TeXlipse Plugin
+.texlipse
+
+# STS
+.springBeans
+
+# Code Recommenders
+.recommenders/
+
+# Annotation Processing
+.apt_generated/
+.apt_generated_test/
+
+# Scala IDE Specific
+.cache-main
+.scala_dependencies
+.worksheet
+
+# Spring Boot Tooling
+.sts4-cache/
