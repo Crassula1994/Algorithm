@@ -20,7 +20,7 @@ public class Main {
 		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 숫자를 변수 number에 저장
 		int number = Integer.parseInt(in.readLine());
 		
-		// for 반복문을 사용해 배열 각 자연수를 차례로 출력
+		// for 반복문을 사용해 각 자연수를 차례로 출력
 		for (int i = number; i > 0; i--)
 			out.write(i + "\n");
 
