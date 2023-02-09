@@ -1,4 +1,4 @@
-package bronze5.num2309;
+package bronze1.num2309;
 
 // 필요한 패키지 불러오기
 import java.io.BufferedReader;
@@ -39,13 +39,13 @@ public class Main {
 		// for 반복문을 사용해 배열 dwarves 순회
 		for (int idx = 0; idx < dwarves.length; idx++) {
 			
-			if (sum - 100 - idx >= 0 && sum - 100 - idx < 101) {
+			// (sum - idx - 100)의 값이 인덱스를 넘지 않는 경우
+			if (sum - idx >= 100 && sum - idx < 201) {
+				
 				// 100을 넘어서게 만드는 두 난쟁이의 경우를 제거 후 반복문 탈출
-				
-				
-				if (dwarves[idx] && dwarves[sum - 100 - idx]) {
+				if (dwarves[idx] && dwarves[sum - idx - 100]) {
 					dwarves[idx] = false;
-					dwarves[sum - 100 - idx] = false;
+					dwarves[sum - idx - 100] = false;
 					break;
 				}
 			}
@@ -54,7 +54,7 @@ public class Main {
 		// for 반복문을 사용해 배열 dwarves 순회
 		for (int idx = 0; idx < dwarves.length; idx++) {
 			
-			// 해당 난쟁이가 존재하는 경우 난쟁이의 키 출력
+			// 해당 난쟁이가 존재하는 경우 write() 메서드를 사용해 난쟁이의 키 출력
 			if (dwarves[idx])
 				out.write(idx + "\n");
 		}
