@@ -1,4 +1,4 @@
-package bronze5.num15829;
+package bronze2.num15829;
 
 // 필요한 패키지 불러오기
 import java.io.BufferedReader;
@@ -39,7 +39,7 @@ public class Main {
 			hashValue += num * multiplier;
 			
 			// 31을 곱하고 주어진 정수로 나눈 나머지로 multiplier의 값을 갱신
-			multiplier = (multiplier * 31) / 1234567891;
+			multiplier = (multiplier * 31) % 1234567891;
 		}
 		
 		// 해시 값을 주어진 정수로 나눈 나머지로 갱신
