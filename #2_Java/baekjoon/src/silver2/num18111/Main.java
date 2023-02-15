@@ -88,7 +88,7 @@ public class Main {
 			}
 		}
 		
-		// valueOf() 및 write() 메서드를 사용해 최소 소요 시간 및 최적 높이를 출력
+		// write() 메서드를 사용해 최소 소요 시간 및 최적 높이를 출력
 		out.write(minTime + " " + bestAltitude);
 		
 		// close() 메서드를 사용해 각 객체 종료

@@ -26,80 +26,59 @@ public class Main {
 		
 		// 색종이의 둘레를 저장할 변수 초기화
 		int round = 0;
+		
+		// 상하좌우의 인덱스 값을 담은 각 델타 배열 초기화
+		int[] dx = {0, 0, -1, 1};
+		int[] dy = {-1, 1, 0, 0};
 
-		
-		// StringTokenizer 객체를 불러와 변수 st에 할당
-		StringTokenizer st = new StringTokenizer(in.readLine());
-		
-		// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 땅의 크기 및 인벤토리의 블록 개수를 각 변수에 할당
-		int height = Integer.parseInt(st.nextToken());
-		int width = Integer.parseInt(st.nextToken());
-		int inventory = Integer.parseInt(st.nextToken());
-		
-		// 각 땅의 높이를 저장할 2차원 배열 land 초기화
-		int[][] land = new int[height][width];
-		
-		// 주어진 땅의 높이 중 가장 높은 고도와 가장 낮은 고도를 저장할 변수 초기화
-		int maxAltitude = Integer.MIN_VALUE;
-		int minAltitude = Integer.MAX_VALUE;
-		
-		// 땅을 고르는 데 걸리는 시간을 저장할 minTime 초기화
-		int minTime = Integer.MAX_VALUE;
-		
-		// 땅의 최적 높이를 저장할 변수 bestAltitude 초기화
-		int bestAltitude = 0;
-		
-		// for 반복문을 사용해 땅의 세로를 순회
-		for (int r = 0; r < height; r++) {
+		// for 반복문을 사용해 각 색종이의 경우를 순회
+		for (int i = 0; i < cartolina; i++) {
 			
-			// StringTokenizer 객체를 불러와 변수 st에 재할당
-			st = new StringTokenizer(in.readLine());
+			// StringTokenizer 객체를 불러와 변수 st에 할당
+			StringTokenizer st = new StringTokenizer(in.readLine());
 			
-			// for 반복문을 사용해 땅의 가로를 순회
-			for (int c = 0; c < width; c++) {
+			// nextToken() 및 parseInt() 메서드를 사용해 입력받은 색종이의 행과 열의 위치를 각 변수에 할당
+			int colLoc = Integer.parseInt(st.nextToken());
+			int rowLoc = Integer.parseInt(st.nextToken());
+			
+			// for 반복문을 사용해 색종이가 붙은 위치의 행을 순회
+			for (int r = rowLoc; r < rowLoc + 10; r++) {
 				
-				// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 땅의 높이를 배열 land에 저장
-				land[r][c] = Integer.parseInt(st.nextToken());
-				
-				// 가장 높은 고도 및 가장 낮은 고도 갱신
-				maxAltitude = (land[r][c] > maxAltitude) ? land[r][c] : maxAltitude;
-				minAltitude = (land[r][c] < minAltitude) ? land[r][c] : minAltitude;
+				// for 반복문을 사용해 색종이가 붙은 위치의 열을 순회하며 위치 표시
+				for (int c = colLoc; c < colLoc + 10; c++)
+					drawingPaper[r][c]++;
 			}
 		}
 		
-		// for 반복문을 사용해 가장 낮은 고도에서 가장 높은 고도까지 순회
-		for (int alt = minAltitude; alt < maxAltitude + 1; alt++) {
-			
-			// 소요 시간 및 보유 블록 수를 저장할 각 변수 초기화
-			int time = 0;
-			int blocks = inventory;
-			
-			// for 반복문을 사용해 각 땅을 순회
-			for (int r = 0; r < height; r++) {
-				for (int c = 0; c < width; c++) {
+		// for 반복문을 사용해 도화지의 각 행과 열을 순회
+		for (int r = 0; r < drawingPaper.length; r++) {
+			for (int c = 0; c < drawingPaper.length; c++) {
+				
+				// 색종이가 붙어 있는 경우
+				if (drawingPaper[r][c] != 0) {
 					
-					// 땅의 고도가 기준 고도보다 높은 경우 시간 갱신 및 블록 수 갱신
-					if (land[r][c] > alt) {
-						time += (land[r][c] - alt) * 2;
-						blocks += land[r][c] - alt;
-					
-					// 땅의 고도가 기준 고도보다 낮은 경우 시간 갱신 및 블록 수 갱신
-					} else if (land[r][c] < alt) {
-						time += alt - land[r][c];
-						blocks -= alt - land[r][c];
+					// for 반복문을 사용해 델타 배열을 순회
+					for (int d = 0; d < 4; d++) {
+						
+						// 델타 배열을 활용해 검사할 위치를 각 변수에 할당
+						int nx = r + dx[d];
+						int ny = c + dy[d];
+						
+						// 해당 위치가 범위를 벗어난 경우 둘레를 갱신
+						if (nx < 0 || nx > drawingPaper.length - 1 || ny < 0 || ny > drawingPaper.length - 1) {
+							round++;
+						
+						// 해당 위치의 값이 0인 경우 둘레를 갱신
+						} else if (drawingPaper[nx][ny] == 0) {
+							round++;
+						}
 					}
 				}
 			}
-			
-			// 블록 수가 음수가 아닌 경우 최소 소요 시간 및 최적 높이 갱신
-			if (blocks >= 0 && time <= minTime) {
-				minTime = time;
-				bestAltitude = alt;
-			}
 		}
 		
-		// valueOf() 및 write() 메서드를 사용해 최소 소요 시간 및 최적 높이를 출력
-		out.write(minTime + " " + bestAltitude);
+		// valueOf() 및 write() 메서드를 사용해 둘레의 길이를 출력
+		out.write(String.valueOf(round));
 		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
