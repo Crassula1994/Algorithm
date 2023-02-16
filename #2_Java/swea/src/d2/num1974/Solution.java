@@ -143,8 +143,6 @@ public class Solution {
 						sum += puzzle[x][y] * puzzle[x][y];
 				}
 				
-				System.out.println(sum);
-				
 				// 제곱합이 일치하지 않는 경우 스도쿠 검증 변수 갱신 후 반복문 탈출
 				if (sum != 285) {
 					isComplete = false;
