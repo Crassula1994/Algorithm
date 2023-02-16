@@ -28,55 +28,64 @@ public class Main {
 		// readLine() 및 parseInt() 메서드를 사용해 상점의 개수를 변수 shopNum에 할당
 		int shopNum = Integer.parseInt(in.readLine());
 		
-		// 각 랜선의 길이를 저장할 배열 cables 초기화
-		long[] cables = new long[originalCable];
+		// 각 상점 및 경비원의 위치를 저장할 2차원 배열 location 초기화
+		int[][] location = new int[shopNum + 1][2];
 		
-		// 주어진 랜선 중 최소 랜선의 길이를 저장할 변수 maxCable 초기화
-		long maxCable = 0;
+		// 왼쪽 모서리를 기준으로 했을 때의 거리를 저장할 배열 distance 초기화
+		int[] distance =new int[shopNum + 1];
 		
-		// for 반복문을 사용해 배열 cables의 각 원소 순회
-		for (int idx = 0; idx < cables.length; idx++) {
-			
-			// readLine() 및 parseLong() 메서드를 사용해 입력 받은 각 케이블의 길이를 배열 cables에 저장
-			cables[idx] = Long.parseLong(in.readLine());
-			
-			// 가장 긴 케이블인 경우 변수 maxCable 갱신
-			maxCable = (cables[idx] > maxCable) ? cables[idx] : maxCable;
-		}
+		// 최단 거리의 합을 저장할 변수 sum 초기화
+		int sum = 0;
 		
-		// 이진 탐색 시 사용할 상한, 하한, 중간값을 나타내는 각 변수 초기화
-		long start = 1;
-		long mid = 0;
-		long end = maxCable;
-		
-		// while 반복문을 사용해 최대 길이를 찾을 때까지 순회
-		while (start <= end) {
+		// for 반복문을 사용해 배열 location의 각 원소를 순회
+		for (int idx = 0; idx < location.length; idx++) {
 			
-			// 이진 탐색 시 사용할 중간값 갱신
-			mid = (start + end) / 2;
+			// StringTokenizer 객체를 불러와 변수 st에 재할당
+			st = new StringTokenizer(in.readLine());
 			
-			// 만들 수 있는 랜선의 개수를 저장할 변수 count 초기화
-			long count = 0;
+			// nextToken() 및 parseInt() 메서드를 사용해 각 위치를 배열 location에 할당
+			location[idx][0] = Integer.parseInt(st.nextToken());
+			location[idx][1] = Integer.parseInt(st.nextToken());
 			
-			// for 반복문을 사용해 배열 cables의 각 원소를 순회하며 랜선의 개수 갱신
-			for (int idx = 0; idx < cables.length; idx++)
-				count += cables[idx] / mid;
+			// switch 조건문을 사용해 동서남북의 위치에 따라 구분
+			switch (location[idx][0]) {
 			
-			// 랜선의 개수가 부족한 경우 상한을 조정
-			if (count < newCable) {
-				end = mid - 1;
-			
-			// 랜선의 개수가 같거나 많은 경우 하한을 조정
-			} else {
-				start = mid + 1;
+				// 북쪽인 경우 배열 location에 거리 계산 후 조건문 탈출
+				case 1:
+					distance[idx] = location[idx][1];
+					break;
+					
+				// 남쪽인 경우 배열 location에 거리 계산 후 조건문 탈출
+				case 2:
+					distance[idx] = 2 * width + height - location[idx][1];
+					break;
+					
+				// 서쪽인 경우 배열 location에 거리 계산 후 조건문 탈출
+				case 3:
+					distance[idx] = 2 * (width + height) - location[idx][1];
+					break;
+					
+				// 동쪽인 경우 배열 location에 거리 계산
+				case 4:
+					distance[idx] = width + location[idx][1];
 			}
 		}
 		
-		// 랜선의 최대 길이를 변수 maxLength에 할당
-		Long maxLength = end;
+		// for 반복문을 사용해 배열 distance의 각 상점 위치를 순회
+		for (int idx = 0; idx < distance.length - 1; idx++) {
+			
+			// abs() 메서드를 사용해 경비원과의 거리를 계산해 변수 between에 할당
+			int between = Math.abs(distance[idx] - distance[distance.length - 1]);
+			
+			// 더 가까운 거리로 갱신
+			between = (between > width + height) ? 2 * (width + height) - between : between;
+			
+			// 최단 거리의 합 갱신
+			sum += between;
+		}
 		
-		// valueOf() 및 write() 메서드를 사용해 랜선의 최대 길이 출력
-		out.write(String.valueOf(maxLength));
+		// valueOf() 및 write() 메서드를 사용해 최단 거리의 합 출력
+		out.write(String.valueOf(sum));
 
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
