@@ -29,19 +29,18 @@ public class Main {
 		st = new StringTokenizer(in.readLine());
 		
 		// nextToken() 및 parseInt() 메서드를 사용해 현재 개미의 행과 열의 번호를 각 변수에 할당
-		int x = Integer.parseInt(st.nextToken());
-		int y = Integer.parseInt(st.nextToken());
+		int p = Integer.parseInt(st.nextToken());
+		int q = Integer.parseInt(st.nextToken());
 		
 		// readLine() 및 parseInt() 메서드를 사용해 개미가 움직일 시간을 변수 time에 할당
 		int time = Integer.parseInt(in.readLine());
-
-		/*
-		P = W-Math.abs(W-(T+P)%(2*W));
-    	Q = H-Math.abs(H-(T+Q)%(2*H));
-		*/
 		
-		// write() 메서드를 사용해 해당 관객의 좌석번호를 출력
-		out.write((c + 1) + " " + (r + 1));
+		// abs() 메서드를 사용해 주어진 시간 이후의 개미 위치 좌표를 계산해 각 변수에 할당
+		int x = width - Math.abs(width - (p + time) % (2 * width));
+		int y = height - Math.abs(height - (q + time) % (2 * height));
+		
+		// write() 메서드를 사용해 주어진 시간 이후의 개미 위치를 출력
+		out.write(x + " " + y);
 
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
