@@ -55,7 +55,7 @@ public class Main {
 			if (cardSet.contains(card)) {
 				out.write(1 + " ");
 			
-			// cardDict에 해당 카드가 존재하지 않는 경우 0을 출력
+			// cardSet에 해당 카드가 존재하지 않는 경우 0을 출력
 			} else {
 				out.write(0 + " ");
 			}
