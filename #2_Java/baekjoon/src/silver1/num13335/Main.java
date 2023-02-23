@@ -23,37 +23,59 @@ public class Main {
 		// StringTokenizer 객체를 불러와 변수 st에 할당
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		
-		// StringBuilder 객체를 불러와 변수 sb에 할당
-		StringBuilder sb = new StringBuilder("<");aa
-		
-		// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 두 자연수를 각 변수에 할당
-		int n = Integer.parseInt(st.nextToken());
-		int k = Integer.parseInt(st.nextToken());
+		// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 트럭의 수, 다리의 길이, 다리의 최대 하중을 각 변수에 할당
+		int truckNum = Integer.parseInt(st.nextToken());
+		int bridgeLen = Integer.parseInt(st.nextToken());
+		int bridgeLoad = Integer.parseInt(st.nextToken());
 
-		// 사람들로 구성된 원을 저장할 Queue 객체 circle 초기화
-		Queue<Integer> circle = new LinkedList<>();
+		// 각 트럭의 무게 및 다리의 상태를 저장할 각 Queue 객체 초기화
+		Queue<Integer> trucks = new LinkedList<>();
+		Queue<Integer> bridge = new LinkedList<>();
 		
-		// for 반복문을 사용해 Queue 객체에 사람을 추가
-		for (int person = 1; person < n + 1; person++)
-			circle.offer(person);
+		// StringTokenizer 객체를 불러와 변수 st에 재할당
+		st = new StringTokenizer(in.readLine());
 		
-		// while 반복문을 사용해 모든 사람이 제거될 때까지 순회
-		while (!circle.isEmpty()) {
+		// for 반복문을 사용해 Queue 객체 trucks에 트럭을 추가
+		for (int t = 0; t < truckNum; t++)
+			trucks.offer(Integer.parseInt(st.nextToken()));
+		
+		// for 반복문을 사용해 Queue 객체 bridge에 현재 다리의 상태 초기화
+		for (int l = 0; l < bridgeLen; l++)
+			bridge.offer(0);
+		
+		// 트럭이 다리를 건너는 데 걸리는 최단 시간 및 현재 건너는 트럭의 총 하중을 저장할 각 변수 초기화
+		int time = 0;
+		int weight = 0;
+		
+		// while 반복문을 사용해 모든 트럭이 다리를 건너갈 때까지 순회
+		while (!bridge.isEmpty()) {
 			
-			// for 반복문을 사용해 정해진 간격만큼의 인원을 넘기기
-			for (int i = 0; i < k - 1; i++)				
-				circle.offer(circle.poll());
+			// 트럭이 다리를 건너는 시간을 갱신
+			time++;
 			
-			// poll() 및 append() 메서드를 사용해 뽑힌 인원을 변수 sb에 추가
-			sb.append(circle.poll()).append(", ");
+			// 트럭이 다리를 다 건넌 경우 현재 다리의 하중을 갱신
+			if (bridge.peek() != 0)
+				weight -= bridge.peek();
+			
+			// 트럭이 더 이상 없는 경우 더 이상 값을 추가하지 않고 이동
+			if (trucks.isEmpty()) {
+				bridge.poll();
+			
+			// 다음 트럭을 추가하더라도 최대 하중을 초과하지 않는 경우 해당 트럭을 추가하고 무게 갱신
+			}	else if (weight + trucks.peek() <= bridgeLoad) {
+				bridge.poll();
+				weight += trucks.peek();
+				bridge.offer(trucks.poll());
+				
+			// 다음 트럭을 추가했을 때 최대 하중을 초과하는 경우 트럭이 아니라 빈 값을 추가
+			} else {
+				bridge.poll();
+				bridge.offer(0);
+			}
 		}
 		
-		// delete() 및 append() 메서드를 사용해 마지막 반점 제거 및 괄호를 변수 sb에 추가
-		sb.delete(sb.length() - 2, sb.length());
-		sb.append(">");
-		
-		// toString() 및 write() 메서드를 사용해 요세푸스 순열을 출력
-		out.write(sb.toString());
+		// valueOf() 및 write() 메서드를 사용해 트럭이 이동하는 데 소요되는 시간을 출력
+		out.write(String.valueOf(time));
 		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
