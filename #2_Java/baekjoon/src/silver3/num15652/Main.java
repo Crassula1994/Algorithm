@@ -11,9 +11,8 @@ import java.util.StringTokenizer;
 // Main 클래스 정의
 public class Main {
 	
-	// 수열을 뽑을 숫자가 저장된 배열, 수열로 선택했는지 여부를 저장할 배열 초기화
-	static int[] numbers;a
-	static boolean[] selected;
+	// 수열을 뽑을 숫자가 저장된 배열 numbers 초기화
+	static int[] numbers;
 	
 	// ----------------------------------------------------------------------------------------------------
 	
@@ -34,9 +33,6 @@ public class Main {
 		// n까지의 자연수를 저장할 배열 numbers 초기화
 		numbers = new int[n];
 		
-		// 이미 수열로 선택한 값을 저장할 배열 selected 초기화
-		selected = new boolean[n];
-		
 		// 결과를 저장할 배열 result 초기화
 		int[] result = new int[m];
 		
@@ -44,8 +40,8 @@ public class Main {
 		for (int idx = 0, num = 1; idx < numbers.length; idx++)
 			numbers[idx] = num++;
 		
-		// combination() 메서드를 호출해 수열을 차례로 출력
-		combination(0, 0, n, m, result, out);
+		// combRepetition() 메서드를 호출해 수열을 차례로 출력
+		combRepetition(0, 0, n, m, result, out);
 
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
@@ -54,8 +50,8 @@ public class Main {
 	
 	// ----------------------------------------------------------------------------------------------------
 	
-	// combination() 메서드 정의
-	public static void combination(int startIdx, int length, int n, int m, int[] result, BufferedWriter out) throws IOException {
+	// combRepetition() 메서드 정의
+	public static void combRepetition(int startIdx, int length, int n, int m, int[] result, BufferedWriter out) throws IOException {
 		
 		// m개의 값을 추출해 수열을 모두 만든 경우
 		if (length == m) {
@@ -73,19 +69,11 @@ public class Main {
 			// for 반복문을 사용해 모든 자연수를 차례로 순회
 			for (int idx = startIdx; idx < n; idx++) {
 				
-				// 선택하지 않은 값인 경우
-				if (selected[idx] != true) {
+				// 해당 값을 수열에 추가
+				result[length] = numbers[idx];
 					
-					// 해당 값을 선택 처리 후 수열에 추가
-					selected[idx] = true;
-					result[length] = numbers[idx];
-					
-					// combination() 메서드 재귀 호출
-					combination(idx + 1, length + 1, n, m, result, out);
-					
-					// 선택 처리한 해당 값을 원상복구
-					selected[idx] = false;
-				}
+				// combRepetition() 메서드 재귀 호출
+				combRepetition(idx, length + 1, n, m, result, out);
 			}
 		}
 	}
