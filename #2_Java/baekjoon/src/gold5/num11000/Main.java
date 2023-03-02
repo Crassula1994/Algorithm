@@ -25,7 +25,7 @@ public class Main {
 		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 수업의 개수를 변수 classNum에 할당
 		int classNum = Integer.parseInt(in.readLine());
 
-		// 입력 받은 각 수업을 저장할 각 PriorityQueue 객체 fastClass 초기화
+		// 입력 받은 각 수업을 저장할 PriorityQueue 객체 fastClass 초기화
 		PriorityQueue<int[]> fastClass = new PriorityQueue<>((c1, c2) -> {
 			return (c1[0] == c2[0]) ? c1[1] - c2[1] : c1[0] - c2[0];
 		});
@@ -46,8 +46,20 @@ public class Main {
 			fastClass.offer(time);
 		}
 		
-		// while 반복문을 사용해 queue가 빌 때까지 순회
-		while (!fastClass.isEmpty())
+		// while 반복문을 사용해 fastClass와 remainClass가 모두 빌 때까지 순회
+		while (!fastClass.isEmpty() || !remainClass.isEmpty()) {
+			
+			// while 반복문을 사용해 fastClass가 모두 빌 때까지 순회
+			while (!fastClass.isEmpty()) {
+				
+				fastClass.poll();
+				
+				
+			}
+			
+			
+			
+		}
 		
 		// size번째 큰 수를 저장할 변수와 반복 횟수를 저장할 변수 초기화
 		int targetNum = 0;
