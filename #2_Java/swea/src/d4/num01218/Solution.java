@@ -1,4 +1,4 @@
-package d4.num1218;
+package d4.num01218;
 
 // 필요한 패키지 불러오기
 import java.io.BufferedReader;

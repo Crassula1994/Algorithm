@@ -1,4 +1,4 @@
-package d3.num1289;
+package d3.num01289;
 
 // 필요한 패키지 불러오기
 import java.io.BufferedReader;

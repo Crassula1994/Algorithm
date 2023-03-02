@@ -1,4 +1,4 @@
-package d2.num1954;
+package d3.num07584;
 
 // 필요한 패키지 불러오기
 import java.io.BufferedReader;
@@ -23,28 +23,28 @@ public class Solution {
 		// for 반복문을 사용해 각 테스트 케이스를 순회
 		for (int tc = 0; tc < testCase; tc++) {
 			
-			// readLine() 메서드를 사용해 입력 받은 단어를 변수 word에 할당
-			String word = in.readLine();
+			// readLine() 및 parseLong() 메서드를 사용해 입력 받은 문자의 위치를 변수 loc에 할당
+			long loc = Long.parseLong(in.readLine());
 			
-			// 한 글자인 경우 1을 출력
-			if (word.length() == 1) {
-				out.write("#" + (tc + 1) + " " + 1 + "\n");
+			// 문자 위치의 인덱스를 변수 iloc에 할당
+			long iloc = loc - 1;
 			
-			// 한 글자가 아닌 경우
-			} else {
+			// while 반복문을 사용해 주어진 인덱스의 값을 찾을 때까지 순회
+			while (iloc >= 0) {
 				
-				// for 반복문을 사용해 각 글자를 순회
-				for (int idx = 0; idx < word.length() / 2; idx++) {
+				// 주어진 인덱스가 홀수인 경우 짝수가 될 때까지 인덱스 조정
+				if (iloc % 2 != 0) {
+					iloc = (iloc - 1) / 2;
 					
-					// 회문이 아닌 경우 0을 출력 후 반복문 탈출
-					if (word.charAt(idx) != word.charAt(word.length() - idx - 1)) {
-						out.write("#" + (tc + 1) + " " + 0 + "\n");
-						break;
-					}
-					
-					// 회문인 경우 1을 출력
-					if (idx == word.length() / 2 - 1)
-						out.write("#" + (tc + 1) + " " + 1 + "\n");
+				// 주어진 인덱스가 4의 배수인 경우 0을 출력 후 반복문 탈출
+				} else if (iloc % 4 == 0) {
+					out.write("#" + (tc + 1) + " " + 0 + "\n");
+					break;
+				
+				// 주어진 인덱스가 2의 배수인 경우 1을 출력 후 반복문 탈출
+				} else {
+					out.write("#" + (tc + 1) + " " + 1 + "\n");
+					break;
 				}
 			}
 		}

@@ -1,4 +1,4 @@
-package d3.num8741;
+package d2.num01954;
 
 // 필요한 패키지 불러오기
 import java.io.BufferedReader;
@@ -6,7 +6,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.StringTokenizer;
 
 // Solution 클래스 정의
 public class Solution {
@@ -24,24 +23,30 @@ public class Solution {
 		// for 반복문을 사용해 각 테스트 케이스를 순회
 		for (int tc = 0; tc < testCase; tc++) {
 			
-			// write() 메서드를 사용해 테스트 케이스 번호를 출력
-			out.write("#" + (tc + 1) + " ");
+			// readLine() 메서드를 사용해 입력 받은 단어를 변수 word에 할당
+			String word = in.readLine();
 			
-			// StringTokenizer 객체를 불러와 변수 st에 할당
-			StringTokenizer st = new StringTokenizer(in.readLine());
+			// 한 글자인 경우 1을 출력
+			if (word.length() == 1) {
+				out.write("#" + (tc + 1) + " " + 1 + "\n");
 			
-			// for 반복문을 사용해 각 문자열을 순회
-			for (int str = 0; str < 3; str++) {
+			// 한 글자가 아닌 경우
+			} else {
 				
-				// nextToken() 메서드를 사용해 입력 받은 단어를 변수 word에 할당
-				String word = st.nextToken();
-				
-				// charAt() 및 write() 메서드를 사용해 두문자를 대문자로 변환해 출력
-				out.write(word.charAt(0) - 32);
+				// for 반복문을 사용해 각 글자를 순회
+				for (int idx = 0; idx < word.length() / 2; idx++) {
+					
+					// 회문이 아닌 경우 0을 출력 후 반복문 탈출
+					if (word.charAt(idx) != word.charAt(word.length() - idx - 1)) {
+						out.write("#" + (tc + 1) + " " + 0 + "\n");
+						break;
+					}
+					
+					// 회문인 경우 1을 출력
+					if (idx == word.length() / 2 - 1)
+						out.write("#" + (tc + 1) + " " + 1 + "\n");
+				}
 			}
-			
-			// write() 메서드를 사용해 줄바꿈 출력
-			out.write("\n");
 		}
 		
 		// close() 메서드를 사용해 각 객체 종료
