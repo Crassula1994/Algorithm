@@ -107,7 +107,7 @@ public class Solution {
 								child++;
 							
 							// 자식 노드가 더 이상 존재하지 않거나 자식 노드보다 더 큰 값일 경우 반복문 탈출
-							if (child > lastIdx || maxHeap[child] < maxHeap[currentNode])
+							if (child > lastIdx || maxHeap[child] <= maxHeap[currentNode])
 								break;
 							
 							// 현재 노드와 자식 노드의 값을 교환
