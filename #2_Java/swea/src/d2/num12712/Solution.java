@@ -74,7 +74,7 @@ public class Solution {
 							int nr1 = r + dr1[d] * m;
 							int nc1 = c + dc1[d] * m;
 							
-							// 해당 위치가 벗어나지 않은 경우 파리의 수 갱신
+							// 해당 위치가 배열을 벗어나지 않은 경우 파리의 수 갱신
 							if (nr1 >= 0 && nr1 < size && nc1 >= 0 && nc1 < size)
 								sum1 += flies[nr1][nc1];
 							
@@ -82,7 +82,7 @@ public class Solution {
 							int nr2 = r + dr2[d] * m;
 							int nc2 = c + dc2[d] * m;
 							
-							// 해당 위치가 벗어나지 않은 경우 파리의 수 갱신
+							// 해당 위치가 배열을 벗어나지 않은 경우 파리의 수 갱신
 							if (nr2 >= 0 && nr2 < size && nc2 >= 0 && nc2 < size)
 								sum2 += flies[nr2][nc2];
 						}

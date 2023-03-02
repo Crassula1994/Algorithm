@@ -14,7 +14,7 @@ public class Solution {
 	// 완전 이진 트리를 나타낼 배열 maxHeap 초기화
 	static int[] maxHeap;
 	
-	// 배열 maxHeap의 마지막 원소의 인덱스를 나타낼 변수 lastIdx 초기화
+	// 배열 maxHeap의 마지막 인덱스를 나타낼 변수 lastIdx 초기화
 	static int lastIdx;
 	
 	// main() 메서드 정의
@@ -36,7 +36,7 @@ public class Solution {
 			// 완전 이진 트리를 나타낼 배열 maxHeap 초기화
 			maxHeap = new int[calcNum + 1];
 			
-			// 배열 maxHeap의 마지막 원소의 인덱스를 나타낼 변수 lastIdx 초기화
+			// 배열 maxHeap의 마지막 인덱스를 나타낼 변수 lastIdx 초기화
 			lastIdx = 0;
 			
 			// write() 메서드를 사용해 테스트 케이스 번호를 출력
