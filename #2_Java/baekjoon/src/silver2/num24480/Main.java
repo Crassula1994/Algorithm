@@ -1,4 +1,4 @@
-package silver2.num24479;
+package silver2.num24480;
 
 // 필요한 패키지 불러오기
 import java.io.BufferedReader;
@@ -66,9 +66,9 @@ public class Main {
 			connection.get(fromNode).add(toNode);
 		}
 			
-		// for 반복문을 사용해 정점의 연결 여부를 오름차순으로 정렬
+		// for 반복문을 사용해 정점의 연결 여부를 내림차순으로 정렬
 		for (int node = 1; node <= nodeNum; node++)
-			Collections.sort(connection.get(node));
+			Collections.sort(connection.get(node), Collections.reverseOrder());
 		
 		// dfs() 메서드를 호출해 각 정점별 방문 횟수를 갱신
 		dfs(startNode);
