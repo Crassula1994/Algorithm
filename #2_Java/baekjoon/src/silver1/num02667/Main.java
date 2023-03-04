@@ -6,7 +6,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.PriorityQueue;
+import java.util.Arrays;
 
 // Main 클래스 정의
 public class Main {
@@ -53,8 +53,8 @@ public class Main {
 				map[r][c] = line.charAt(c) - '0';
 		}
 		
-		// 단지 번호를 complexNum에 할당
-		int complexNum = 1;
+		// 단지 번호를 저장할 변수 complexNum 초기화
+		int complexNum = 0;
 		
 		// for 반복문을 사용해 배열 map의 각 행과 열을 순회
 		for (int r = 0; r < map.length; r++) {
@@ -62,21 +62,32 @@ public class Main {
 				
 				// 만약 집이고, 방문한 적이 없는 곳인 경우 complexFinder() 메서드를 호출해 각 단지별 방문 횟수를 갱신
 				if (map[r][c] == 1 && !visited[r][c])
-					complexFinder(r, c, complexNum++);
+					complexFinder(r, c, ++complexNum);
 			}
 		}
 		
 		// 각 단지별 개수를 저장할 배열 complexCnt 초기화
-		int[] complexCnt = new int[complexNum];
+		int[] complexCnt = new int[complexNum + 1];
 		
 		// for 반복문을 사용해 각 단지의 개수를 배열 complexCnt에 갱신
 		for (int r = 0; r < size; r++) {
 			for (int c = 0; c < size; c++) {
 				
-				
+				// 집이 있는 곳인 경우 단지번호에 해당하는 집의 개수를 갱신
+				if (map[r][c] != 0)
+					complexCnt[map[r][c]]++;
 			}
 		}
-		out.write(visited[idx] + "\n");
+		
+		// sort() 메서드를 사용해 배열 complexCnt를 오름차순으로 정렬
+		Arrays.sort(complexCnt);
+		
+		// write() 메서드를 사용해 총 단지 수를 출력
+		out.write(complexNum + "\n");
+		
+		// for 반복문을 사용해 단지 내 집의 수를 출력
+		for (int idx = 1; idx < complexCnt.length; idx++)
+			out.write(complexCnt[idx] + "\n");
 		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
@@ -85,7 +96,7 @@ public class Main {
 	
 	// ----------------------------------------------------------------------------------------------------
 	
-	// dfs() 메서드 정의
+	// complexFinder() 메서드 정의
 	public static void complexFinder(int startRow, int startCol, int complexNum) {
 		
 		// 시작 위치를 방문 처리 및 단지 번호 갱신
@@ -99,8 +110,10 @@ public class Main {
 			int nr = startRow + dr[d];
 			int nc = startCol + dc[d];
 			
-			// 새로운 위치가 범위를 벗어나지 않고 해당 위치에 집이 위치해 있으며 방문한 적이 없는 경우 complexFinder() 메서드 재귀 호출
+			// 새로운 위치가 범위를 벗어나지 않고 해당 위치에 집이 위치해 있으며 방문한 적이 없는 경우
 			if (nr >= 0 && nr < size && nc >= 0 && nc < size && map[nr][nc] == 1 && !visited[nr][nc])
+				
+				// complexFinder() 메서드 재귀 호출
 				complexFinder(nr, nc, complexNum);
 		}
 	}
