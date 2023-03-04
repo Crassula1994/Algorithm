@@ -33,11 +33,6 @@ public class Main {
 		// 해당 집까지의 최소 비용을 저장할 2차원 배열 minCosts 초기화
 		minCosts = new int[houseNum][3];
 		
-		// 첫 집까지의 최소 비용을 초기화
-		minCosts[0][0] = costs[0][0];
-		minCosts[0][1] = costs[0][1];
-		minCosts[0][2] = costs[0][2];
-		
 		// for 반복문을 사용해 2차원 배열 costs의 각 행을 순회
 		for (int r = 0; r < costs.length; r++) {
 			
@@ -49,8 +44,18 @@ public class Main {
 				costs[r][c] = Integer.parseInt(st.nextToken());
 		}
 		
-		// costCalculator() 메서드를 호출해 모든 집을 칠하는 비용의 최솟값을 변수 minCost에 할당
-		int minCost = Math.min(Math.min(costCalculator(houseNum - 1, 0), costCalculator(houseNum - 1, 1)), costCalculator(houseNum - 1, 2));
+		// 첫 집까지의 최소 비용을 초기화
+		minCosts[0][0] = costs[0][0];
+		minCosts[0][1] = costs[0][1];
+		minCosts[0][2] = costs[0][2];
+		
+		// costCalculator() 메서드를 호출해 모든 집을 칠하는 비용의 최솟값을 각 변수에 할당
+		int minRedCost = costCalculator(houseNum - 1, 0);
+		int minGreenCost = costCalculator(houseNum - 1, 1);
+		int minBlueCost = costCalculator(houseNum - 1, 2);
+		
+		// min() 메서드를 사용해 비용의 최솟갑승ㄹ 변수 minCost에 할당
+		int minCost = Math.min(Math.min(minRedCost, minGreenCost), minBlueCost);
 		
 		// valueOf() 및 write() 메서드를 사용해 모든 집을 칠하는 비용의 최솟값을 출력
 		out.write(String.valueOf(minCost));
@@ -66,27 +71,27 @@ public class Main {
 	public static int costCalculator(int house, int color) {
 		
 		// 최소 비용이 저장되어 있는 경우 저장된 값 반환
-		if (house != 0) {
-			return minCosts[]
+		if (minCosts[house][color] != 0) {
+			return minCosts[house][color];
 		
-		// 집의 수를 마지막까지 계산하지 못한 경우
+		// 최소 비용이 저장되어 있지 않은 경우
 		} else {
 			
-			// 빨강색으로 칠할 경우 다음 색을 초록색 또는 파란색으로 칠하는 경우를 가정하여 costCalculator() 메서드 재귀 호출
+			// 빨강으로 칠한 경우 이전 색을 초록 또는 파랑으로 칠하는 경우를 비교하여 배열 minCosts에 저장
 			if (color == 0) {
-				costCalculator(house + 1, 1, sum + costs[house][color]);
-				costCalculator(house + 1, 2, sum + costs[house][color]);
+				minCosts[house][0] = Math.min(costCalculator(house - 1, 1), costCalculator(house - 1, 2)) + costs[house][0];
 				
-			// 초록색으로 칠할 경우 다음 색을 빨강색 또는 파란색으로 칠하는 경우를 가정하여 costCalculator() 메서드 재귀 호출
+			// 초록으로 칠할 경우 이전 색을 빨강 또는 파랑으로 칠하는 경우를 비교하여 배열 minCosts에 저장
 			} else if (color == 1) {
-				costCalculator(house + 1, 0, sum + costs[house][color]);
-				costCalculator(house + 1, 2, sum + costs[house][color]);
+				minCosts[house][1] = Math.min(costCalculator(house - 1, 0), costCalculator(house - 1, 2)) + costs[house][1];
 				
-			// 파랑색으로 칠할 경우 다음 색을 빨강색 또는 파란색으로 칠하는 경우를 가정하여 costCalculator() 메서드 재귀 호출
+			// 파랑으로 칠할 경우 다음 색을 빨강 또는 파랑으로 칠하는 경우를 비교하여 배열 minCosts에 저장
 			} else {
-				costCalculator(house + 1, 0, sum + costs[house][color]);
-				costCalculator(house + 1, 1, sum + costs[house][color]);
+				minCosts[house][2] = Math.min(costCalculator(house - 1, 0), costCalculator(house - 1, 1)) + costs[house][2];
 			}
+			
+			// 저장한 값 반환
+			return minCosts[house][color];
 		}
 	}
 }
