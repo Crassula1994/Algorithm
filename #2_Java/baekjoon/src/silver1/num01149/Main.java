@@ -54,7 +54,7 @@ public class Main {
 		int minGreenCost = costCalculator(houseNum - 1, 1);
 		int minBlueCost = costCalculator(houseNum - 1, 2);
 		
-		// min() 메서드를 사용해 비용의 최솟갑승ㄹ 변수 minCost에 할당
+		// min() 메서드를 사용해 비용의 최솟값을 변수 minCost에 할당
 		int minCost = Math.min(Math.min(minRedCost, minGreenCost), minBlueCost);
 		
 		// valueOf() 및 write() 메서드를 사용해 모든 집을 칠하는 비용의 최솟값을 출력
