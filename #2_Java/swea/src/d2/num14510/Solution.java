@@ -33,8 +33,8 @@ public class Solution {
 			// 가장 키 큰 나무의 키를 저장할 변수 maxHeight 초기화
 			int maxHeight = 0;
 			
-			// 필요한 날짜의 수를 저장할 변수 count 초기화
-			int count = 0;
+			// 필요한 날짜의 수를 저장할 변수 minDate 초기화
+			int minDate = 0;
 			
 			// 각 나무의 높이를 저장할 배열 trees 초기화
 			int[] trees = new int[treeNum];
@@ -45,59 +45,50 @@ public class Solution {
 				// nextToken() 및 parseInt() 메서드를 사용해 각 나무의 높이를 배열 trees에 할당
 				trees[idx] = Integer.parseInt(st.nextToken());
 				
-				// 저장된 최대 높이보다 키가 높은 경우 해당 나무의 키를 최대 높이로 저장
-				maxHeight = (trees[idx] > maxHeight) ? trees[idx] : maxHeight;
+				// max() 메서드를 사용해 저장된 최대 높이보다 키가 높은 경우 해당 나무의 키를 최대 높이로 저장
+				maxHeight = Math.max(trees[idx], maxHeight);
 			}
 			
-			// for 반복문을 사용해 배열 trees의 각 원소를 순회하며 부족한 나무의 높이를 저장
-			for (int idx = 0; idx < trees.length; idx++)
-				trees[idx] = maxHeight - trees[idx];
-			
-			// 남은 높이가 1 또는 2인 나무의 개수를 저장할 배열 remains 초기화
-			int[] remains = new int[2];
+			// 최대 높이와 비교해 더 자라야 하는 높이 중 2와 1의 개수를 저장할 각 변수 초기화
+			int evenHeight = 0;
+			int oddHeight = 0;
 			
 			// for 반복문을 사용해 배열 trees의 각 원소를 순회
 			for (int idx = 0; idx < trees.length; idx++) {
 				
-				// 물을 연속으로 2일 줄 수 있는 경우를 계산해 날짜의 수를 갱신
-				count += (trees[idx] / 3) * 2;
+				// 최대 높이와 비교해 더 자라야 하는 높이 중 2와 1의 개수를 갱신
+				evenHeight += (maxHeight - trees[idx]) / 2;
+				oddHeight += (maxHeight - trees[idx]) % 2;
+			}
+			
+			// min() 메서드를 사용해 필요한 날짜 수 갱신
+			minDate += Math.min(evenHeight, oddHeight) * 2;
+			
+			// 2의 높이가 1의 높이에 비해 많은 경우
+			if (evenHeight > oddHeight) {
 				
-				// 남은 나무의 높이를 배열에 저장
-				trees[idx] = trees[idx] % 3;
+				// 2의 높이가 3의 배수로 있는 경우 4일간 나누어 작업할 수 있으므로 필요한 날짜 수 갱신
+				minDate += (evenHeight - oddHeight) / 3 * 4;
 				
-				// 남은 길이가 1인 나무의 수를 갱신
-				if (trees[idx] == 1) {
-					remains[0]++;
+				// 차이를 3으로 나눈 나머지를 변수 difference에 할당
+				int difference = (evenHeight - oddHeight) % 3;
 				
-				// 남은 길이가 2인 나무의 수를 갱신
-				} else if  (trees[idx] == 2){
-					remains[1]++;
+				// 차이가 2인 경우 3일간 나누어 작업할 수 있으므로 필요한 날짜 수 갱신
+				if (difference == 2) {
+					minDate += 3;
+				
+				// 차이가 1인 경우 하루를 쉬고 다음 날 작업할 수 있으므로 필요한 날짜 수 갱신
+				} else if (difference == 1) {
+					minDate += 2;
 				}
-			}
 			
-			// 길이가 1과 2인 나무 중 묶어서 물을 줄 수 있는 경우를 변수 couples에 할당 후 날짜의 수에 갱신
-			int couples = Math.min(remains[0], remains[1]);
-			count += couples * 2;
-			remains[0] -= couples;
-			remains[1] -= couples;
-			
-			// 모든 나무에 물을 준 경우 최소 날짜를 출력
-			if (remains[0] == remains[1]) {
-				out.write("#" + tc + " " + count + "\n");
-				
-			// 길이가 1인 나무가 남은 경우
-			} else if (remains[0] > remains[1]) {
-				
-				count += remains[0] * 2 - 1;
-				out.write("#" + tc + " " + count + "\n");
-				
-			// 길이가 2인 나무가 남은 경우
-			} else {
-				
-				count += (remains[1] - 1) / 3 * 4 + (remains[1] - 1) % 3 + 2;
-				out.write("#" + tc + " " + count + "\n");
-				
+			// 1의 높이가 2의 높이에 비해 많은 경우 필요한 날짜 수 갱신
+			} else if (evenHeight < oddHeight) {
+				minDate += 2 * (oddHeight - evenHeight) - 1;
 			}
+
+			// write() 메서드를 사용해 필요한 날짜 수 출력
+			out.write("#" + tc + " " + minDate + "\n");
 		}
 
 		// close() 메서드를 사용해 각 객체 종료
