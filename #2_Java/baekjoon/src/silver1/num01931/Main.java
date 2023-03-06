@@ -30,7 +30,7 @@ public class Main {
 			
 			// StringTokenizer 객체를 불러와 변수 st에 할당
 			StringTokenizer st = new StringTokenizer(in.readLine());
-			
+
 			// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 시작 시간 및 종료 시간을 배열 meetings에 저장
 			meetings[idx][0] = Integer.parseInt(st.nextToken());
 			meetings[idx][1] = Integer.parseInt(st.nextToken());

@@ -29,7 +29,7 @@ public class Main {
 		
 		// 정수 삼각형을 저장할 2차원 배열 triangle 초기화
 		triangle = new Integer[size][size];
-		
+
 		// 해당 위치까지의 최대 합을 저장할 2차원 배열 summation 초기화
 		summation = new Integer[size][size];
 		

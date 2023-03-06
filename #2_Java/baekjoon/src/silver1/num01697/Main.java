@@ -35,7 +35,7 @@ public class Main {
 		// 수빈이와 동생이 같은 위치에 있는 경우 0을 출력
 		if (startLoc == targetLoc) {
 			out.write(String.valueOf(0));
-			
+
 		// 수빈이와 동생이 같은 위치에 있지 않은 경우
 		} else {
 			

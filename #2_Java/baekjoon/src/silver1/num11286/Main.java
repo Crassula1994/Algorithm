@@ -36,7 +36,7 @@ public class Main {
 			
 			// '0'을 입력 받은 경우
 			if (number == 0) {
-				
+
 				// absoluteHeap에 값이 존재하지 않는 경우 0을 출력 후 다음 연산을 순회
 				if (absoluteHeap.isEmpty()) {
 					out.write(0 + "\n");

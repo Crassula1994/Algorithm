@@ -52,7 +52,7 @@ public class Main {
 			for (int c = 0; c < map.length; c++)
 				map[r][c] = line.charAt(c) - '0';
 		}
-		
+
 		// 단지 번호를 저장할 변수 complexNum 초기화
 		int complexNum = 0;
 		

@@ -43,7 +43,7 @@ public class Main {
 			for (int c = 0; c < 3; c++)
 				costs[r][c] = Integer.parseInt(st.nextToken());
 		}
-		
+
 		// 첫 집까지의 최소 비용을 초기화
 		minCosts[0][0] = costs[0][0];
 		minCosts[0][1] = costs[0][1];
