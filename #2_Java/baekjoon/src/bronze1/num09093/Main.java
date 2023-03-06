@@ -44,8 +44,8 @@ public class Main {
 				out.write(" ");
 			}
 			
-			// write() 메서드를 사용해 줄바꿈 출력
-			out.write("\n");
+			// newLine() 메서드를 사용해 줄바꿈 출력
+			out.newLine();
 		}
 		
 		// close() 메서드를 사용해 각 객체 종료

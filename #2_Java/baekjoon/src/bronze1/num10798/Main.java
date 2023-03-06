@@ -34,7 +34,7 @@ public class Main {
 		// for 반복문을 사용해 배열 words의 열과 행을 순회
 		for (int c = 0; c < 15; c++) {
 			for (int r = 0; r < 5; r++) {
-				
+
 				// 빈 값일 경우 다음 글자를 순회
 				if (words[r][c] == 0)
 					continue;

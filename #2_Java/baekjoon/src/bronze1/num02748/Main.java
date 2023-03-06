@@ -45,7 +45,7 @@ public class Main {
 		if (number < 2) {
 			return sequence[number] = number;
 		
-		// 이미 저장된 값이 있는 경우 해당 값 그대로 반환
+		// 이미 저장된 값이 있는 경우 해당 값을 반환
 		} else if (sequence[number] != 0) {
 			return sequence[number];
 		

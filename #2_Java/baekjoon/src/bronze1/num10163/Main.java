@@ -38,7 +38,7 @@ public class Main {
 			int row = Integer.parseInt(st.nextToken());
 			int width = Integer.parseInt(st.nextToken());
 			int height = Integer.parseInt(st.nextToken());
-			
+
 			// for 반복문을 사용해 해당 색종이의 위치를 표시
 			for (int r = row; r < row + height; r++) {
 				for (int c = column; c < column + width; c++)

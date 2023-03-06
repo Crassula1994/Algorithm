@@ -30,7 +30,7 @@ public class Main {
 			// StringTokenizer 객체를 불러와 변수 st에 할당
 			StringTokenizer st = new StringTokenizer(in.readLine());
 			
-			// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 A의 딱지의 개수를 변수 ttakjiA에 할당
+			// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 A의 딱지 개수를 변수 ttakjiA에 할당
 			int ttakjiA = Integer.parseInt(st.nextToken());
 			
 			// for 반복문을 사용해 A의 각 딱지를 배열에 저장
@@ -40,7 +40,7 @@ public class Main {
 			// StringTokenizer 객체를 불러와 변수 st에 재할당
 			st = new StringTokenizer(in.readLine());
 			
-			// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 B의 딱지의 개수를 변수 ttakjiB에 할당
+			// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 B의 딱지 개수를 변수 ttakjiB에 할당
 			int ttakjiB = Integer.parseInt(st.nextToken());
 			
 			// for 반복문을 사용해 B의 각 딱지를 배열에 저장
