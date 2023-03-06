@@ -56,7 +56,7 @@ public class Main {
 		
 		// valueOf() 및 write() 메서드를 사용해 필요한 최소 방의 개수를 출력
 		out.write(String.valueOf(minRoom));
-		
+
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
 		out.close();

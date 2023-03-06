@@ -36,7 +36,7 @@ public class Main {
 			
 			// write() 메서드를 사용해 결과 및 호출 횟수를 출력
 			out.write(result + " " + count + "\n");
-			
+
 			// recursion() 메서드의 호출 횟수를 초기화
 			count = 0;
 		}

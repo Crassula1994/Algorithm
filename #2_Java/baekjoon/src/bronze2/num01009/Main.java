@@ -45,7 +45,7 @@ public class Main {
 			// write 메서드를 사용해 마지막 데이터가 처리되는 컴퓨터의 번호를 출력
 			out.write(result + "\n");
 		}
-		
+
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
 		out.close();
