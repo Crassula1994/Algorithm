@@ -14,7 +14,7 @@ public class Main {
 	// 각 수열의 숫자를 저장할 배열 및 해당 인덱스까지의 최대 연속 합을 저장할 배열 초기화
 	static int[] sequence;
 	static Integer[] summation;
-	
+
 	// 연속 합 중에서 최댓값을 저장할 변수 maxSum 초기화
 	static int maxSum;
 	

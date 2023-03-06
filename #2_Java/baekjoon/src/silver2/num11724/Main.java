@@ -13,7 +13,7 @@ public class Main {
 	
 	// 그래프의 연결 상태를 저장할 2차원 배열 connection 초기화
 	static boolean[][] connection;
-	
+
 	// 그래프의 방문 여부를 표시할 배열 visited 초기화
 	static boolean[] visited;
 	

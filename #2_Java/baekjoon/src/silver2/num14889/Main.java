@@ -146,7 +146,7 @@ public class Main {
 					
 					// teamMaker() 메서드 재귀 호출
 					teamMaker(i + 1, selectedNum + 1, out);
-					
+
 					// 선택 처리한 사람 원래 상태로 복구
 					selected[i] = false;
 				}

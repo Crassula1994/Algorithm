@@ -20,7 +20,7 @@ public class Main {
 	static boolean[] visited;
 	
 	// ----------------------------------------------------------------------------------------------------
-	
+
 	// main() 메서드 정의
 	public static void main(String[] args) throws IOException {
 		

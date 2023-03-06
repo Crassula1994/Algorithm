@@ -41,7 +41,7 @@ public class Main {
 				
 				// 쌓인 쇠막대기의 수 갱신
 				fagot++;
-			
+
 			// 레이저가 입력되는 경우
 			} else if (bracket == ')' && bracketStack.peek() == '(') {
 				

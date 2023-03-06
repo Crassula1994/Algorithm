@@ -29,7 +29,7 @@ public class Main {
 		
 		// StringTokenizer 객체를 불러와 변수 st에 할당
 		StringTokenizer st = new StringTokenizer(in.readLine());
-		
+
 		// for 반복문을 사용해 각 좌표를 순회
 		for (int idx = 0; idx < cdNum; idx++)
 

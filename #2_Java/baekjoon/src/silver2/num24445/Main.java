@@ -95,7 +95,7 @@ public class Main {
 		// offer() 메서드를 사용해 시작 정점을 visitList에 추가 및 방문 처리
 		visitList.offer(startNode);
 		visited[startNode] = visitCnt++;
-		
+
 		// while 반복문을 사용해 visitList가 빌 때까지 순회
 		while (!visitList.isEmpty()) {
 

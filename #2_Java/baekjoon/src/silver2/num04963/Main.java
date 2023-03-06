@@ -50,7 +50,7 @@ public class Main {
 			
 			// for 반복문을 사용해 배열 map의 각 행을 순회
 			for (int r = 0; r < height; r++ ) {
-				
+
 				// StringTokenizer 객체를 불러와 변수 st에 재할당
 				st = new StringTokenizer(in.readLine());
 				

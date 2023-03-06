@@ -42,7 +42,7 @@ public class Main {
 				
 				// poll() 및 write() 메서드를 사용해 배열에서 가장 큰 값을 출력
 				out.write(maxHeap.poll() + "\n");
-			
+
 			// '0'을 입력 받지 않은 경우 add() 메서드를 사용해 숫자를 maxHeap에 추가
 			} else {
 				maxHeap.add(number);
