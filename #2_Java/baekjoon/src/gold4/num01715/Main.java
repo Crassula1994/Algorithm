@@ -20,7 +20,7 @@ public class Main {
 		
 		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 카드 묶음의 수를 변수 cardDecks에 할당
 		int cardDecks = Integer.parseInt(in.readLine());
-		
+
 		// 각 카드 묶음의 수를 저장할 PriorityQueue 객체 minHeap 초기화
 		PriorityQueue<Long> minHeap = new PriorityQueue<>();
 		

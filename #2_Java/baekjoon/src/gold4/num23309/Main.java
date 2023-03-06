@@ -44,7 +44,7 @@ public class Main {
 			
 			// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 역을 변수 post에 할당
 			int post = Integer.parseInt(st.nextToken());
-			
+
 			// 이전 역과 다음 역 정보 추가
 			prevStation[post] = current;
 			nextStation[post] = nextStation[current];

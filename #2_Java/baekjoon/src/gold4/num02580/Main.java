@@ -52,7 +52,7 @@ public class Main {
 			sudokuMaker(row + 1, 0, out);
 			return;
 		}
-		
+
 		// 스도쿠를 모두 완성한 경우
 		if (row == 9) {
 			
