@@ -17,7 +17,7 @@ public class Main {
 		// BufferedReader 및 BufferedWriter 객체를 불러와 각 변수에 할당
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
-		
+
 		// StringTokenizer 객체를 불러와 변수 st에 할당
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		

@@ -25,7 +25,7 @@ public class Main {
 		long a = Long.parseLong(st.nextToken());
 		long b = Long.parseLong(st.nextToken());
 		long c = Long.parseLong(st.nextToken());
-		
+
 		// valueOf() 및 write() 메서드를 사용해 세 수의 합을 출력
 		out.write(String.valueOf(a + b + c));
 		

@@ -28,7 +28,7 @@ public class Main {
 			int a = Integer.parseInt(st.nextToken());
 			int b = Integer.parseInt(st.nextToken());
 			
-			// 입력의 마지막인 경우 while 반복문 탈출
+			// 입력의 마지막인 경우 반복문 탈출
 			if (a == 0 && b == 0)
 				break;
 			

@@ -26,11 +26,11 @@ public class Main {
 			// 입력 값이 더 이상 없는 경우 반복문 탈출
 			if (line == null)
 				break;
-			
+
 			// write() 메서드를 사용해 문자열을 출력
 			out.write(line + "\n");
 		}
-
+		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
 		out.close();

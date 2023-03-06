@@ -28,7 +28,7 @@ public class Main {
 		// 각 정수를 담을 배열 numbers 초기화
 		int[] numbers = new int[size];
 		
-		// tringTokenizer 객체를 불러와 변수 st에 재할당
+		// StringTokenizer 객체를 불러와 변수 st에 재할당
 		st = new StringTokenizer(in.readLine());
 		
 		// for 반복문을 사용해 배열 numbers의 각 원소를 순회 
@@ -43,7 +43,7 @@ public class Main {
 				// write() 메서드를 사용해 해당 숫자를 출력
 				out.write(numbers[i] + " ");
 		}
-		
+
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
 		out.close();

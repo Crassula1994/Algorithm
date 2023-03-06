@@ -47,7 +47,7 @@ public class Main {
 
 		// valueOf() 및 write() 메서드를 사용해 찾으려는 정수의 개수를 출력
 		out.write(String.valueOf(count));
-		
+
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
 		out.close();

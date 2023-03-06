@@ -29,7 +29,7 @@ public class Main {
 		
 		// valueOf() 및 write() 메서드를 사용해 팩토리얼 연산의 결과를 출력
 		out.write(String.valueOf(factorial));
-		
+
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
 		out.close();

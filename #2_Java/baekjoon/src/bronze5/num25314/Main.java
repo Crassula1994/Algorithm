@@ -19,7 +19,7 @@ public class Main {
 		
 		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 정수를 변수 number에 할당
 		int number = Integer.parseInt(in.readLine());
-		
+
 		// for 반복문을 사용해 'long'을 출력
 		for (int i = 0; i < number / 4; i++)
 			out.write("long ");
