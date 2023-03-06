@@ -35,7 +35,7 @@ public class Main {
 			coordinates[r][0] = Integer.parseInt(st.nextToken());
 			coordinates[r][1] = Integer.parseInt(st.nextToken());
 		}
-		
+
 		// sort() 메서드를 사용해 2차원 배열을 정렬
 		Arrays.sort(coordinates, (cd1, cd2) -> {
 			return cd1[0] != cd2[0] ? cd1[0] - cd2[0] : cd1[1] - cd2[1];

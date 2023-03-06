@@ -46,7 +46,7 @@ public class Main {
 		// for 반복문을 사용해 배열 members의 각 회원을 출력
 		for (int r = 0; r < memberNum; r++)
 			out.write(members[r][0] + " " + members[r][1] + "\n");
-		
+
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
 		out.close();

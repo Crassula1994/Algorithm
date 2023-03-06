@@ -113,7 +113,7 @@ public class Main {
 				set.clear();
 			}
 		}
-		
+
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
 		out.close();
