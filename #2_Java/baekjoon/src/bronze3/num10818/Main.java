@@ -48,7 +48,7 @@ public class Main {
 		
 		// write() 메서드를 사용해 최솟값과 최댓값을 출력
 		out.write(min + " " + max);
-		
+
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
 		out.close();

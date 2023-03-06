@@ -26,7 +26,7 @@ public class Main {
 
 		// 숫자가 5억 초과인 경우 10억으로 값을 고정하고 5억 이하인 경우 2를 곱해 저장
 		number = (number > 500000000) ? 1000000000 : number * 2;
-   
+		
 		// valueOf() 및 write() 메서드를 사용해 소수가 아닌 수 출력
 		out.write(String.valueOf(number));
 

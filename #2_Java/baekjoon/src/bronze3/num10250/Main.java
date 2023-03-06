@@ -52,7 +52,7 @@ public class Main {
 			// write() 메서드를 사용해 최종 방 번호를 출력
 			out.write((floor * 100 + room) + "\n");			
 		}
-		
+
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
 		out.close();

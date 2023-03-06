@@ -26,7 +26,7 @@ public class Main {
 			// for 반복문을 사용해 해당 횟수만큼 별을 출력
 			for (int i = number - line; i > 0; i--)
 				out.write("*");
-			
+
 			// newLine() 메서드를 사용해 줄바꿈 출력
 			out.newLine();
 		}
