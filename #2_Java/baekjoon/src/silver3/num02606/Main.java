@@ -30,7 +30,7 @@ public class Main {
 		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 컴퓨터의 수와 컴퓨터 쌍의 수를 각 변수에 할당
 		int comCnt = Integer.parseInt(in.readLine());
 		int connCnt = Integer.parseInt(in.readLine());
-		
+
 		// 각 컴퓨터의 연결 정보를 저장할 2차원 배열 connection 초기화
 		connection = new boolean[comCnt + 1][comCnt + 1];
 		

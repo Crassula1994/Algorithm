@@ -52,7 +52,7 @@ public class Main {
 		// 이미 저장된 값이 있는 경우 이를 반환
 		} else if (seqCnt[number] != -1) {
 			return seqCnt[number];
-			
+
 		// 저장된 값이 없는 경우 연산 수행 후 결과 저장
 		} else {
 			return seqCnt[number] = (sequenceCounter(number - 1) + sequenceCounter(number - 2)) % 15746;

@@ -12,9 +12,9 @@ public class Main {
 	
 	// 제곱 수들의 개수를 저장할 배열 fourSquares 초기화
 	static int[] fourSquares = new int[50001];
-	
+
 	// ----------------------------------------------------------------------------------------------------
-	
+
 	// main() 메서드 정의
 	public static void main(String[] args) throws IOException {
 		

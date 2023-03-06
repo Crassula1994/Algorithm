@@ -9,7 +9,7 @@ import java.io.OutputStreamWriter;
 
 // Main 클래스 정의
 public class Main {
-	
+
 	// 파도반 수열을 저장할 배열 sequences 초기화
 	static long[] sequences = new long[101];
 	

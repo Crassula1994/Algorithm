@@ -70,7 +70,7 @@ public class Main {
 			} else {
 				calculation[number] = calculator(number - 1) + 1;
 			}
-			
+
 			// 결과 값 반환
 			return calculation[number];
 		}

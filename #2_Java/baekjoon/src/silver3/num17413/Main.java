@@ -63,7 +63,7 @@ public class Main {
 				
 			// 태그 내부의 문자가 아니고 띄어쓰기인 경우
 			} else if (!isInside && character == ' ') {
-				
+
 				// while 반복문을 사용해 reverseStr에 남아 있는 글자가 없을 때까지 글자 출력
 				while (!reverseStr.isEmpty())
 					out.write(reverseStr.pop());

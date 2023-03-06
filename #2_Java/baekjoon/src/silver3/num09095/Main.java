@@ -29,7 +29,7 @@ public class Main {
 		caseCnt[1] = 1;
 		caseCnt[2] = 2;
 		caseCnt[3] = 4;
-		
+
 		// for 반복문을 사용해 각 테스트 케이스를 순회
 		for (int tc = 0; tc < testCase; tc++) {
 			
