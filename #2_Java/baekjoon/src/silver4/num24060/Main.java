@@ -32,7 +32,7 @@ public class Main {
 		// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 배열의 크기 및 저장 상한을 각 변수에 할당
 		int length = Integer.parseInt(st.nextToken());
 		saveLimit = Integer.parseInt(st.nextToken());
-		
+
 		// 입력 받은 원소를 저장할 배열 array 초기화
 		int[] array = new int[length];
 		sorted = new int[length];

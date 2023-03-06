@@ -26,7 +26,7 @@ public class Main {
 		// 정수 배열 A와 B를 저장할 각 배열 초기화
 		Integer[] arrayA = new Integer[length];
 		Integer[] arrayB = new Integer[length];
-		
+
 		// S의 최솟값을 저장할 변수 minS 초기화
 		int minS = 0;
 		

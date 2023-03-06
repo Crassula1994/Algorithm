@@ -30,14 +30,14 @@ public class Main {
 		
 		// 구하고자 하는 가치를 위해 필요한 최소 동전의 수를 저장할 변수 minCnt 초기화
 		int minCnt = 0;
-
+		
 		// for 반복문을 사용해 각 동전의 종류를 배열 coins에 저장
 		for (int idx = 0; idx < coins.length; idx++)
 			coins[idx] = Integer.parseInt(in.readLine());
 	
 		// for 반복문을 사용해 각 동전의 종류를 순회
 		for (int idx = coins.length - 1; idx >= 0; idx--) {
-			
+
 			// 해당 동전이 필요한 개수를 구해 동전의 수에 갱신
 			minCnt += targetPrice / coins[idx];
 			
