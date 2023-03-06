@@ -37,7 +37,7 @@ public class Main {
 		
 		// for 반복문을 사용해 각 테스트 케이스를 순회
 		for (int tc = 0; tc < testCase; tc++) {
-			
+
 			// readLine() 및 parseInt() 메서드를 사용해 입력 받은 편의점의 수를 변수 cStoreNum에 할당
 			int cStoreNum = Integer.parseInt(in.readLine());
 			
