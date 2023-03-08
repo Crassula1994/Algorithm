@@ -46,7 +46,7 @@ public class Main {
 		depth = Integer.parseInt(st.nextToken());
 		height = Integer.parseInt(st.nextToken());
 		
-		// 토마토의 보관 상태를 저장할 2차원 배열 warehouse 초기화
+		// 토마토의 보관 상태를 저장할 3차원 배열 warehouse 초기화
 		warehouse = new int[height][depth][width];
 		
 		// 토마토가 모두 익었는지 검사할 변수 isRipe 초기화
