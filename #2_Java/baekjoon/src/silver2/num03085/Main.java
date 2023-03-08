@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;55
 
 // Main 클래스 정의
 public class Main {
@@ -35,10 +36,6 @@ public class Main {
 		// 보드 위치별 사탕의 색을 저장할 2차원 배열 candies 초기화
 		candies = new char[size][size];
 		
-		// rowChecker() 및 colChecker() 메서드를 호출해 상근이가 먹을 수 있는 사탕의 최대 개수 갱신
-		rowChecker(isMax);
-		colChecker(isMax);
-		
 		// for 반복문을 사용해 배열 candies의 각 행을 순회
 		for (int r = 0; r < size; r++) {
 			
@@ -49,78 +46,18 @@ public class Main {
 			for (int c = 0; c < size ; c++)
 				candies[r][c] = line.charAt(c);
 		}
-
-		// for 반복문을 사용해 각 행을 순회
-		for (int r = 0; r < size; r++) {
-			
-			// 비교하는 기준 색상을 변수 color에 할당
-			char color = candies[r][0];
-			
-			// 먹을 수 있는 사탕의 개수를 저장할 변수 count 초기화
-			int count = 1;
-			
-			// for 반복문을 사용해 각 행의 각 칸을 순회
-			for (int c = 1; c < size; c++) {
-				
-				// 기준 색상과 같은 경우 먹을 수 있는 사탕의 개수 갱신
-				if (candies[r][c] == color) {
-					count++;
-					
-				//	기준 색상과 다른 경우
-				} else {
-					
-					// max() 메서드를 사용해 최댓값 비교 후 갱신
-					maxIntake = Math.max(count, maxIntake);
-					
-					// 상근이가 먹을 수 있는 사탕의 최대 개수가 보드의 크기와 같은 경우 반복문 탈출
-					if (maxIntake == size)
-						break;
-					
-					// 기준 색상 및 먹을 수 있는 사탕의 개수 변경
-					color = candies[r][c];
-					count = 1;
-				}
-			}
-		}
-
-		// for 반복문을 사용해 각 열을 순회
-		for (int c = 0; c < size; c++) {
-			
-			// 비교하는 기준 색상을 변수 color에 할당
-			char color = candies[0][c];
-			
-			// 먹을 수 있는 사탕의 개수를 저장할 변수 count 초기화
-			int count = 1;
-			
-			// for 반복문을 사용해 각 열의 각 칸을 순회
-			for (int r = 1; r < size; r++) {
-				
-				// 기준 색상과 같은 경우 먹을 수 있는 사탕의 개수 갱신
-				if (candies[r][c] == color) {
-					count++;
-					
-				//	기준 색상과 다른 경우
-				} else {
-					
-					// max() 메서드를 사용해 최댓값 비교 후 갱신
-					maxIntake = Math.max(count, maxIntake);
-					
-					// 상근이가 먹을 수 있는 사탕의 최대 개수가 보드의 크기와 같은 경우 반복문 탈출
-					if (maxIntake == size)
-						break;
-					
-					// 기준 색상 및 먹을 수 있는 사탕의 개수 변경
-					color = candies[r][c];
-					count = 1;
-				}
-			}
-		}
+		
+		// rowChecker() 및 colChecker() 메서드를 호출해 상근이가 먹을 수 있는 사탕의 최대 개수 갱신
+		rowChecker();
+		colChecker();
+		
+		System.out.println(maxIntake);
 		
 		// 상근이가 먹을 수 있는 사탕의 최대 개수가 보드의 크기와 같은 경우 해당 값 출력
-		if (maxIntake == size) {
+		if (isMax) {
 			out.write(String.valueOf(maxIntake));
 		
-		// 
+		// 상근이가 먹을 수 있는 사탕의 최대 개수가 보드의 크기보다 작은 경우
 		} else {
 			
 			
@@ -135,8 +72,92 @@ public class Main {
 	// ----------------------------------------------------------------------------------------------------
 	
 	// rowChecker() 메서드 정의
-	public static void rowChecker(boolean isMax) {
-		// TODO Auto-generated method stub
+	public static void rowChecker() {
 		
+		// for 반복문을 사용해 각 행을 순회
+		for (int r = 0; r < size; r++) {
+			
+			// 비교하는 기준 색상을 변수 color에 할당
+			char color = candies[r][0];
+			
+			// 먹을 수 있는 사탕의 개수를 저장할 변수 count 초기화
+			int count = 1;
+			
+			// for 반복문을 사용해 각 행의 각 칸을 순회
+			for (int c = 1; c < size; c++) {
+				
+				System.out.println(count);
+				
+				// 기준 색상과 같은 경우 먹을 수 있는 사탕의 개수 갱신
+				if (candies[r][c] == color) {
+					count++;
+					
+				//	기준 색상과 다른 경우
+				} else {
+					
+					// max() 메서드를 사용해 최댓값 비교 후 갱신
+					maxIntake = Math.max(count, maxIntake);
+					
+					// 상근이가 먹을 수 있는 사탕의 최대 개수가 보드의 크기와 같은 경우
+					if (maxIntake == size) {
+						
+						// 가능한 최댓값에 도달했는지를 저장할 변수 isMax 갱신 및 반복문 탈출
+						isMax = true;
+						break;
+					}
+						
+					// 기준 색상 및 먹을 수 있는 사탕의 개수 변경
+					color = candies[r][c];
+					count = 1;
+				}
+			}
+		}
+	}
+	
+	// ----------------------------------------------------------------------------------------------------
+	
+	// colChecker() 메서드 정의
+	public static void colChecker() {
+		
+		// 가능한 최댓값에 도달하지 않은 경우
+		if (!isMax) {
+			
+			// for 반복문을 사용해 각 열을 순회
+			for (int c = 0; c < size; c++) {
+				
+				// 비교하는 기준 색상을 변수 color에 할당
+				char color = candies[0][c];
+				
+				// 먹을 수 있는 사탕의 개수를 저장할 변수 count 초기화
+				int count = 1;
+				
+				// for 반복문을 사용해 각 열의 각 칸을 순회
+				for (int r = 1; r < size; r++) {
+					
+					// 기준 색상과 같은 경우 먹을 수 있는 사탕의 개수 갱신
+					if (candies[r][c] == color) {
+						count++;
+						
+					//	기준 색상과 다른 경우
+					} else {
+						
+						// max() 메서드를 사용해 최댓값 비교 후 갱신
+						maxIntake = Math.max(count, maxIntake);
+						
+						// 상근이가 먹을 수 있는 사탕의 최대 개수가 보드의 크기와 같은 경우
+						if (maxIntake == size) {
+							
+							// 가능한 최댓값에 도달했는지를 저장할 변수 isMax 갱신 및 반복문 탈출
+							isMax = true;
+							break;
+						}
+						
+						// 기준 색상 및 먹을 수 있는 사탕의 개수 변경
+						color = candies[r][c];
+						count = 1;
+					}
+				}
+			}
+		}
 	}
 }
