@@ -6,7 +6,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Arrays;55
 
 // Main 클래스 정의
 public class Main {
@@ -48,10 +47,8 @@ public class Main {
 		}
 		
 		// rowChecker() 및 colChecker() 메서드를 호출해 상근이가 먹을 수 있는 사탕의 최대 개수 갱신
-		rowChecker();
-		colChecker();
-		
-		System.out.println(maxIntake);
+		rowChecker(0, size);
+		colChecker(0, size);
 		
 		// 상근이가 먹을 수 있는 사탕의 최대 개수가 보드의 크기와 같은 경우 해당 값 출력
 		if (isMax) {
@@ -60,8 +57,12 @@ public class Main {
 		// 상근이가 먹을 수 있는 사탕의 최대 개수가 보드의 크기보다 작은 경우
 		} else {
 			
+			// rowSwapper() 및 colSwapper() 메서드를 호출해 상근이가 먹을 수 있는 사탕의 최대 개수 갱신
+			rowSwapper();
+			colSwapper();
 			
-			
+			// valueOf() 및 write() 메서드를 사용해 상근이가 먹을 수 있는 사탕의 최대 개수 출력
+			out.write(String.valueOf(maxIntake));
 		}
 		
 		// close() 메서드를 사용해 각 객체 종료
@@ -72,43 +73,52 @@ public class Main {
 	// ----------------------------------------------------------------------------------------------------
 	
 	// rowChecker() 메서드 정의
-	public static void rowChecker() {
+	public static void rowChecker(int startRow, int endRow) {
 		
-		// for 반복문을 사용해 각 행을 순회
-		for (int r = 0; r < size; r++) {
+		// 가능한 최댓값에 도달하지 않은 경우
+		if (!isMax) {
 			
-			// 비교하는 기준 색상을 변수 color에 할당
-			char color = candies[r][0];
-			
-			// 먹을 수 있는 사탕의 개수를 저장할 변수 count 초기화
-			int count = 1;
-			
-			// for 반복문을 사용해 각 행의 각 칸을 순회
-			for (int c = 1; c < size; c++) {
+			// for 반복문을 사용해 각 행을 순회
+			outer: for (int r = startRow; r < endRow; r++) {
 				
-				System.out.println(count);
+				// 비교하는 기준 색상을 변수 color에 할당
+				char color = candies[r][0];
 				
-				// 기준 색상과 같은 경우 먹을 수 있는 사탕의 개수 갱신
-				if (candies[r][c] == color) {
-					count++;
+				// 먹을 수 있는 사탕의 개수를 저장할 변수 count 초기화
+				int count = 1;
+				
+				// for 반복문을 사용해 각 행의 각 칸을 순회
+				for (int c = 1; c < size; c++) {
 					
-				//	기준 색상과 다른 경우
-				} else {
-					
-					// max() 메서드를 사용해 최댓값 비교 후 갱신
-					maxIntake = Math.max(count, maxIntake);
-					
-					// 상근이가 먹을 수 있는 사탕의 최대 개수가 보드의 크기와 같은 경우
-					if (maxIntake == size) {
+					// 기준 색상과 같은 경우 먹을 수 있는 사탕의 개수 갱신
+					if (candies[r][c] == color) {
+						count++;
 						
-						// 가능한 최댓값에 도달했는지를 저장할 변수 isMax 갱신 및 반복문 탈출
-						isMax = true;
-						break;
+					//	기준 색상과 다른 경우
+					} else {
+						
+						// max() 메서드를 사용해 최댓값 비교 후 갱신
+						maxIntake = Math.max(count, maxIntake);
+							
+						// 기준 색상 및 먹을 수 있는 사탕의 개수 변경
+						color = candies[r][c];
+						count = 1;
 					}
+					
+					// 마지막 칸인 경우
+					if (c == size - 1) {
 						
-					// 기준 색상 및 먹을 수 있는 사탕의 개수 변경
-					color = candies[r][c];
-					count = 1;
+						// 상근이가 먹을 수 있는 사탕의 최대 개수가 보드의 크기와 같은 경우
+						if (maxIntake == size) {
+							
+							// 가능한 최댓값에 도달했는지를 저장할 변수 isMax 갱신 및 반복문 탈출
+							isMax = true;
+							break outer;
+						}
+						
+						// max() 메서드를 사용해 최댓값 비교 후 갱신
+						maxIntake = Math.max(count, maxIntake);
+					}
 				}
 			}
 		}
@@ -117,13 +127,13 @@ public class Main {
 	// ----------------------------------------------------------------------------------------------------
 	
 	// colChecker() 메서드 정의
-	public static void colChecker() {
+	public static void colChecker(int startCol, int endCol) {
 		
 		// 가능한 최댓값에 도달하지 않은 경우
 		if (!isMax) {
 			
 			// for 반복문을 사용해 각 열을 순회
-			for (int c = 0; c < size; c++) {
+			outer: for (int c = startCol; c < endCol; c++) {
 				
 				// 비교하는 기준 색상을 변수 color에 할당
 				char color = candies[0][c];
@@ -156,8 +166,87 @@ public class Main {
 						color = candies[r][c];
 						count = 1;
 					}
+					
+					// 마지막 칸인 경우
+					if (r == size - 1) {
+						
+						// 상근이가 먹을 수 있는 사탕의 최대 개수가 보드의 크기와 같은 경우
+						if (maxIntake == size) {
+							
+							// 가능한 최댓값에 도달했는지를 저장할 변수 isMax 갱신 및 반복문 탈출
+							isMax = true;
+							break outer;
+						}
+						
+						// max() 메서드를 사용해 최댓값 비교 후 갱신
+						maxIntake = Math.max(count, maxIntake);
+					}
 				}
 			}
 		}
+	}
+	
+	// ----------------------------------------------------------------------------------------------------
+	
+	// rowSwapper() 메서드 정의
+	public static void rowSwapper() {
+		
+		// for 반복문을 사용해 각 행을 순회
+		outer: for (int r = 0; r < size; r++) {
+			
+			// for 반복문을 사용해 각 행의 각 칸을 순회
+			for (int c = 0; c < size - 1; c++) {
+				
+				// 두 칸의 위치를 교체
+				char temp = candies[r][c];
+				candies[r][c] = candies[r][c + 1];
+				candies[r][c + 1] = temp;
+				
+				// rowChecker() 및 colChecker() 메서드를 호출해 상근이가 먹을 수 있는 사탕의 최대 개수 갱신
+				rowChecker(r, r + 1);
+				colChecker(c, c + 2);
+					
+				// 두 칸의 위치를 원래대로 복구
+				temp = candies[r][c];
+				candies[r][c] = candies[r][c + 1];
+				candies[r][c + 1] = temp;
+				
+				// 가능한 최댓값에 도달한 경우 반복문 탈출
+				if (isMax)
+					break outer;
+			}
+		}		
+	}
+	
+	// ----------------------------------------------------------------------------------------------------
+	
+	// colSwapper() 메서드 정의
+	public static void colSwapper() {
+		
+		// for 반복문을 사용해 각 열을 순회
+		outer: for (int c = 0; c < size; c++) {
+			
+			// for 반복문을 사용해 각 행의 각 칸을 순회
+			for (int r = 0; r < size - 1; r++) {
+				
+				// 두 칸의 위치를 교체
+				char temp = candies[r][c];
+				candies[r][c] = candies[r + 1][c];
+				candies[r + 1][c] = temp;
+				
+				// rowChecker() 및 colChecker() 메서드를 호출해 상근이가 먹을 수 있는 사탕의 최대 개수 갱신
+				rowChecker(r, r + 2);
+				colChecker(c, c + 1);
+					
+				// 두 칸의 위치를 원래대로 복구
+				temp = candies[r][c];
+				candies[r][c] = candies[r + 1][c];
+				candies[r + 1][c] = temp;
+				
+				// 가능한 최댓값에 도달한 경우 반복문 탈출
+				if (isMax)
+					break outer;
+			}
+		}		
 	}
 }
