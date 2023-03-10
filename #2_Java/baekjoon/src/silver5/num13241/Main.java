@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
 
 // Main 클래스 정의
 public class Main {
@@ -17,48 +18,51 @@ public class Main {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 테스트 케이스의 수를 변수 testCase에 할당
-		int testCase = Integer.parseInt(in.readLine());
+		// StringTokenizer 객체를 불러와 변수 st에 할당
+		StringTokenizer st = new StringTokenizer(in.readLine());
 		
-		// for 반복문을 사용해 각 테스트 케이스를 순회
-		for (int tc = 0; tc < testCase; tc++) {
-			
-			// readLine() 및 parseLong() 메서드를 사용해 입력 받은 숫자를 변수 number에 할당
-			long number = Long.parseLong(in.readLine());
-			
-			// 주어진 숫자보다 크거나 같은 소수를 저장할 변수 primeNum 초기화
-			long primeNum = (number > 1) ? number : 2;
-			
-			// while 반복문을 사용해 주어진 숫자보다 크거나 같은 소수를 찾을 때까지 순회
-			while (true) {
-				
-				// 소수인지 나타내는 변수 isPrimeNum 초기화
-				boolean isPrimeNum = true;
-				
-				// for 반복문을 사용해 소수인지 검사
-				for (int divisor = 2; divisor <= Math.sqrt(primeNum); divisor++) {
-					
-					// 소수가 아닌 경우 isPrimeNum 갱신 후 반복문 탈출
-					if (primeNum % divisor == 0) {
-						isPrimeNum = false;
-						break;
-					}
-				}
-				
-				// 소수인 경우 해당 숫자 출력 후 반복문 탈출
-				if (isPrimeNum) {
-					out.write(primeNum + "\n");
-					break;
-				
-				// 소수가 아닌 경우 다음 숫자 검사
-				} else {
-					primeNum = (primeNum % 2 == 0) ? primeNum + 1 : primeNum + 2;
-				}
-			}
-		}
+		// nextToken() 및 parseLong() 메서드를 사용해 입력 받은 정수를 각 변수에 할당
+		long numA = Long.parseLong(st.nextToken());
+		long numB = Long.parseLong(st.nextToken());
+		
+		// gcdCalculator() 메서드를 호출해 두 수의 최대공약수를 변수 gcd에 할당
+		long gcd = gcdCalculator(numA, numB);
+		
+		// 두 수의 최소공배수를 계산해 변수 lcm에 할당
+		long lcm = gcd * (numA / gcd) * (numB / gcd);
+		
+		// valueOf() 및 write() 메서드를 사용해 두 수의 최소공배수를 출력
+		out.write(String.valueOf(lcm));
 		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
 		out.close();
+	}
+	
+	// ----------------------------------------------------------------------------------------------------
+	
+	// gcdCalculator() 메서드 정의
+	public static long gcdCalculator(long numA, long numB) {
+		
+		// 두 숫자가 같은 경우 해당 숫자를 최대공약수로 반환
+		if (numA == numB) {
+			return numA;
+			
+		// 두 숫자가 같지 않은 경우
+		} else {
+			
+			// max() 및 min() 메서드를 사용해 두 수 중 큰 수와 작은 수를 각 변수에 할당
+			long bigNum = Math.max(numA, numB);
+			long smallNum = Math.min(numA, numB);
+			
+			// 큰 수가 작은 수로 나누어 떨어지는 경우 작은 수를 최대공약수로 반환
+			if (bigNum % smallNum == 0) {
+				return smallNum;
+			
+			// 큰 수가 작은 수로 나누어 떨어지지 않는 경우 gcdCalculator() 메서드 재귀 호출
+			} else {
+				return gcdCalculator(smallNum, bigNum % smallNum);
+			}
+		}
 	}
 }
