@@ -64,8 +64,8 @@ public class Main {
 			for (int idx = 0; idx < m; idx++)
 				out.write(result[idx] + " ");
 			
-			// write() 메서드 사용해 줄바꿈 출력
-			out.write("\n");
+			// newLine() 메서드를 사용해 줄바꿈 출력
+			out.newLine();
 			
 		// m개의 값을 추출해 수열을 모두 만들지 못한 경우
 		} else {
@@ -74,7 +74,7 @@ public class Main {
 			for (int idx = startIdx; idx < n; idx++) {
 				
 				// 선택하지 않은 값인 경우
-				if (selected[idx] != true) {
+				if (!selected[idx]) {
 					
 					// 해당 값을 선택 처리 후 수열에 추가
 					selected[idx] = true;
