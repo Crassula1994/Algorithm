@@ -60,8 +60,8 @@ public class Main {
 			for (int idx = 0; idx < m; idx++)
 				out.write(result[idx] + " ");
 			
-			// write() 메서드 사용해 줄바꿈 출력
-			out.write("\n");
+			// newLine() 메서드를 사용해 줄바꿈 출력
+			out.newLine();
 			
 		// m개의 값을 추출해 수열을 모두 만들지 못한 경우
 		} else {
