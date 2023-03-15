@@ -6,16 +6,18 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 // Main 클래스 정의
 public class Main {
 	
+	// 유저의 수를 저장할 변수 userNum 초기화
+	static int userNum;
+	
 	// 친구 관계의 연결 정보를 저장할 2차원 배열 friendships 초기화
 	static boolean[][] friendships;
-	
-	// 해당 친구의 통과 여부를 저장할 배열 passed 초기화
-	static int[] passed;
 	
 	// ----------------------------------------------------------------------------------------------------
 	
@@ -30,11 +32,14 @@ public class Main {
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		
 		// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 유저의 수 및 친구 관계의 수를 각 변수에 할당
-		int userNum = Integer.parseInt(st.nextToken());
+		userNum = Integer.parseInt(st.nextToken());
 		int relationNum = Integer.parseInt(st.nextToken());
 		
 		// 친구 관계의 연결 정보를 저장할 2차원 배열 friendships 초기화
 		friendships = new boolean[userNum + 1][userNum + 1];
+		
+		// 각 유저의 케빈 베이컨 수를 저장할 배열 kevinBacons 초기화
+		int[] kevinBacons = new int[userNum + 1];
 		
 		// for 반복문을 사용해 입력 받은 각 친구 관계를 순회
 		for (int relation = 0; relation < relationNum; relation++) {
@@ -49,12 +54,37 @@ public class Main {
 			friendships[toUser][fromUser] = true;			
 		}
 		
-		// for 반복문을 사용해 배열 numbers의 각 원소에 자연수를 저장
-		for (int idx = 0, num = 1; idx < numbers.length; idx++)
-			numbers[idx] = num++;
+		// for 반복문을 사용해 각 유저를 순회
+		for (int start = 1; start <= userNum; start++) {
+			
+			// for 반복문을 사용해 다른 유저를 순회
+			for (int target = start + 1; target <= userNum; target++) {
+			
+				// kevinBaconCalculator() 메서드를 호출해 각 사람의 케빈 베이컨 수를 계산 후 변수 result에 할당
+				int result = kevinBaconCalculator(start, target);
+				
+				// 각 사람의 케빈 베이컨 수를 갱신
+				kevinBacons[start] += result;
+				kevinBacons[target] += result;
+			}
+		}
 		
-		// combRepetition() 메서드를 호출해 수열을 차례로 출력
-		combRepetition(0, 0, n, m, result, out);
+		// 최소의 케빈 베이컨 수와 해당 유저를 저장할 각 변수 초기화
+		int minKevinBacons = Integer.MAX_VALUE;
+		int minUser = 0;
+		
+		// for 반복문을 사용해 배열 kevinBacons의 각 원소를 순회
+		for (int idx = 1; idx < kevinBacons.length; idx++) {
+			
+			// 해당 값이 최소의 케빈 베이컨 수인 경우 최소의 케빈 베이컨 수 및 해당 유저 갱신
+			if (kevinBacons[idx] < minKevinBacons) {
+				minKevinBacons = kevinBacons[idx];
+				minUser = idx;
+			}
+		}
+		
+		// valueOf() 및 write() 메서드를 사용해 케빈 베이컨 수가 가장 작은 사람을 출력
+		out.write(String.valueOf(minUser));
 
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
@@ -63,31 +93,43 @@ public class Main {
 	
 	// ----------------------------------------------------------------------------------------------------
 	
-	// combRepetition() 메서드 정의
-	public static void combRepetition(int startIdx, int length, int n, int m, int[] result, BufferedWriter out) throws IOException {
+	// kevinBaconCalculator() 메서드 정의
+	public static int kevinBaconCalculator(int startUser, int targetUser) {
 		
-		// m개의 값을 추출해 수열을 모두 만든 경우
-		if (length == m) {
+		// 해당 친구의 통과 여부를 저장할 배열 passed 초기화
+		Integer[] passed = new Integer[userNum + 1];
+		
+		// 다음에 방문할 친구를 저장할 Queue 객체 passList 초기화
+		Queue<Integer> passList = new LinkedList<>(); 
+		
+		// offer() 메서드를 사용해 passList에 추가 및 시작 유저 통과 처리
+		passList.offer(startUser);
+		passed[startUser] = 0;
+		
+		// while 반복문을 사용해 passList가 빌 때까지 순회
+		while (!passList.isEmpty()) {
 			
-			// for 반복문을 사용해 수열을 출력
-			for (int idx = 0; idx < m; idx++)
-				out.write(result[idx] + " ");
+			// poll() 메서드를 사용해 현재 통과 중인 유저를 변수 currentUser에 할당
+			int currentUser = passList.poll();
 			
-			// newLine() 메서드를 사용해 줄바꿈 출력
-			out.newLine();
+			// 해당 유저가 목표로 하는 유저인 경우 반복문 탈출
+			if (currentUser == targetUser)
+				break;
 			
-		// m개의 값을 추출해 수열을 모두 만들지 못한 경우
-		} else {
-			
-			// for 반복문을 사용해 모든 자연수를 차례로 순회
-			for (int idx = startIdx; idx < n; idx++) {
+			// for 반복문을 사용해 해당 유저와 연결되어 있는 다른 유저를 순회
+			for (int user = 1; user <= userNum; user++) {
 				
-				// 해당 값을 수열에 추가
-				result[length] = numbers[idx];
+				// 해당 유저와 연결되어 있고 통과하지 않은 경우
+				if (friendships[currentUser][user] && passed[user] == null) {
 					
-				// combRepetition() 메서드 재귀 호출
-				combRepetition(idx, length + 1, n, m, result, out);
+					// offer() 메서드를 사용해 passList에 추가 및 해당 유저 통과 처리
+					passList.offer(user);
+					passed[user] = passed[currentUser] + 1;
+				}
 			}
 		}
+		
+		// 해당 유저까지의 최단 거리를 반환
+		return passed[targetUser];
 	}
 }
