@@ -28,7 +28,7 @@ public class Main {
 		// 두 정수 사이의 값의 합을 저장할 변수 sum 초기화
 		long sum = (a + b) * ((Math.max(a, b) - Math.min(a, b) + 1) / 2);
 		
-		// 두 수 사이의 수의 개수가 홀수인 경우 중간 값을 갱신
+		// 두 정수 사이의 수의 개수가 홀수인 경우 중간 값을 sum에 갱신
 		if ((Math.max(a, b) - Math.min(a, b)) % 2 == 0)
 			sum += (a + b) / 2;
 		
