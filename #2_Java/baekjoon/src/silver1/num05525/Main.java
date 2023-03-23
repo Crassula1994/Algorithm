@@ -21,12 +21,8 @@ public class Main {
 		int oCount = Integer.parseInt(in.readLine());
 		int stringLength = Integer.parseInt(in.readLine());
 		
-		// 찾고자 하는 I와 O로 이루어진 문자열을 저장할 변수 targetString 초기화
-		String targetString = "I";
-		
-		// for 반복문을 사용해 교대로 나오는 문자열을 저장
-		for (int o = 0; o < oCount; o++)
-			targetString += "OI";
+		// 'IOI' 패턴의 개수를 저장할 배열 counter 초기화
+		int[] counter = new int[stringLength];
 		
 		// readLine() 메서드를 사용해 입력 받은 문자열을 변수 string에 할당
 		String string = in.readLine();
@@ -34,15 +30,25 @@ public class Main {
 		// 해당 문자열이 포함된 개수를 저장할 변수 count 초기화
 		int count = 0;
 		
-		// for 반복문을 사용해 입력 받은 문자열의 부분 문자열을 차례로 순회
-		for (int idx = 0; idx < stringLength - targetString.length(); idx++) {
+		// for 반복문을 사용해 문자열의 부분 문자열을 차례로 순회
+		for (int idx = 2; idx < stringLength; idx++) {
 			
 			// substring() 메서드를 사용해 부분 문자열을 변수 subString에 할당
-			String subString = string.substring(idx, idx + targetString.length());
+			String subString = string.substring(idx - 2, idx + 1);
 			
-			// 해당 부분 문자열이 찾고자 하는 문자열과 같은 경우 문자열이 포함된 개수를 갱신
-			if (subString.equals(targetString))
-				count++;
+			// 해당 부분 문자열이 'IOI'인 경우
+			if (subString.equals("IOI")) {
+				
+				// counter 배열에 'IOI' 패턴의 개수 갱신
+				counter[idx] = counter[idx - 2] + 1;
+				
+				// 해당 패턴의 개수가 O의 개수 이상인 경우 해당 문자열이 포함된 개수를 갱신
+				if (counter[idx] >= oCount)
+					count++;
+				
+				// 다음 'I'가 위치할 가능성이 있는 인덱스로 인덱스 조정
+				idx++;
+			}
 		}
 
 		// valueOf() 및 write() 메서드를 사용해 해당 문자열이 포함된 개수를 출력
