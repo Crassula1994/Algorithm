@@ -105,7 +105,7 @@ public class Main {
 				calculated[resultL] = calculated[currentVal] + "L";
 			}
 			
-			// 'S' 명령어를 수행한 결과를 계산한 적이 없는 경우
+			// 'R' 명령어를 수행한 결과를 계산한 적이 없는 경우
 			if (calculated[resultR] == null) {
 				
 				// offer() 메서드를 사용해 계산 결과를 calculationList에 추가 및 방문 처리
