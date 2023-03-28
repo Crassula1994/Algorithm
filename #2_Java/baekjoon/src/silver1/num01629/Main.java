@@ -26,7 +26,7 @@ public class Main {
 		long exponent = Long.parseLong(st.nextToken());
 		long divisor = Long.parseLong(st.nextToken());
 		
-		// powerCalculator() 메서드를 호출해 거듭제곱을 계산해 자연수로 나눈 나머지를 변수 result에 할당
+		// powerCalculator() 메서드를 호출해 거듭제곱을 계산하고 자연수로 나눈 나머지를 변수 result에 할당
 		long result = powerCalculator(base, exponent, divisor);
 		
 		// valueOf() 및 write() 메서드를 사용해 계산 결과를 출력
