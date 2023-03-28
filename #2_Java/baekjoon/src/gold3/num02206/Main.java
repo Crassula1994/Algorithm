@@ -36,7 +36,7 @@ public class Main {
 		// StringTokenizer 객체를 불러와 변수 st에 할당
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		
-		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 각 행렬의 크기를 각 변수에 할당
+		// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 각 행렬의 크기를 각 변수에 할당
 		rowNum = Integer.parseInt(st.nextToken());
 		colNum = Integer.parseInt(st.nextToken());
 		
