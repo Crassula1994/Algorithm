@@ -9,8 +9,9 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
-// https://www.acmicpc.net/board/view/103139 해당 반례 반드시 점검
+
 // Main 클래스 정의
 public class Main {
 	
@@ -18,10 +19,9 @@ public class Main {
 	static int vertexNum;
 	static int edgeNum;
 	
-	// 연결된 간선의 정보 및 해당 정점의 최단 경로의 값, 방문 여부를 저장할 각 배열 초기화
+	// 연결된 간선의 정보 및 해당 정점의 최단 경로의 값을 저장할 각 배열 초기화
 	static List<int[]>[] edges;
 	static int[] distance;
-	static boolean[] visited;
 	
 	// ----------------------------------------------------------------------------------------------------
 	
@@ -47,18 +47,14 @@ public class Main {
 		for (int idx = 1; idx < edges.length; idx++)
 			edges[idx] = new ArrayList<>();
 		
-		// 해당 정점의 최단 경로의 값 및 방문 여부를 저장할 각 배열 초기화 
+		// 해당 정점의 최단 경로의 값을 저장할 각 배열 초기화 
 		distance = new int[vertexNum + 1];
-		visited = new boolean[vertexNum + 1];
 		
 		// fill() 메서드를 사용해 배열 distance의 각 최단 경로의 값을 초기화
 		Arrays.fill(distance, Integer.MAX_VALUE);
 		
 		// readLine() 및 parseInt() 메서드를 사용해 시작 정점을 변수 startNode에 할당
 		int startNode = Integer.parseInt(in.readLine());
-		
-		// 시작 노드의 최단 거리를 초기화
-		distance[startNode] = 0;
 		
 		// for 반복문을 사용해 각 간선의 정보를 순회
 		for (int edge = 0; edge < edgeNum; edge++) {
@@ -75,9 +71,8 @@ public class Main {
 			edges[fromNode].add(new int[] {toNode, weightVal});
 		}
 
-		// 정점이 두 개 이상인 경우 distCalculator() 메서드를 호출해 최단 경로의 값을 갱신
-		if (vertexNum > 1)
-			distCalculator(startNode);
+		// distCalculator() 메서드를 호출해 최단 경로의 값을 갱신
+		distCalculator(startNode);
 		
 		// for 반복문을 사용해 배열 distance의 각 원소를 순회
 		for (int idx = 1; idx < distance.length; idx++) {
@@ -102,26 +97,45 @@ public class Main {
 	// distCalculator() 메서드 정의
 	public static void distCalculator(int startNode) {
 		
-		// 
-		// 현재 노드 방문 처리
-		visited[currentNode] = true;
+		// 다음에 방문할 노드를 저장할 PriorityQueue 객체 visitList 초기화
+		PriorityQueue<int[]> visitList = new PriorityQueue<>((n1, n2) -> {
+			return n1[1] - n2[1];
+		});
 		
-		// 해당 노드와 연결된 다른 노드를 순회
-		for (int idx = 0; idx < edges[currentNode].size(); idx++) {
+		// 해당 정점의 방문 여부를 저장할 배열 visited 초기화
+		boolean[] visited = new boolean[vertexNum + 1];
+		
+		// 시작 노드의 최단 거리 설정
+		distance[startNode] = 0;
+		
+		// offer() 메서드를 사용해 시작 노드를 visitList에 추가
+		visitList.offer(new int[] {startNode, 0});
+		
+		// while 반복문을 사용해 visitList가 빌 때까지 순회
+		while (!visitList.isEmpty()) {
 			
-			// get() 메서드를 사용해 연결된 노드 및 가중치를 각 변수에 할당
-			int node = edges[currentNode].get(idx)[0];
-			int weightVal = edges[currentNode].get(idx)[1];
+			// poll() 메서드를 사용해 현재 방문 중인 노드를 변수 currentNode에 할당
+			int[] currentNode = visitList.poll();
 			
-			// min() 메서드를 사용해 최단 거리를 갱신
-			distance[node] = Math.min(distance[currentNode] + weightVal, distance[node]);
-			
-			// 해당 노드를 방문한 적이 없고 저장된 최단 거리보다 계산한 최단 거리가 짧은 경우
-			if (!visited[node] && distance[node] < minDistance) {
+			// 해당 노드를 방문한 적이 없는 경우
+			if (!visited[currentNode[0]]) {
 				
-				// 다음에 방문할 노드 및 해당 노드의 최단 거리 갱신
-				nextNode = node;
-				minDistance = distance[node];
+				// 현재 방문 중인 노드를 방문 처리
+				visited[currentNode[0]] = true;
+				
+				// for 반복문을 사용해 해당 노드와 연결된 다른 노드를 순회
+				for (int idx = 0; idx < edges[currentNode[0]].size(); idx++) {
+					
+					// get() 메서드를 사용해 연결된 노드 및 가중치를 각 변수에 할당
+					int node = edges[currentNode[0]].get(idx)[0];
+					int weightVal = edges[currentNode[0]].get(idx)[1];
+					
+					// 해당 노드까지의 최단 거리가 저장된 최단 거리보다 짧은 경우 최단 거리 갱신 후 visitList에 추가
+					if (distance[node] > distance[currentNode[0]] + weightVal) {
+						distance[node] = distance[currentNode[0]] + weightVal;
+						visitList.offer(new int[] {node, distance[node]});
+					}
+				}
 			}
 		}
 	}
