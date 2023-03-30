@@ -12,8 +12,9 @@ import java.util.StringTokenizer;
 // Main 클래스 정의
 public class Main {
 	
-	// 비밀번호의 길이를 저장할 변수 targetLen 초기화
+	// 비밀번호의 길이 및 이를 구성하는 문자의 종류 수를 저장할 각 변수 초기화
 	static int targetLen;
+	static int charType;
 	
 	// 문자의 종류 및 가능한 비밀번호를 저장할 각 배열 초기화
 	static char[] characters;
@@ -33,7 +34,7 @@ public class Main {
 		
 		// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 비밀번호의 길이 및 이를 구성하는 문자의 종류 수를 각 변수에 할당
 		targetLen = Integer.parseInt(st.nextToken());
-		int charType = Integer.parseInt(st.nextToken());
+		charType = Integer.parseInt(st.nextToken());
 		
 		// 문자의 종류 및 가능한 비밀번호를 저장할 각 배열 초기화
 		characters = new char[charType];
@@ -80,7 +81,24 @@ public class Main {
 			return;
 		}
 		
-		
-		
+		// for 반복문을 사용해 각 알파벳을 순회
+		for (int idx = startIdx; idx < charType; idx++) {
+			
+			// 해당 인덱스를 선택 처리
+			password[length] = characters[idx];
+			
+			// switch 조건문을 사용해 모음과 자음인 경우를 계산해 passwordMaker() 메서드 재귀 호출
+			switch (characters[idx]) {
+				case 'a':
+				case 'e':
+				case 'i':
+				case 'o':
+				case 'u':
+					passwordMaker(idx + 1, length + 1, vowCnt + 1, conCnt, out);
+					break;
+				default:
+					passwordMaker(idx + 1, length + 1, vowCnt, conCnt + 1, out);
+			}
+		}
 	}
 }
