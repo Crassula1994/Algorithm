@@ -23,7 +23,7 @@ public class Main {
 		// pow() 메서드를 사용해 녹색거탑의 정상에서 바닥으로 내려오는 경우의 수를 변수 cases에 할당
 		int cases = (int) Math.pow(2, height);
 		
-		// valueOf() 및 write() 메서드를 사용해  녹색거탑의 정상에서 바닥으로 내려오는 경우의 수를 출력
+		// valueOf() 및 write() 메서드를 사용해 녹색거탑의 정상에서 바닥으로 내려오는 경우의 수를 출력
 		out.write(String.valueOf(cases));
 		
 		// close() 메서드를 사용해 각 객체 종료
