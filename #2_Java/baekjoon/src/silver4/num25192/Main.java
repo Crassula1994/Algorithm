@@ -54,7 +54,7 @@ public class Main {
 		// size() 메서드를 사용해 곰곰티콘을 사용한 횟수를 갱신
 		emoticonCnt += emoticonUser.size();
 
-		// valueOf(), write() 메서드를 사용해 곰곰티콘이 사용된 횟수를 출력
+		// valueOf() 및 write() 메서드를 사용해 곰곰티콘이 사용된 횟수를 출력
 		out.write(String.valueOf(emoticonCnt));
 		
 		// close() 메서드를 사용해 각 객체 종료
