@@ -9,13 +9,10 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.StringTokenizer;
-import java.util.TreeMap;
 
 // Main 클래스 정의
 public class Main {
@@ -48,19 +45,22 @@ public class Main {
 				continue;
 
 			// getOrDefault() 및 put() 메서드를 사용해 해당 단어의 개수를 wordCounter에 저장
-			wordCounter.put(word, wordCounter.getOrDefault(word, 1));
+			wordCounter.put(word, wordCounter.getOrDefault(word, 0) + 1);
 		}
 		
 		// entrySet() 메서드를 사용해 wordCounter를 List 객체 wordList로 변환
 		List<Entry<String, Integer>> wordList = new ArrayList<>(wordCounter.entrySet());
 
-		//
+		// sort() 메서드를 사용해 wordList의 단어를 주어진 조건에 따라 정렬
 		Collections.sort(wordList, (w1, w2) -> {
-			return (w1.getValue() == w2.getValue()) ? w2.getValue() - w1.getValue();
+			return (w1.getValue() == w2.getValue()) ? (w1.getKey().length() == w2.getKey().length()) ?
+					w1.getKey().compareTo(w2.getKey()) : w2.getKey().length() - w1.getKey().length()
+					: w2.getValue() - w1.getValue();
 		});
 		
-		// valueOf() 및 write() 메서드를 사용해 곰곰티콘이 사용된 횟수를 출력
-		out.write(String.valueOf(emoticonCnt));
+		// for 반복문을 사용해 단어장의 단어를 차례로 출력
+		for (int idx = 0; idx < wordList.size(); idx++)
+			out.write(wordList.get(idx).getKey() + "\n");
 		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
