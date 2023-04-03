@@ -35,26 +35,26 @@ public class Main {
 		// sort() 메서드를 사용해 배열 pHIndex를 오름차순으로 정렬
 		Arrays.sort(pHIndex);
 		
-		// 0에 가장 가까운 용액의 특성값의 합, 해당 합을 구성하는 각 쌍의 인덱스를 저장할 각 변수 초기화
+		// 0에 가장 가까운 용액의 특성값의 합, 해당 합을 구성하는 각 용액의 인덱스를 저장할 각 변수 초기화
 		int minStart = 0;
 		int minEnd = solutionNum - 1;
 		int minDiff = Math.abs(pHIndex[minStart] + pHIndex[minEnd]);
 		
-		// 각 용액의 쌍을 탐색하기 위해 필요한 변수 초기화
+		// 각 용액의 쌍을 탐색하기 위해 필요한 인덱스 변수 초기화
 		int start = 0;
 		int end = solutionNum - 1;
 		
-		// while 반복문을 사용해 쌍의 시작 인덱스와 쌍의 끝 인덱스가 교차할 때까지 순회
+		// while 반복문을 사용해 시작 인덱스와 끝 인덱스가 교차할 때까지 순회
 		while (start < end) {
 		
-			// 각 쌍의 합한 특성값을 변수 sum에 할당
+			// 각 용액 쌍의 특성값 합을 변수 sum에 할당
 			int sum = pHIndex[start] + pHIndex[end];
 			
 			// 특성값의 합이 현재 저장된 0에 가장 가까운 용액의 특성값의 합보다 작은 경우
 			if (Math.abs(sum) < minDiff) {
 				
 				// 0에 가장 가까운 용액의 특성값의 합을 갱신
-				minDiff = sum;
+				minDiff = Math.abs(sum);
 				minStart = start;
 				minEnd = end;
 				
@@ -63,11 +63,11 @@ public class Main {
 					break;
 			}
 			
-			// 각 쌍의 특성값 합이 0보다 작은 경우 쌍의 시작 인덱스를 조정
+			// 각 쌍의 특성값 합이 0보다 작은 경우 시작 인덱스를 조정
 			if (sum < 0) {
 				start++;
 
-			// 각 쌍의 특성값 합이 0보다 큰 경우 쌍의 끝 인덱스를 조정
+			// 각 쌍의 특성값 합이 0보다 큰 경우 끝 인덱스를 조정
 			} else {
 				end--;
 			}
