@@ -19,7 +19,7 @@ public class Main {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		// readLine() 및 parseInt() 메서드를 사용해 전깃줄의 개수를 변수 wireNum에 할당
+		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 전깃줄의 개수를 변수 wireNum에 할당
 		int wireNum = Integer.parseInt(in.readLine());
 		
 		// 연결된 전깃줄을 저장할 2차원 배열 connection 초기화
