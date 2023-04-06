@@ -1,4 +1,4 @@
-package d4.num05658;
+package unrated.num05658;
 
 // 필요한 패키지 불러오기
 import java.io.BufferedReader;
