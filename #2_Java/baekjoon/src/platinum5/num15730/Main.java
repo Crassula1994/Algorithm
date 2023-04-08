@@ -72,7 +72,7 @@ public class Main {
 		// 채울 수 있는 물의 높이를 저장할 각 2차원 배열 초기화
 		int[][] maxHeight = new int[height + 2][width + 2];
 		
-		// for 반복문을 사용해 배열 maxHeight의 각 행과 열을 순회하며 최대값으로 초기화
+		// for 반복문을 사용해 배열 maxHeight의 각 행과 열을 순회하며 최댓값으로 초기화
 		for (int r = 1; r <= height; r++) {
 			for (int c = 1; c <= width; c++)
 				maxHeight[r][c] = Integer.MAX_VALUE;
@@ -92,7 +92,7 @@ public class Main {
 	                if (land[r][c] == maxHeight[r][c])
 	                	continue;
 	                
-	                // 인접한 위치 중 가장 최소로 채울 수 있는 물의 높이를 변수 minHeight에 할당
+	                // 인접한 위치 중 가장 최소로 채울 수 있는 물의 높이를 저장할 변수 minHeight 초기화
 	                int minHeight = Integer.MAX_VALUE;
 	                
 	                // for 반복문을 사용해 인접한 위치를 순회
