@@ -20,8 +20,8 @@ public class Main {
 	static int connNum;
 	static int maxCount = 0;
 	
-	// 가장 많이 해킹할 수 있는 컴퓨터를 저장할 List 객체 weakestComputer 초기화
-	static List<Integer> weakestComputer = new ArrayList<>();
+	// 해킹할 수 있는 컴퓨터의 수를 저장할 배열 hackableNum 초기화
+	static int[] hackableNum;
 	
 	// 각 컴퓨터 간의 신뢰 관계를 저장할 배열 connection 초기화
 	static List<Integer>[] connection;
@@ -46,6 +46,9 @@ public class Main {
 		// 각 컴퓨터 간의 신뢰 관계를 저장할 배열 connection 초기화
 		connection = new ArrayList[computerNum + 1];
 		
+		// 해킹할 수 있는 컴퓨터의 수를 저장할 배열 hackableNum 초기화
+		hackableNum = new int[computerNum + 1];
+		
 		// for 반복문을 사용해 신뢰 관계를 저장할 각 List 객체 초기화
 		for (int idx = 0; idx < connection.length; idx++)
 			connection[idx] = new ArrayList<>();
@@ -57,20 +60,26 @@ public class Main {
 			st = new StringTokenizer(in.readLine());
 			
 			// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 신뢰하는 컴퓨터와 신뢰 받는 컴퓨터를 각 변수에 할당
-			int endComputer = Integer.parseInt(st.nextToken());
-			int startComputer = Integer.parseInt(st.nextToken());
+			int fromComputer = Integer.parseInt(st.nextToken());
+			int toComputer = Integer.parseInt(st.nextToken());
 			
 			// add() 메서드를 사용해 신뢰 관계를 추가
-			connection[startComputer].add(endComputer);
+			connection[fromComputer].add(toComputer);
 		}
 				
 		// for 반복문을 사용해 connCounter() 메서드를 호출하고 가장 많이 해킹할 수 있는 컴퓨터를 갱신
 		for (int computer = 1; computer <= computerNum; computer++)
 			connCounter(computer);
+			
+		// for 반복문을 사용해 가장 많이 해킹할 수 있는 컴퓨터의 수를 갱신
+		for (int idx = 1; idx < hackableNum.length; idx++)
+			maxCount = Math.max(hackableNum[idx], maxCount);
 		
-		// for 반복문을 사용해 장 많이 해킹할 수 있는 컴퓨터를 오름차순으로 출력
-		for (int idx = 0; idx < weakestComputer.size(); idx++)
-			out.write(weakestComputer.get(idx) + " ");
+		// for 반복문을 사용해 가장 많이 해킹할 수 있는 컴퓨터를 오름차순으로 출력
+		for (int idx = 1; idx < hackableNum.length; idx++) {
+			if (hackableNum[idx] == maxCount)
+				out.write(idx + " ");
+		}
 		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
@@ -92,9 +101,6 @@ public class Main {
 		hackList.offer(startComputer);
 		hacked[startComputer] = true;
 		
-		// 해킹된 컴퓨터의 개수를 저장할 변수 count 초기화
-		int count = 1;
-		
 		// while 반복문을 사용해 hackList가 빌 때까지 순회
 		while (!hackList.isEmpty()) {
 			
@@ -115,28 +121,9 @@ public class Main {
 					hacked[nextComputer] = true;
 					
 					// 해킹된 컴퓨터의 개수를 갱신
-					count++;
+					hackableNum[nextComputer]++;
 				}
 			}
-		}
-				
-		// 해킹된 컴퓨터의 개수가 저장된 가장 많이 해킹할 수 있는 컴퓨터의 수보다 큰 경우
-		if (count > maxCount) {
-			
-			// 가장 많이 해킹할 수 있는 컴퓨터의 수 갱신
-			maxCount = count;
-			
-			// 가장 많이 해킹할 수 있는 컴퓨터를 저장할 List 객체 weakestComputer 초기화
-			weakestComputer = new ArrayList<>();
-			
-			// add() 메서드를 사용해 가장 많이 해킹할 수 있는 컴퓨터로서 시작 컴퓨터를 weakestComputer에 추가
-			weakestComputer.add(startComputer);
-			
-		// 해킹된 컴퓨터의 개수가 저장된 가장 많이 해킹할 수 있는 컴퓨터의 수와 같은 경우
-		} else if (count == maxCount) {
-			
-			// add() 메서드를 사용해 가장 많이 해킹할 수 있는 컴퓨터로서 시작 컴퓨터를 weakestComputer에 추가
-			weakestComputer.add(startComputer);
 		}
 	}
 }
