@@ -1,6 +1,6 @@
 package silver4.num01940;
 
-//필요한 패키지 불러오기
+// 필요한 패키지 불러오기
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-//Main 클래스 정의
+// Main 클래스 정의
 public class Main {
 	
 	// main() 메서드 정의
