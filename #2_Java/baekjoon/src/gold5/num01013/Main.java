@@ -19,7 +19,7 @@ public class Main {
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		
 		// 직녀성의 전파 패턴을 변수 vegaPattern에 할당
-		String vegaPattern = "(100+1+|01)+";
+		String vegaPattern = "(100+1+|01)+";  
 		
 		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 테스트 케이스의 개수를 변수 testCase에 할당
 		int testCase = Integer.parseInt(in.readLine());
