@@ -50,7 +50,7 @@ public class Main {
 		int end = maxHeight;
 		
 		// while 반복문을 사용해 나무의 최대 높이를 도출할 때까지 순회
-		while(start <= end) {
+		while (start <= end) {
 			
 			// 이진 탐색 시 사용할 중간값 갱신
 			mid = (start + end) / 2;
