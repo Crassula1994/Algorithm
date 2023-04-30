@@ -1,6 +1,6 @@
 package silver1.num12852;
 
-//필요한 패키지 불러오기
+// 필요한 패키지 불러오기
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.io.OutputStreamWriter;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//Main 클래스 정의
+// Main 클래스 정의
 public class Main {
 	
 	// 입력 받은 자연수를 저장할 변수 number 초기화
