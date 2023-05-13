@@ -20,10 +20,10 @@ public class Main {
 		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 글자의 순서를 변수 order에 할당
 		int order = Integer.parseInt(in.readLine()) + 44031;
 		
-		// 해당 글자를 한글로 변환한 결과를 변수 character에 할당
+		// 해당 순서를 한글로 변환한 결과를 변수 character에 할당
 		char character = (char) order;
 				
-		// write() 메서드를 해당 글자를 출력
+		// write() 메서드를 사용해 해당 한글을 출력
 		out.write(character);
 
 		// close() 메서드를 사용해 각 객체 종료
