@@ -20,7 +20,7 @@ public class Main {
 		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 연도를 변수 year에 할당
 		int year = Integer.parseInt(in.readLine());
 		
-		// 개교 주년을 나타내는 정수를 변수 anniversary에 할당
+		// 개교 주년을 나타내는 정수를 계산해 변수 anniversary에 할당
 		int anniversary = year - 1946;
 		
 		// valueOf() 및 write() 메서드를 사용해 개교 주년을 나타내는 정수를 출력
