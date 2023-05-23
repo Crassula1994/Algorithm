@@ -18,7 +18,7 @@ public class Main {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		// readLine() 및 parseInt() 메서드를 사용해 로프의 개수를 변수 ropeNum에 할당
+		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 로프의 개수를 변수 ropeNum에 할당
 		int ropeNum = Integer.parseInt(in.readLine());
 		
 		// 각 로프의 중량을 저장할 배열 weights 초기화
