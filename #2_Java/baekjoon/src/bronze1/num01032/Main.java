@@ -17,7 +17,7 @@ public class Main {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 파일 이름의 갯수를 변수 fileNum에 할당
+		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 파일 이름의 개수를 변수 fileNum에 할당
 		int fileNum = Integer.parseInt(in.readLine());
 		
 		// readLine() 및 toCharArray() 메서드를 사용해 입력 받은 첫 파일 이름을 배열 fileNamePattern에 저장
