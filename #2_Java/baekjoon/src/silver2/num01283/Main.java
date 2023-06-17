@@ -19,7 +19,7 @@ public class Main {
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		
 		// 각 알파벳의 단축키 지정 여부를 저장할 배열 shortcuts 초기화
-		boolean[] shortcuts = new boolean[26]; //65 97
+		boolean[] shortcuts = new boolean[26];
 		
 		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 옵션의 개수를 변수 optionNum에 할당
 		int optionNum = Integer.parseInt(in.readLine());
