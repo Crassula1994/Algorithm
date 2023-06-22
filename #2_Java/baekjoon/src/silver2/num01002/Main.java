@@ -1,4 +1,4 @@
-package silver3.num01002;
+package silver2.num01002;
 
 // 필요한 패키지 불러오기
 import java.io.BufferedReader;
@@ -43,7 +43,7 @@ public class Main {
 			int diff = (r1 - r2) * (r1 - r2);
 			
 			// 류재명이 있을 수 있는 위치가 무수히 많은 경우 -1을 출력
-			if (x1 == x2 && y1 == y2 && r1 == r2) {
+			if (x1 == x2 && y1 == y2 && r1 == r2 && r1 != 0) {
 				out.write(-1 + "\n");
 			
 			// 류재명이 있을 수 있는 위치가 2개인 경우 2를 출력
@@ -51,7 +51,7 @@ public class Main {
 				out.write(2 + "\n");
 				
 			// 류재명이 있을 수 있는 위치가 1개인 경우 1을 출력
-			} else if (sum == distance || diff == distance) {
+			} else if (sum == distance || diff == distance || (x1 == x2 && y1 == y2 && r1 == r2 && r1 == 0)) {
 				out.write(1 + "\n");
 			
 			// 류재명이 있을 수 있는 위치가 0개인 경우 0을 출력
