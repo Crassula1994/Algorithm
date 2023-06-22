@@ -67,7 +67,7 @@ public class Main {
 			count = 0;
 		}
 		
-		// for 반복문을 사용해 방의 각 행과 열을 순회
+		// for 반복문을 사용해 방의 각 열과 행을 순회
 		for (int c = 0; c < roomSize; c++) {
 			for (int r = 0; r < roomSize; r++) {
 				
