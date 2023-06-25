@@ -18,10 +18,6 @@ public class Main {
 	static int limit;
 	static int minDistance = Integer.MAX_VALUE;
 	
-	// 인접한 위치를 나타내는 각 델타 배열 초기화
-	static int[] dr = {-1, 1, 0, 0};
-	static int[] dc = {0, 0, -1, 1};
-	
 	// 입력 받은 집의 위치, 치킨집의 위치, 해당 치킨집의 폐업 여부를 저장할 각 배열 초기화
 	static List<int[]> houses = new ArrayList<>();
 	static List<int[]> restaurants = new ArrayList<>();
