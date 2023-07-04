@@ -1,6 +1,6 @@
 package bronze1.num04344;
 
-//필요한 패키지 불러오기
+// 필요한 패키지 불러오기
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
-//Main 클래스 정의
+// Main 클래스 정의
 public class Main {
 	
 	// main() 메서드 정의
@@ -53,10 +53,10 @@ public class Main {
 			double count = 0;
 			
 			// for 반복문을 사용해 배열 scores의 각 원소를 순회
-			for (int j = 0; j < scores.length; j++) {
+			for (int score : scores) {
 				
 				// 평균을 넘는 학생인 경우 평균을 넘는 학생의 수 갱신
-				if (scores[j] > average)
+				if (score > average)
 					count++;
 			}
 			
