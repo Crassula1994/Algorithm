@@ -37,9 +37,9 @@ public class Main {
 			// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 약수를 배열 properDiv에 저장
 			properDiv[idx] = Integer.parseInt(st.nextToken());
 			
-			// 가장 작은 약수 및 가장 큰 약수의 값을 갱신
-			minDiv = (properDiv[idx] < minDiv) ? properDiv[idx] : minDiv;
-			maxDiv = (properDiv[idx] > maxDiv) ? properDiv[idx] : maxDiv;
+			// min() 및 max() 메서드를 사용해 가장 작은 약수 및 가장 큰 약수의 값을 갱신
+			minDiv = Math.min(properDiv[idx], minDiv);
+			maxDiv = Math.max(properDiv[idx], maxDiv);
 		}
 		
 		// valueOf() 및 write() 메서드를 사용해 해당 약수를 가지는 수를 출력
