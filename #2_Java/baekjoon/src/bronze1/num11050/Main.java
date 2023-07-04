@@ -30,8 +30,8 @@ public class Main {
 		int n = Integer.parseInt(st.nextToken());
 		int k = Integer.parseInt(st.nextToken());
 		
-		// binoCoeff() 메서드를 호출해 이항계수 연산 결과를 변수 result에 할당
-		int result = binoCoeff(n, k);
+		// binomialCoefficient() 메서드를 호출해 이항계수 연산 결과를 변수 result에 할당
+		int result = binomialCoefficient(n, k);
 		
 		// valueOf() 및 write() 메서드를 사용해 이항계수를 출력
 		out.write(String.valueOf(result));
@@ -43,8 +43,8 @@ public class Main {
 	
 	//----------------------------------------------------------------------------------------------------
 	
-	// binoCoeff() 메서드 정의
-	public static int binoCoeff(int n, int k) {
+	// binomialCoefficient() 메서드 정의
+	public static int binomialCoefficient(int n, int k) {
 		
 		// 값이 배열 results에 저장되어 있는 경우 바로 반환
 		if (results[n][k] != 0)
@@ -56,7 +56,7 @@ public class Main {
 			return results[n][k];
 		}
 		
-		// 나머지 경우 binoCoeff() 메서드 재귀 호출
-		return binoCoeff(n - 1, k) + binoCoeff(n - 1, k - 1);
+		// 나머지 경우 binomialCoefficient() 메서드 재귀 호출
+		return binomialCoefficient(n - 1, k) + binomialCoefficient(n - 1, k - 1);
 	}
 }
