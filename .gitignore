@@ -224,3 +224,89 @@ local.properties
 
 # Spring Boot Tooling
 .sts4-cache/
+
+########## Intellij ##########
+
+# User-specific Stuff
+*.iml
+*.idea
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# AWS User-specific
+.idea/**/aws.xml
+
+# Generated Files
+.idea/**/contentModel.xml
+
+# Sensitive or High-churn Files
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
+
+# CMake
+cmake-build-*/
+
+# Mongo Explorer Plugin
+.idea/**/mongoSettings.xml
+
+# File-based Project Format
+*.iws
+
+# IntelliJ
+out/
+
+# mpeltonen/sbt-idea Plugin
+.idea_modules/
+
+# JIRA Plugin
+atlassian-ide-plugin.xml
+
+# Cursive Clojure Plugin
+.idea/replstate.xml
+
+# SonarLint Plugin
+.idea/sonarlint/
+
+# Crashlytics Plugin for Android Studio and IntelliJ
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Editor-based Rest Client
+.idea/httpRequests
+
+# Android studio 3.1+ Serialized Cache File
+.idea/caches/build_file_checksums.ser
+
+# Sonarlint Plugin
+.idea/**/sonarlint/
+
+# SonarQube Plugin
+.idea/**/sonarIssues.xml
+
+# Markdown Navigator Plugin
+.idea/**/markdown-navigator.xml
+.idea/**/markdown-navigator-enh.xml
+.idea/**/markdown-navigator/
+
+# Cache File Creation Bug
+.idea/$CACHE_FILE$
+
+# CodeStream Plugin
+.idea/codestream.xml
+
+# Azure Toolkit for IntelliJ Plugin
+.idea/**/azureSettings.xml
