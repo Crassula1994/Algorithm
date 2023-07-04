@@ -25,12 +25,11 @@ public class Main {
 		// StringTokenizer 객체를 불러와 변수 st에 할당
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		
-		// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 날짜를 각 변수에 할당
+		// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 날짜의 달을 변수 targetMonth에 할당
 		int targetMonth = Integer.parseInt(st.nextToken());
-		int targetDay = Integer.parseInt(st.nextToken());
-		
-		// 해당 날짜까지의 날짜의 합을 저장할 변수 daySum 초기화
-		int daySum = targetDay;
+
+		// nextToken() 및 parseInt() 메서드를 사용해 해당 날짜까지의 날짜의 합을 저장할 변수 daySum 초기화
+		int daySum = Integer.parseInt(st.nextToken());
 		
 		// for 반복문을 사용해 입력 받은 달 이전까지의 날짜를 daySum에 추가
 		for (int idx = 1; idx < targetMonth; idx++)
