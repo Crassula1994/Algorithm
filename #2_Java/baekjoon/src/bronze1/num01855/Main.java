@@ -44,17 +44,17 @@ public class Main {
 			}
 		}
 		
-		// 해독한 원래의 문자열을 저장할 변수 decodedString 초기화
-		String decodedString = "";
+		// 해독한 원래의 문자열을 저장할 StringBuilder 객체 decodedString 초기화
+		StringBuilder decodedString = new StringBuilder();
 		
 		// for 반복문을 사용해 2차원 배열 table의 각 열과 행을 순회하며 해독한 결과를 갱신
 		for (int c = 0; c < columnNum; c++) {
 			for (int r = 0; r < rowNum; r++)
-				decodedString += table[r][c];
+				decodedString.append(table[r][c]);
 		}
 		
-		// write() 메서드를 사용해 원래의 문자열을 출력
-		out.write(decodedString);
+		// toString() 및 write() 메서드를 사용해 원래의 문자열을 출력
+		out.write(decodedString.toString());
 		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
