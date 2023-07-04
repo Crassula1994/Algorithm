@@ -32,9 +32,8 @@ public class Main {
 			num2 = temp;
 		}
 		
-		// 최대공약수 및 최소공배수를 저장할 각 변수 초기화
+		// 최대공약수를 저장할 변수 gcd 초기화
 		int gcd = 0;
-		int lcm = 0;
 		
 		// for 반복문을 사용해 작은 수까지 모든 자연수를 순회
 		for (int n = 1; n < num2 + 1; n++) {
@@ -44,8 +43,8 @@ public class Main {
 				gcd = n;
 		}
 		
-		// 최소공배수를 계산해 변수에 할당
-		lcm = gcd * (num1 / gcd) * (num2 / gcd);
+		// 최소공배수를 계산해 변수 lcm에 할당
+		int lcm = gcd * (num1 / gcd) * (num2 / gcd);
 		
 		// write() 메서드를 사용해 최대공약수 및 최소공배수를 출력
 		out.write(gcd + "\n" + lcm);
