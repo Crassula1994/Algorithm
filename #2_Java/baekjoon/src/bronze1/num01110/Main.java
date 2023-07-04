@@ -26,27 +26,23 @@ public class Main {
 		// 연산 결과를 담을 변수 tempNum 초기화
 		int tempNum = num;
 		
-		// while 반복문을 사용해 원래 수가 나올 때까지 순회
-		while (true) {
-		
+		// do-while 반복문을 사용해 원래 수가 나올 때까지 순회
+		do {
+
 			// 숫자가 10보다 작은 경우 연산 수행
 			if (tempNum < 10) {
 				tempNum *= 11;
-				
+
 			// 숫자가 10보다 큰 경우 연산 수행
 			} else {
 				int firstNum = tempNum % 10;
 				int secondNum = ((tempNum / 10) + (tempNum % 10)) % 10;
 				tempNum = firstNum * 10 + secondNum;
 			}
-			
+
 			// 사이클의 길이 조정
 			cycle += 1;
-			
-			// 원래 숫자와 같아진 경우 반복문 탈출
-			if (tempNum == num)
-				break;
-		}
+		} while (tempNum != num);
 		
 		// valueOf() 및 write() 메서드를 사용해 사이클의 길이를 출력
 		out.write(String.valueOf(cycle));
