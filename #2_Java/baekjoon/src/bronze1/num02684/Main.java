@@ -64,8 +64,8 @@ public class Main {
 			}
 			
 			// for 반복문을 사용해 각 3-동전 수열의 개수를 출력
-			for (int idx = 0; idx < counter.length; idx++)
-				out.write(counter[idx] + " ");
+			for (int count : counter)
+				out.write(count + " ");
 			
 			// newLine() 메서드를 사용해 줄바꿈을 출력
 			out.newLine();
