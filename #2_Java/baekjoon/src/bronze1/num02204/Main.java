@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 // Main 클래스 정의
@@ -32,9 +33,7 @@ public class Main {
 			String[] words = new String[wordNum];
 			
 			// 각 단어를 소문자로 변환해 저장할 PriorityQueue 객체 dictionary 초기화
-			PriorityQueue<String[]> dictionary = new PriorityQueue<>((w1, w2) -> {
-				return w1[1].compareTo(w2[1]);
-			});
+			PriorityQueue<String[]> dictionary = new PriorityQueue<>(Comparator.comparing(w -> w[1]));
 			
 			// for 반복문을 사용해 입력 받은 각 단어를 순회
 			for (int idx = 0; idx < wordNum; idx++) {
@@ -50,8 +49,9 @@ public class Main {
 			String[] headword = dictionary.poll();
 			
 			// parseInt() 및 write() 메서드를 사용해 사전 순으로 가장 앞서는 단어를 출력
-			out.write(words[Integer.parseInt(headword[0])]);
-			
+			if (headword != null)
+				out.write(words[Integer.parseInt(headword[0])]);
+
 			// newLine() 메서드를 사용해 줄바꿈을 출력
 			out.newLine();
 		}
