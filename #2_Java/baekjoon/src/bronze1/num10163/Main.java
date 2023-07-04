@@ -24,8 +24,8 @@ public class Main {
 		// 색종이의 위치를 저장할 2차원 배열 plane 초기화
 		int[][] plane = new int[1001][1001];
 		
-		// 각 색종이의 면적을 저장할 배열 area 초기화
-		int[] area = new int[cartolina];
+		// 각 색종이의 면적을 저장할 배열 areas 초기화
+		int[] areas = new int[cartolina];
 
 		// for 반복문을 사용해 각 색종이를 순회
 		for (int i = 0; i < cartolina; i++) {
@@ -47,18 +47,18 @@ public class Main {
 		}
 		
 		// for 반복문을 사용해 평면의 각 행과 열을 순회
-		for (int r = 0; r < plane.length; r++) {
+		for (int[] row : plane) {
 			for (int c = 0; c < plane.length; c++) {
-			
+
 				// 색종이로 덮인 부분인 경우 면적 계산
-				if (plane[r][c] != 0)
-					area[plane[r][c] - 1]++;
+				if (row[c] != 0)
+					areas[row[c] - 1]++;
 			}
 		}
 		
 		// for 반복문을 사용해 각 색종이의 면적을 차례로 출력
-		for (int idx = 0; idx < area.length; idx++)
-			out.write(area[idx] + "\n");
+		for (int area : areas)
+			out.write(area + "\n");
 		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
