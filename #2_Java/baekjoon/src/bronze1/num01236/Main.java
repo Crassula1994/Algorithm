@@ -54,18 +54,18 @@ public class Main {
 		int colCnt = 0;
 		
 		// for 반복문을 사용해 배열 rowGuard를 순회
-		for (int idx = 0; idx < rowGuard.length; idx++) {
+		for (boolean isExisted : rowGuard) {
 			
 			// 경비원이 존재하지 않는 경우 경비원이 필요한 행의 수를 갱신
-			if (!rowGuard[idx])
+			if (!isExisted)
 				rowCnt++;
 		}
 		
 		// for 반복문을 사용해 배열 colGuard를 순회
-		for (int idx = 0; idx < colGuard.length; idx++) {
+		for (boolean isExisted : colGuard) {
 			
 			// 경비원이 존재하지 않는 경우 경비원이 필요한 열의 수를 갱신
-			if (!colGuard[idx])
+			if (!isExisted)
 				colCnt++;
 		}
 		
