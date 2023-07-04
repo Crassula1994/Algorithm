@@ -45,8 +45,8 @@ public class Main {
 		}
 		
 		// for 반복문을 사용해 조작한 점수를 계산해 점수의 총합을 갱신
-		for (int i = 0; i < trueScores.length; i++)
-			sumScore += trueScores[i] / maxScore * 100;
+		for (int score : trueScores)
+			sumScore += score / maxScore * 100;
 		
 		// 새로운 평균을 계산해 newAverage 변수에 할당
 		double newAverage = sumScore / testNum;
