@@ -17,11 +17,8 @@ public class Main {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 정수를 변수 number에 할당
-		int number = Integer.parseInt(in.readLine());
-		
-		// 소인수분해의 결과을 저장할 변수 remains 초기화
-		int remains = number;
+		// readLine() 및 parseInt() 메서드를 사용해 소인수분해의 결과를 저장할 변수 remains 초기화
+		int remains = Integer.parseInt(in.readLine());
 		
 		// while 반복문을 사용해 소인수 분해의 결과가 1이 될 때까지 순회
 		while (remains > 1) {
