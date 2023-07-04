@@ -30,18 +30,18 @@ public class Main {
 		int coupleSeats = 0;
 		
 		// for 반복문을 사용해 각 좌석을 순회
-		for (int idx = 0; idx < seats.length; idx++) {
+		for (char seat : seats) {
 			
 			// 커플석이 있는 경우 커플의 개수 조정
-			if (seats[idx] == 'L')
+			if (seat == 'L')
 				coupleSeats += 1;
 		}
 		
 		// 컵홀더의 개수를 커플석의 개수를 반영해 조정
 		cupHolder -= coupleSeats / 2;
 		
-		// 컵홀더의 개수가 사람 수보다 많은지 검사한 후 사용할 수 있는 최대 사람의 수를 갱신
-		cupHolder = (cupHolder > people) ? people : cupHolder;
+		// min() 메서드를 사용해 컵홀더의 개수가 사람 수보다 많은지 검사한 후 사용할 수 있는 최대 사람의 수를 갱신
+		cupHolder = Math.min(people, cupHolder);
 		
 		// valueOf() 및 write() 메서드를 사용해 컵홀더를 사용할 수 있는 최대 사람의 수를 출력
 		out.write(String.valueOf(cupHolder));
