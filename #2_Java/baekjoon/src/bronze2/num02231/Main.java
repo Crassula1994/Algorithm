@@ -26,15 +26,15 @@ public class Main {
 			// valueOf() 메서드를 사용해 해당 숫자를 문자열로 변환해 numString에 저장 
 			String numString = String.valueOf(num);
 			
-			// 각 숫자의 자릿수를 담은 배열 numbers 초기화
+			// toCharArray() 메서드를 사용해 각 숫자의 자릿수를 담은 배열 numbers 초기화
 			char[] numbers = numString.toCharArray();
 			
 			// 분해합의 결과를 저장할 변수 sum 초기화
 			int sum = num;
 			
 			// for 반복문을 사용해 각 자릿수의 분해합을 도출
-			for (int idx = 0; idx < numbers.length; idx++)
-				sum += numbers[idx] - '0';
+			for (char cipher : numbers)
+				sum += cipher - '0';
 			
 			// 해당 결과가 입력 받은 숫자의 생성자인 경우
 			if (sum == targetNum) {
