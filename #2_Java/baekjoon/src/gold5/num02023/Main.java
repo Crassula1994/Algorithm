@@ -65,10 +65,9 @@ public class Main {
 				return;
 		}
 
-		// 해당하는 자릿수를 모두 만든 경우 해당 숫자 출력 후 메서드 종료
+		// 해당하는 자릿수를 모두 만든 경우 해당 숫자 출력
 		if (length == ciphers) {
 			out.write(number + "\n");
-			return;
 			
 		// 해당하는 자릿수를 모두 만들지 못한 경우
 		} else {

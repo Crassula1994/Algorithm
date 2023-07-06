@@ -49,10 +49,7 @@ public class Main {
 				integers.offerLast(Integer.parseInt(st.nextToken()));
 			
 			// for 반복문을 사용해 각 함수를 순회
-			for (int idx = 0; idx < functions.length; idx++) {
-				
-				// 해당 함수를 변수 function에 할당
-				char function = functions[idx];
+			for (char function : functions) {
 				
 				// 'R' 함수인 경우 삭제의 방향을 갱신
 				if (function == 'R') {

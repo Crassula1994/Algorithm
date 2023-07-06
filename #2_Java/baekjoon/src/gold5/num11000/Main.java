@@ -23,9 +23,9 @@ public class Main {
 		int lectureNum = Integer.parseInt(in.readLine());
 
 		// 입력 받은 각 수업을 저장할 PriorityQueue 객체 fastLecture 초기화
-		PriorityQueue<int[]> fastLecture = new PriorityQueue<>((c1, c2) -> {
-			return (c1[0] == c2[0]) ? c1[1] - c2[1] : c1[0] - c2[0];
-		});
+		PriorityQueue<int[]> fastLecture = new PriorityQueue<>(
+			(c1, c2) -> (c1[0] == c2[0]) ? c1[1] - c2[1] : c1[0] - c2[0]
+		);
 		
 		// 해당 수업을 각 강의실에 배정할 PriorityQueue 객체 lectureRoom 초기화
 		PriorityQueue<Integer> lectureRoom = new PriorityQueue<>();

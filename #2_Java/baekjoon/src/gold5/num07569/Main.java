@@ -141,8 +141,8 @@ public class Main {
 					if (warehouse[h][r][c] == 0)
 						return -1;
 					
-					// 토마토가 익는 데 필요한 시간을 갱신
-					minTime = (warehouse[h][r][c] > minTime) ? warehouse[h][r][c] : minTime;
+					// max() 메서드를 사용해 토마토가 익는 데 필요한 시간을 갱신
+					minTime = Math.max(warehouse[h][r][c], minTime);
 				}
 			}
 		}

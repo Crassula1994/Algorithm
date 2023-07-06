@@ -101,8 +101,8 @@ public class Main {
 				row++;
 			}
 			
-			// 주사위 눈의 합이 저장된 최대 합보다 큰 경우 갱신
-			maxSum = (sum > maxSum) ? sum : maxSum;
+			// max() 메서드를 사용해 주사위 눈의 합이 저장된 최대 합보다 큰 경우 갱신
+			maxSum = Math.max(sum, maxSum);
 		}
 		
 		// valueOf() 및 write() 메서드를 사용해 주사위 눈의 최대 합을 출력

@@ -71,9 +71,9 @@ public class Main {
 				
 				// min() 메서드를 사용해 다시 칠해야 하는 정사각형 개수의 최솟값을 갱신
 				int count = Math.min(
-						blackBoard[r][c] - blackBoard[r - size][c] - blackBoard[r][c - size] + blackBoard[r - size][c - size],
-						whiteBoard[r][c] - whiteBoard[r - size][c] - whiteBoard[r][c - size] + whiteBoard[r - size][c - size]
-						);
+					blackBoard[r][c] - blackBoard[r - size][c] - blackBoard[r][c - size] + blackBoard[r - size][c - size],
+					whiteBoard[r][c] - whiteBoard[r - size][c] - whiteBoard[r][c - size] + whiteBoard[r - size][c - size]
+				);
 				minCnt = Math.min(minCnt, count);
 			}
 		}

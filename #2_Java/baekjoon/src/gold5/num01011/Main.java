@@ -38,7 +38,7 @@ public class Main {
 			int maxMove = (int) Math.sqrt(distance);
 			
 			// 공간 이동 장치의 최소 작동 횟수를 저장할 변수 minCnt 초기화
-			int minCnt = 0;
+			int minCnt;
 			
 			// 가장 먼 거리를 이동하는 경우의 거리의 제곱이 거리와 동일한 경우 최소 작동 횟수를 갱신
 			if (maxMove * maxMove == distance) {

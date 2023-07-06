@@ -77,14 +77,8 @@ public class Main {
 			for (int r = startRow, cnt = 0; r < startRow + size; r += newSize) {
 				for (int c = startCol; c < startCol + size ; c += newSize) {
 					
-					// 가운데 빈 칸 구역인 경우 patternMaker() 메서드 재귀 호출
-					if (++cnt == 5) {
-						patternMaker(newSize, r, c, true);
-						
-					// 별을 출력하는 구역인 경우 patternMaker() 메서드 재귀 호출
-					} else {
-						patternMaker(newSize, r, c, false);
-					}
+					// 가운데 빈 칸 구역인지, 별을 출력하는 구역인지에 따라 patternMaker() 메서드 재귀 호출
+					patternMaker(newSize, r, c, ++cnt == 5);
 				}
 			}
 		}
