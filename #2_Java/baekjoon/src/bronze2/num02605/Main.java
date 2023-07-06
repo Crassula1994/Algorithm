@@ -45,11 +45,9 @@ public class Main {
 			}
 		}
 		
-		// for 반복문을 사용해 List 객체 line의 각 원소를 순회
-		for (int idx = 0; idx < line.size(); idx++)
-			
-			// write() 메서드를 사용해 학생의 번호를 출력
-			out.write(line.get(idx) + " ");
+		// for 반복문을 사용해 줄을 선 학생의 번호를 출력
+		for (int student : line)
+			out.write(student + " ");
 
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();

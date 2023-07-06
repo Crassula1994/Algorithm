@@ -34,10 +34,10 @@ public class Main {
 		}
 
 		// for 반복문을 사용해 배열 remains의 각 원소를 순회
-		for (int i = 0; i < remains.length; i++) {
+		for (int remain : remains) {
 			
 			// 나머지가 존재하는 경우 count 변수 조정
-			if (remains[i] != 0)
+			if (remain != 0)
 				count++;
 		}
 		

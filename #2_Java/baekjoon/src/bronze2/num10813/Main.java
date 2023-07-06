@@ -49,8 +49,8 @@ public class Main {
 		}
 
 		// for 반복문을 사용해 바구니에 들어 있는 공의 번호를 차례로 출력
-		for (int idx = 0; idx < baskets.length; idx++)
-			out.write(baskets[idx] + " ");
+		for (int basket : baskets)
+			out.write(basket + " ");
 
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();

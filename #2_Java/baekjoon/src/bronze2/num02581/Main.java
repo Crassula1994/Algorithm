@@ -61,7 +61,7 @@ public class Main {
 
 		// 소수가 있는 경우 write() 메서드를 사용해 소수의 개수 및 최솟값 출력
 		} else {
-			out.write(String.valueOf(sum + "\n" + minimum));
+			out.write(sum + "\n" + minimum);
 		}
 		
 		// close() 메서드를 사용해 각 객체 종료

@@ -35,11 +35,9 @@ public class Main {
 				location[characterArray[i] - 'a'] = i;
 		}
 
-		// for 반복문을 사용해 배열 location의 각 원소를 순회
-		for (int j = 0; j < location.length; j++)
-			
-			// write() 메서드를 사용해 원소를 출력
-			out.write(location[j] + " ");
+		// for 반복문을 사용해 배열 location의 각 원소를 출력
+		for (int loc : location)
+			out.write(loc + " ");
 		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();

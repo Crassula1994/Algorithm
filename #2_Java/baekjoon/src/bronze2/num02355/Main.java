@@ -25,11 +25,11 @@ public class Main {
 		long a = Long.parseLong(st.nextToken());
 		long b = Long.parseLong(st.nextToken());
 		
-		// 두 정수 사이의 값의 합을 저장할 변수 sum 초기화
-		long sum = (a + b) * ((Math.max(a, b) - Math.min(a, b) + 1) / 2);
+		// abs() 메서드를 사용해 두 정수 사이의 값의 합을 저장할 변수 sum 초기화
+		long sum = (a + b) * ((Math.abs(a - b) + 1) / 2);
 		
 		// 두 정수 사이의 수의 개수가 홀수인 경우 중간 값을 sum에 갱신
-		if ((Math.max(a, b) - Math.min(a, b)) % 2 == 0)
+		if ((Math.abs(a - b)) % 2 == 0)
 			sum += (a + b) / 2;
 		
 		// valueOf() 및 write() 메서드를 사용해 두 정수 사이의 값의 합을 출력
