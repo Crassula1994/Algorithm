@@ -65,10 +65,10 @@ public class Main {
 			String constInfo = st.nextToken();
 			
 			// 공사 정보에 필요한 정보를 저장할 각 변수 초기화
-			int target = 0;
-			int builded = 0;
-			int closed = 0;
-			int connected = 0;
+			int target;
+			int built;
+			int closed;
+			int connected;
 			
 			// switch 조건문을 사용해 공사 정보에 따라 정해진 명령을 수행
 			switch (constInfo) {
@@ -78,7 +78,7 @@ public class Main {
 					
 					// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 각 역을 각 변수에 저장
 					target = Integer.parseInt(st.nextToken());
-					builded = Integer.parseInt(st.nextToken());
+					built = Integer.parseInt(st.nextToken());
 					
 					// 건설될 역과 연결될 다른 역을 변수 connected에 할당
 					connected = nextStation[target];
@@ -87,12 +87,12 @@ public class Main {
 					out.write(connected + "\n");
 					
 					// 새로운 역의 정보 추가
-					prevStation[builded] = target;
-					nextStation[builded] = connected;
+					prevStation[built] = target;
+					nextStation[built] = connected;
 					
 					// 이전 역과 다음 역의 정보 갱신
-					nextStation[target] = builded;
-					prevStation[connected] = builded;
+					nextStation[target] = built;
+					prevStation[connected] = built;
 					
 					// 조건문 탈출
 					break;
@@ -102,7 +102,7 @@ public class Main {
 					
 					// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 각 역을 각 변수에 저장
 					target = Integer.parseInt(st.nextToken());
-					builded = Integer.parseInt(st.nextToken());
+					built = Integer.parseInt(st.nextToken());
 					
 					// 건설될 역과 연결될 다른 역을 변수 connected에 할당
 					connected = prevStation[target];
@@ -111,12 +111,12 @@ public class Main {
 					out.write(connected + "\n");
 					
 					// 새로운 역의 정보 추가
-					prevStation[builded] = connected;
-					nextStation[builded] = target;
+					prevStation[built] = connected;
+					nextStation[built] = target;
 					
 					// 이전 역과 다음 역의 정보 갱신
-					nextStation[connected] = builded;
-					prevStation[target] = builded;
+					nextStation[connected] = built;
+					prevStation[target] = built;
 					
 					// 조건문 탈출
 					break;

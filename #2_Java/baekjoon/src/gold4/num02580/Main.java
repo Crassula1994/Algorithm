@@ -81,7 +81,7 @@ public class Main {
 			for (int num = 1; num <= 9; num++) {
 				
 				// 해당 숫자를 넣을 수 있는 경우
-				if (rowChecker(row, column, num) && colChecker(row, column, num) && boxChecker(row, column, num)) {
+				if (rowChecker(row, num) && colChecker(column, num) && boxChecker(row, column, num)) {
 					
 					// 해당 숫자를 빈 칸에 갱신 후 sudokuMaker() 메서드 재귀 호출
 					sudoku[row][column] = num;
@@ -91,7 +91,6 @@ public class Main {
 			
 			// 1부터 9까지 넣어보아도 답을 구성할 수 없는 경우 값 초기화 후 함수 종료
 			sudoku[row][column] = 0;
-			return;
 			
 		// 해당 칸이 0이 아닌 경우 다음 칸을 검사하도록 sudokuMaker() 메서드 재귀 호출
 		} else {
@@ -102,7 +101,7 @@ public class Main {
 	// ----------------------------------------------------------------------------------------------------
 	
 	// rowChecker() 메서드 정의
-	public static boolean rowChecker(int row, int column, int possibleNum) {
+	public static boolean rowChecker(int row, int possibleNum) {
 		
 		// for 반복문을 사용해 해당 행을 차례로 순회
 		for (int c = 0; c < 9; c++) {
@@ -119,7 +118,7 @@ public class Main {
 	// ----------------------------------------------------------------------------------------------------
 	
 	// colChecker() 메서드 정의
-	public static boolean colChecker(int row, int column, int possibleNum) {
+	public static boolean colChecker(int column, int possibleNum) {
 		
 		// for 반복문을 사용해 해당 열을 차례로 순회
 		for (int r = 0; r < 9; r++) {
