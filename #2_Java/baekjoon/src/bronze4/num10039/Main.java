@@ -26,14 +26,8 @@ public class Main {
 			// readLine() 및 parseInt() 메서드를 사용해 입력 받은 점수를 변수 score에 할당
 			int score = Integer.parseInt(in.readLine());
 			
-			// 점수가 40점 미만인 경우 40점을 합산
-			if (score < 40) {
-				sum += 40;
-			
-			// 점수가 40점 이상인 경우 해당 점수를 합산
-			} else {
-				sum += score;
-			}
+			// max() 메서드를 사용해 점수가 40점 미만인 경우 40점을, 40점 이상인 경우 해당 점수를 합산
+			sum += Math.max(score, 40);
 		}
 			
 		// valueOf() 및 write() 메서드를 사용해 5명의 평균 점수를 출력

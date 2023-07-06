@@ -28,11 +28,11 @@ public class Main {
 				break;
 			
 			// 해독한 암호를 저장할 변수 reversedPassword 초기화
-			String reversedPassword = "";
+			StringBuilder reversedPassword = new StringBuilder();
 			
 			// for 반복문을 사용해 각 단어를 거꾸로 reversedPassword에 추가
 			for (int idx = password.length() - 1; idx >= 0; idx--)
-				reversedPassword += password.charAt(idx);
+				reversedPassword.append(password.charAt(idx));
 			
 			// write() 메서드를 사용해 해독한 암호를 출력
 			out.write(reversedPassword + "\n");

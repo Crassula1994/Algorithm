@@ -28,8 +28,8 @@ public class Main {
 			alphabets[word.charAt(idx) - 'a']++;
 
 		// for 반복문을 사용해 각 알파벳의 개수를 출력
-		for (int idx = 0; idx < alphabets.length; idx++)
-			out.write(alphabets[idx] + " ");
+		for (int alphabet : alphabets)
+			out.write(alphabet + " ");
 
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
