@@ -45,12 +45,15 @@ public class Main {
 		
 		// for 반복문을 사용해 뒤집은 각 배열의 원소를 순회
 		for (int k = 0; k < maxLength; k++) {
-			
+
+			// 덧셈을 수행한 결과를 변수 sum에 할당
+			int sum = result[k] + reverseA[k] + reverseB[k];
+
 			// 10 이상의 값을 다음 자릿수에 저장
-			result[k + 1] += (result[k] + reverseA[k] + reverseB[k]) / 10;
+			result[k + 1] += sum / 10;
 			
 			// 덧셈 연산 결과를 배열 result에 저장
-			result[k] = (result[k] + reverseA[k] + reverseB[k]) % 10;
+			result[k] = sum % 10;
 		}
 		
 		// 가장 높은 자릿수가 0이 아닐 경우 높은 자릿수 출력

@@ -38,10 +38,10 @@ public class Main {
 		int count = 0;
 		
 		// for 반복문을 사용해 배열 numbers의 각 원소를 순회
-		for (int i = 0; i < numbers.length; i++) {
+		for (int number : numbers) {
 			
 			// 해당 원소가 targetNum과 같은 경우 개수를 갱신
-			if (numbers[i] == targetNum)
+			if (number == targetNum)
 				count++;
 		}
 

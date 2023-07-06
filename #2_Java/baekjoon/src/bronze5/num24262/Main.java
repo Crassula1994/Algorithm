@@ -17,8 +17,9 @@ public class Main {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 입력의 크기를 할당
-		Integer.parseInt(in.readLine());
+		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 입력의 크기를 변수 size에 할당
+		@SuppressWarnings("unused")
+		int size = Integer.parseInt(in.readLine());
 		
 		// write() 메서드를 사용해 코드의 수행 횟수 및 최고차항의 수를 출력
 		out.write(1 + "\n" + 0);
