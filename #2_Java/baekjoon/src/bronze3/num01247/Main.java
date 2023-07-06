@@ -32,8 +32,8 @@ public class Main {
 				sum = sum.add(new BigInteger(in.readLine()));
 			
 			// 해당 정수의 합의 부호를 변수 result에 할당
-			String result = (sum.compareTo(BigInteger.ZERO) == 0) ? "0" : (sum.compareTo(BigInteger.ZERO) == -1) ? "-" : "+";   
-			
+			String result = (sum.compareTo(BigInteger.ZERO) == 0) ? "0" : (sum.compareTo(BigInteger.ZERO) < 0) ? "-" : "+";
+
 			// write() 메서드를 사용해 정수의 합의 부호를 출력
 			out.write(result + "\n");
 		}

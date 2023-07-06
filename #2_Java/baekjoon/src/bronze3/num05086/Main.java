@@ -29,7 +29,7 @@ public class Main {
 			int num2 = Integer.parseInt(st.nextToken());
 			
 			// 출력한 문자열 answer 초기화
-			String answer = "";
+			String answer;
 			
 			// 두 숫자가 0인 경우 반복문 탈출
 			if (num1 == num2) {

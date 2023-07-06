@@ -38,11 +38,11 @@ public class Main {
 			for (int a = 0; a < age; a++) {
 				
 				// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 생장점이 나뉜 가지의 숫자, 가지치기 한 가지의 수를 각 변수에 할당
-				int splittedBranch = Integer.parseInt(st.nextToken());
+				int splitBranch = Integer.parseInt(st.nextToken());
 				int prunedBranch = Integer.parseInt(st.nextToken());
 				
 				// 나무에 달려있는 잎의 수를 갱신
-				count = count * splittedBranch - prunedBranch;
+				count = count * splitBranch - prunedBranch;
 			}
 			
 			// write() 메서드를 사용해 해당 나무에 달려있는 잎의 수를 출력

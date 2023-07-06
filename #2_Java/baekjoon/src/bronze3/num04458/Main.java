@@ -33,7 +33,7 @@ public class Main {
 			firstAlphabet = (char) ((firstAlphabet - 'a' < 0) ? firstAlphabet : firstAlphabet - 32);
 			
 			// substring() 및 write() 메서드를 사용해 문장의 첫 단어를 대문자로 바꾼 결과를 출력
-			out.write(firstAlphabet + sentence.substring(1, sentence.length()) + "\n");
+			out.write(firstAlphabet + sentence.substring(1) + "\n");
 		}
 		
 		// close() 메서드를 사용해 각 객체 종료

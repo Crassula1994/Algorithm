@@ -49,8 +49,8 @@ public class Main {
 			}
 			
 			// for 반복문을 사용해 필요한 쿼터, 다임, 니켈, 페니의 개수를 차례로 출력
-			for (int idx = 0; idx < coins.length; idx++)
-				out.write(coins[idx] + " ");
+			for (int coin : coins)
+				out.write(coin + " ");
 			
 			// newLine() 메서드를 사용해 줄바꿈을 출력
 			out.newLine();
