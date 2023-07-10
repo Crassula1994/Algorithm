@@ -1,7 +1,6 @@
 package bronze2.num15596;
 
 // Test 클래스 정의
-@SuppressWarnings("unused")
 public class Test {
 	
 	// sum() 메서드 정의
