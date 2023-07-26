@@ -23,7 +23,33 @@ public class Main {
 	static int topHeight;
 	
 	// 각 홈으로의 이동 여부를 저장할 Map 객체 climbed 초기화
-	static Map<Integer, List<Integer>> climbed;
+	static Map<Integer, List<Furrow>> climbed;
+	
+	// Furrow 클래스 정의
+	static public class Furrow implements Comparable<Furrow> {
+		
+		// 해당 홈의 x 좌표, y 좌표, 이동 횟수를 저장할 각 변수 초기화
+		int x;
+		int y;
+		Integer count = null;
+		
+		// 인자를 입력 받는 각 생성자 정의
+		public Furrow(int x, int y) {
+			this.x = x;
+			this.y = y;
+		}
+		public Furrow(int x, int y, Integer count) {
+			this.x = x;
+			this.y = y;
+			this.count = count;
+		}
+		
+		// compareTo() 메서드 정의
+		@Override
+		public int compareTo(Furrow f) {
+			return y - f.y;
+		}
+	}
 	
 	// ----------------------------------------------------------------------------------------------------
 	
@@ -59,7 +85,7 @@ public class Main {
 				climbed.put(x, new ArrayList<>());
 			
 			// get() 및 add() 메서드를 사용해 해당 좌표를 추가
-			climbed.get(x).add(y);
+			climbed.get(x).add(new Furrow(x, y));
 		}
 		
 		// for 반복문을 사용해 climbed에 저장된 각 y 좌표를 오름차순으로 정렬
@@ -83,42 +109,56 @@ public class Main {
 	public static int climbCounter(int startX, int startY) {
 		
 		// 다음에 이동할 위치를 저장할 Queue 객체 climbList 초기화
-		Queue<int[]> climbList = new LinkedList<>();
+		Queue<Furrow> climbList = new LinkedList<>();
 		
-		// offer() 메서드를 사용해 출발 좌표를 climbList에 추가
-		climbList.offer(new int[] {0, 0, 0});
+		// offer() 메서드를 사용해 출발 좌표를 climbList에 추가 및 방문 처리
+		climbList.offer(new Furrow(0, 0, 0));
 		
 		// while 반복문을 사용해 climbList가 빌 때까지 순회
 		while (!climbList.isEmpty()) {
 			
-			// poll() 메서드를 사용해 현재 올라 있는 홈을 변수 배열 currentFurrow에 할당
-			int[] currentFurrow = climbList.poll();
+			// poll() 메서드를 사용해 현재 올라 있는 홈을 변수 currentFurrow에 할당
+			Furrow currentFurrow = climbList.poll();
 			
 			// 해당 위치가 정상인 경우 정상까지의 이동횟수를 반환
-			if (currentFurrow[1] == topHeight)
-				return currentFurrow[2];
+			if (currentFurrow.y == topHeight)
+				return currentFurrow.count;
 			
 			// for 반복문을 사용해 이동할 수 있는 x 좌표를 순회
-			for (int nx = currentFurrow[0] - 2; nx <= currentFurrow[0] + 2; nx++) {
+			for (int nx = currentFurrow.x - 2; nx <= currentFurrow.x + 2; nx++) {
 				
-				// 해당 y 좌표가 존재하지 않는 경우 다음 x 좌표를 순회
+				// 해당 x 좌표가 존재하지 않는 경우 다음 x 좌표를 순회
 				if (!climbed.containsKey(nx))
 					continue;
 				
-				// 해당 x 좌표에서의 y 좌표 중
+				// get() 메서드를 사용해 해당 x 좌표에 위치한 y 좌표들을 List 객체 yCoordinates에 할당
+				List<Furrow> yCoordinates = climbed.get(nx);
 				
-				int index = Collections.binarySearch(climbed.get(nx), Math.max(0, currentFurrow[1] - 2));
+				// max(), binarySearch() 메서드를 사용해 이동 가능한 y 좌표가 존재하는 시작 인덱스를 변수 startIdx에 할당
+				int startIdx = Collections.binarySearch(yCoordinates, new Furrow(currentFurrow.x, Math.max(0, currentFurrow.y - 2)));
 				
+				// 정확히 일치하는 값이 없는 경우 x 좌표의 위치를 변환
+				if (startIdx < 0)
+					startIdx = Math.abs(startIdx) - 1;
 				
-				climbed.get(nx).remove(nx);
-				
-				
+				// for 반복문을 사용해 가능한 위치를 순회
+				for (int idx = startIdx; idx < yCoordinates.size(); idx++) {
+					
+					// 해당 값이 가능한 범위를 벗어난 경우 반복문 탈출
+					if (yCoordinates.get(idx).y > currentFurrow.y + 2)
+						break;
+					
+					// 해당 위치를 이미 방문한 경우 다음 위치를 순회
+					if (yCoordinates.get(idx).count != null)
+						continue;
+					
+					// get() 및 offer() 메서드를 사용해 해당 위치를 climbList에 추가 및 방문 처리
+					climbList.offer(yCoordinates.get(idx));
+					yCoordinates.get(idx).count = currentFurrow.count + 1;
+				}
 			}
-			
-			
 		}
-		
-		
+
 		// 정상에 오를 수 없는 경우 -1을 반환
 		return -1;
 	}
