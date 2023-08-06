@@ -1,4 +1,4 @@
-package bronze5.num25304;
+package bronze4.num25304;
 
 // 필요한 패키지 불러오기
 import java.util.Scanner;
