@@ -23,10 +23,10 @@ public class Main {
 		// for 반복문을 사용해 입력 받은 단어의 각 글자를 순회
 		for (int idx = 0; idx < word.length(); idx++) {
 			
-			// charAt() 및 write() 메서드를 사용해 입력 받은 단어를 출력
+			// charAt() 및 write() 메서드를 사용해 해당 글자를 출력
 			out.write(word.charAt(idx));
 			
-			// 10의 배수인 글자인 경우 줄바꿈 출력
+			// 10의 배수에 위치한 글자인 경우 줄바꿈 출력
 			if (idx % 10 == 9)
 				out.newLine();
 		}
