@@ -6,8 +6,8 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 // Main 클래스 정의
@@ -24,7 +24,7 @@ public class Main {
 		int balloonNum = Integer.parseInt(in.readLine());
 		
 		// 각 풍선을 순서대로 저장할 Deque 객체 balloons 초기화
-		Deque<int[]> balloons = new LinkedList<>();
+		Deque<int[]> balloons = new ArrayDeque<>();
 		
 		// StringTokenizer 객체를 불러와 변수 st에 할당
 		StringTokenizer st = new StringTokenizer(in.readLine());
@@ -41,20 +41,32 @@ public class Main {
 		
 		// pollFirst() 메서드를 사용해 현재 뽑힌 풍선을 저장할 배열 currentBalloon 초기화
 		int[] currentBalloon = balloons.pollFirst();
-		
-		// write() 메서드를 사용해 
 
 		// while 반복문을 사용해 balloons가 빌 때까지 순회
 		while (!balloons.isEmpty()) {
 			
-			//
+			// write() 메서드를 사용해 현재 뽑힌 풍선의 번호를 출력
+			out.write(currentBalloon[0] + " ");
 			
+			// for 반복문을 사용해 해당 풍선에 적힌 숫자만큼의 풍선을 순회
+			for (int b = 1; b < Math.abs(currentBalloon[1]); b++) {
+				
+				// 해당 숫자가 양수인 경우 앞의 풍선을 뒤로 보내기
+				if (currentBalloon[1] > 0) {
+					balloons.addLast(balloons.pollFirst());
+				
+				// 해당 숫자가 음수인 경우 뒤의 풍선을 앞으로 보내기
+				} else {
+					balloons.addFirst(balloons.pollLast());
+				}				
+			}
 			
-			
+			// 다음에 뽑힌 풍선 정보를 배열 currentBalloon에 할당
+			currentBalloon = (currentBalloon[1] > 0) ? balloons.pollFirst() : balloons.pollLast();
 		}
-
-		// write() 메서드를 사용해 8진수로 변환한 결과를 출력
-		out.write("");
+		
+		// valueOf() 및 write() 메서드를 사용해 마지막으로 뽑힌 풍선의 번호를 출력
+		out.write(String.valueOf(currentBalloon[0]));
 		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
