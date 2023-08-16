@@ -21,10 +21,10 @@ public class Main {
 		// StringTokenizer 객체를 불러와 변수 st에 할당
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		
-		/* nextToken() 및 parseInt() 메서드를 사용해 입력 받은 송찬이가 필요한 배터리, 선생님이 가져온 배터리를
+		/* nextToken() 및 parseLong() 메서드를 사용해 입력 받은 송찬이가 필요한 배터리, 선생님이 가져온 배터리를
 		각 변수에 할당 */
-		int demand = Integer.parseInt(st.nextToken());
-		int supply = Integer.parseInt(st.nextToken());
+		long demand = Long.parseLong(st.nextToken());
+		long supply = Long.parseLong(st.nextToken());
 		
 		// 송찬이가 원한 배터리인 경우 1을 출력
 		if (demand == supply) {
