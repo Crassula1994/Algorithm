@@ -17,7 +17,7 @@ public class Main {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 반지름를 변수 radius에 할당
+		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 반지름을 변수 radius에 할당
 		int radius = Integer.parseInt(in.readLine());
 		
 		// 유클리드 기하학에서의 원의 넓이, 택시 기하학에서의 원의 넓이를 계산해 각 변수에 할당
