@@ -17,7 +17,7 @@ public class Main {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		// parseInt() 및 readLine() 메서드를 사용해 입력 받은 16진수를 10진수로 변환해 변수 number에 저장
+		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 16진수를 10진수로 변환해 변수 number에 저장
 		int number = Integer.parseInt(in.readLine(), 16);
 		
 		// valueOf() 및 write() 메서드를 사용해 16진수를 10진수로 변환한 결과를 출력
