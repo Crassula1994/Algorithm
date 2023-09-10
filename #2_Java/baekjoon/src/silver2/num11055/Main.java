@@ -47,10 +47,14 @@ public class Main {
 				// 해당 값이 현재 값보다 작은 경우 가장 큰 증가하는 부분 수열의 합을 갱신
 				if (sequence[prev] < sequence[idx])
 					lisSum[idx] = Math.max(lisSum[prev] + sequence[idx], lisSum[idx]);
-
-				maxLength = Math.max(lisLength[prev] + 1, maxLength);
 			}
+			
+			// max() 메서드를 사용해 가장 큰 증가하는 부분 수열의 합을 갱신
+			maxSum = Math.max(lisSum[idx], maxSum);
 		}
+		
+		// valueOf() 및 write() 메서드를 사용해 가장 큰 증가하는 부분 수열의 합을 출력
+		out.write(String.valueOf(maxSum));
 		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
