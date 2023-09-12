@@ -23,7 +23,7 @@ public class Main {
 		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 게임판의 크기를 변수 size에 할당
 		int size = Integer.parseInt(in.readLine());
 		
-		// 게임판의 숫자를 저장할 2차원 배열 board 초기화
+		// 게임판의 숫자, 해당 위치까지의 경로의 수를 저장할 각 2차원 배열 board 초기화
 		int[][] board = new int[size][size];
 		
 		// for 반복문을 사용해 각 게임판의 행을 순회
@@ -39,6 +39,8 @@ public class Main {
 		
 		// 다음에 방문할 칸을 저장할 Queue 객체 moveList 초기화
 		Queue<int[]> moveList = new LinkedList<>();
+		
+		// 
 		
 		// valueOf() 및 write() 메서드를 사용해 가장 큰 증가하는 부분 수열의 합을 출력
 		out.write(String.valueOf(maxSum));
