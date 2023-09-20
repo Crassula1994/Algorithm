@@ -1,4 +1,4 @@
-package level2.num42584;
+package level2.num042584;
 
 // 필요한 패키지 불러오기
 import java.util.Stack;

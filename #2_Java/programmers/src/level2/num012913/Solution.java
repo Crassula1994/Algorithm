@@ -1,4 +1,4 @@
-package level2.num12913;
+package level2.num012913;
 
 // Solution 클래스 정의
 public class Solution {
