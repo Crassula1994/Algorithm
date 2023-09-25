@@ -49,8 +49,8 @@ public class Solution {
 				// getOrDefault() 및 put() 메서드를 사용해 총 주차 시간을 갱신
 				totalTime.put(carNum, totalTime.getOrDefault(carNum, 0) + time - inTime);
 				
-				// put() 메서드를 사용해 입차 시간을 0으로 초기화
-				lastRecords.put(carNum, 0);
+				// put() 메서드를 사용해 입차 시간을 -1로 초기화
+				lastRecords.put(carNum, -1);
 			}
 		}
 		
@@ -64,7 +64,7 @@ public class Solution {
 			int inTime = lastRecords.get(carNum);
 			
 			// 해당 차량이 마지막으로 출차되지 않은 경우 총 주차 시간을 갱신
-			if (inTime != 0)
+			if (inTime != -1)
 				totalTime.put(carNum, totalTime.getOrDefault(carNum, 0) + 1439 - inTime);
 		}
 		
