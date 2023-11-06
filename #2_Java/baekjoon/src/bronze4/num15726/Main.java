@@ -21,16 +21,16 @@ public class Main {
 		// StringTokenizer 객체를 불러와 변수 st에 할당
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		
-		// nextToken() 및 parseLong() 메서드를 사용해 입력 받은 세 정수를 각 변수에 할당
-		long numberA = Long.parseLong(st.nextToken());
-		long numberB = Long.parseLong(st.nextToken());
-		long numberC = Long.parseLong(st.nextToken());
+		// nextToken() 및 parseDouble() 메서드를 사용해 입력 받은 세 정수를 각 변수에 할당
+		double numberA = Double.parseDouble(st.nextToken());
+		double numberB = Double.parseDouble(st.nextToken());
+		double numberC = Double.parseDouble(st.nextToken());
 		
 		// max() 메서드를 사용해 가장 큰 값을 변수 maxNumber에 할당
-		long maxNumber = Math.max(numberA * numberB / numberC, numberA / numberB * numberC);
+		double maxNumber = Math.max(numberA * numberB / numberC, numberA / numberB * numberC);
 		
 		// valueOf() 및 write() 메서드를 사용해 가장 큰 값을 출력
-		out.write(String.valueOf(maxNumber));
+		out.write(String.valueOf((int) maxNumber));
 		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
