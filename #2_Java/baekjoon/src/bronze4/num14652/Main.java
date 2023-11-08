@@ -22,6 +22,7 @@ public class Main {
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		
 		// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 관중석의 크기 및 잃어버린 관중석 번호를 각 변수에 할당
+		@SuppressWarnings("unused")
 		int height = Integer.parseInt(st.nextToken());
 		int width = Integer.parseInt(st.nextToken());
 		int seatNum = Integer.parseInt(st.nextToken());
