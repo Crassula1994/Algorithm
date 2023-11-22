@@ -10,6 +10,6 @@ public class Solution {
 		String answer = (num % 2 == 0) ? "Even" : "Odd";
 		
 		// 입력 받은 정수가 짝수인지 홀수인지를 나타내는 문자열을 반환
-        return answer;
-    }
+		return answer;
+	}
 }
