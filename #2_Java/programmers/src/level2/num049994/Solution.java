@@ -10,6 +10,8 @@ public class Solution {
 	// 각 이동 방향을 저장할 각 델타 배열 초기화
 	static int[] dr = {-1, 1, 0, 0};
     static int[] dc = {0, 0, 1, -1};
+    
+    // ----------------------------------------------------------------------------------------------------
 	
 	// solution() 메서드 정의
 	public static int solution(String dirs) {
