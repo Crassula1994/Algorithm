@@ -36,11 +36,11 @@ public class Main {
 				// 마지막 별인 경우 반복문 탈출
 				if (c == r - 1)
 					break;
-				
+
 				// write() 메서드를 사용해 빈 칸을 출력
 				out.write(" ");
 			}
-			
+
 			// newLine() 메서드를 사용해 줄바꿈을 출력
 			out.newLine();
 		}
