@@ -1,4 +1,4 @@
-package bronze5.num05597;
+package bronze3.num11718;
 
 // 필요한 패키지 불러오기
 import java.io.BufferedReader;
@@ -17,21 +17,18 @@ public class Main {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		// 각 출석번호를 담을 배열 numbers 초기화
-		int[] numbers = new int[30];
-		
-		// for 반복문을 사용해 입력된 출석번호의 각 줄을 순회 
-		for (int line = 0; line < 28; line++)
+		// while 반복문을 사용해 입력이 존재하지 않을 때까지 순회
+		while (true) {
 			
-			// readLine() 및 parseInt() 메서드를 사용해 과제를 제출한 출석번호의 값을 1로 변경
-			numbers[(Integer.parseInt(in.readLine())) - 1] = 1;
+			// readLine() 메서드를 사용해 입력된 문자열을 변수 line에 저장
+			String line = in.readLine();
 			
-		// for 반복문을 사용해 배열 numbers의 각 원소를 순회
-		for (int i = 0; i < 30; i++) {
-			
-			// 과제를 제출하지 않은 출석번호를 출력
-			if (numbers[i] == 0)
-				out.write((i + 1) + "\n");
+			// 입력 값이 더 이상 없는 경우 반복문 탈출
+			if (line == null)
+				break;
+
+			// write() 메서드를 사용해 문자열을 출력
+			out.write(line + "\n");
 		}
 		
 		// close() 메서드를 사용해 각 객체 종료
