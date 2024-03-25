@@ -67,7 +67,7 @@ public class Main {
 	// ----------------------------------------------------------------------------------------------------
 	
 	// arrayRotator() 메서드 정의
-	private static int[][] arrayRotator(int[][] array) {
+	public static int[][] arrayRotator(int[][] array) {
 		
 		// for 반복문을 사용해 회전의 횟수만큼 순회
 		for (int rt = 0; rt < rotation; rt++) {
