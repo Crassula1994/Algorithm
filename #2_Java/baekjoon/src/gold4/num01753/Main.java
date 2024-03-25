@@ -40,15 +40,13 @@ public class Main {
 		vertexNum = Integer.parseInt(st.nextToken());
 		edgeNum = Integer.parseInt(st.nextToken());
 		
-		// 연결된 간선의 정보를 저장할 배열 edges 초기화
+		// 연결된 간선의 정보 및 해당 정점의 최단 경로의 값을 저장할 각 배열 초기화
 		edges = new ArrayList[vertexNum + 1];
+		distance = new int[vertexNum + 1];
 		
 		// for 반복문을 사용해 배열 edges의 각 원소를 초기화
 		for (int idx = 1; idx < edges.length; idx++)
 			edges[idx] = new ArrayList<>();
-		
-		// 해당 정점의 최단 경로의 값을 저장할 각 배열 초기화 
-		distance = new int[vertexNum + 1];
 		
 		// fill() 메서드를 사용해 배열 distance의 각 최단 경로의 값을 초기화
 		Arrays.fill(distance, Integer.MAX_VALUE);
