@@ -9,7 +9,7 @@ public class Solution {
 		// 최대공약수를 저장할 변수 gcd 초기화
 		int gcd = 0;
 		
-		// for 반복문을 사용해 각 숫자를 순회
+		// for 반복문을 사용해 최대공약수가 될 수 있는 각 숫자를 순회
 		for (int number = Math.min(n, m); number > 0; number--) {
 			
 			// 해당 숫자가 공약수인 경우 최대공약수 갱신 후 반복문 탈출
