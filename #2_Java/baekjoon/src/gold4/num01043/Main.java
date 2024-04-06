@@ -15,9 +15,8 @@ import java.util.StringTokenizer;
 // Main 클래스 정의
 public class Main {
 	
-	// 각 사람이 진실을 아는 사람과 연결되었는지, 파티에 참석한 사람을 저장할 각 배열 초기화
+	// 각 사람이 진실을 아는 사람과 연결되었는지를 저장할 배열 connected 초기화
 	static int[] connected;
-	static List<Integer>[] parties;
 	
 	// 진실을 아는 사람의 번호를 저장할 Set 객체 knownPeople 초기화
 	static Set<Integer> knownPeople;
@@ -57,7 +56,7 @@ public class Main {
 			
 			// 각 사람이 진실을 아는 사람과 연결되었는지, 파티에 참석한 사람을 저장할 각 배열 초기화
 			connected = new int[peopleNum + 1];
-			parties = new ArrayList[partyNum];
+			List<Integer>[] parties = new ArrayList[partyNum];
 			
 			// for 반복문을 사용해 각 사람이 진실을 아는 사람과 연결되었는지를 초기화
 			for (int idx = 1; idx < connected.length; idx++)
