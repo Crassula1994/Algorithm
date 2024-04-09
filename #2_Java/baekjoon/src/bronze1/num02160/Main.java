@@ -17,13 +17,13 @@ public class Main {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		// readLine() 및 parseInt() 메서드를 사용해 그림의 개수를 저장할 변수 pictureNum 초기화
+		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 그림의 개수를 변수 pictureNum에 할당
 		int pictureNum = Integer.parseInt(in.readLine());
 		
 		// 각 그림을 저장할 3차원 배열 pictures 초기화
 		char[][][] pictures = new char[pictureNum + 1][5][7];
 		
-		// 가장 작은 서로 다른 칸의 개수 및 그림의 번호를 저장할 각 변수 초기화
+		// 가장 작은 서로 다른 칸의 개수 및 가장 비슷한 두 그림의 번호를 저장할 각 변수 초기화
 		int minCount = 36;
 		int picture1 = 0;
 		int picture2 = 0;
