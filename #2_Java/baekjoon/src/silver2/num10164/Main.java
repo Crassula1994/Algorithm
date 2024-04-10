@@ -26,24 +26,24 @@ public class Main {
 		int width = Integer.parseInt(st.nextToken());
 		int stopover = Integer.parseInt(st.nextToken());
 		
-		// 각 격자의 위치에 도달하는 방법의 수를 저장할 2차원 배열 counts 초기화
+		// 각 격자의 칸에 도달하는 방법의 수를 저장할 2차원 배열 counts 초기화
 		int[][] counts = new int[height + 1][width + 1];
 		
-		// 시작 위치에 도달하는 방법의 수를 갱신
+		// 시작 칸에 도달하는 방법의 수를 초기화
 		counts[1][1] = 1;
 		
 		// ○ 표시가 되어 있는 칸이 없는 경우
 		if (stopover == 0) {
 			
-			// for 반복문을 사용해 각 위치를 순회
+			// for 반복문을 사용해 각 칸을 순회
 			for (int r = 1; r <= height; r++) {
 				for (int c = 1; c <= width; c++) {
 					
-					// 시작 위치인 경우 다음 위치를 순회
+					// 시작 칸인 경우 다음 칸을 순회
 					if (r == 1 && c == 1)
 						continue;
 					
-					// 해당 위치에 도달하는 방법의 수를 갱신
+					// 해당 칸에 도달하는 방법의 수를 갱신
 					counts[r][c] = counts[r - 1][c] + counts[r][c - 1];
 				}
 			}
@@ -51,38 +51,38 @@ public class Main {
 		// ○ 표시가 되어 있는 칸이 있는 경우
 		} else {
 			
-			// 경유지의 위치를 계산해 각 변수에 할당
+			// ○ 표시가 되어 있는 칸의 위치를 계산해 각 변수에 할당
 			int sr = (stopover % width == 0) ? stopover / width : stopover / width + 1;
 			int sc = (stopover % width == 0) ? width : stopover % width;
 			
-			// for 반복문을 사용해 시작 위치부터 ○ 표시가 되어 있는 칸까지 각 위치를 순회
+			// for 반복문을 사용해 시작 칸부터 ○ 표시가 되어 있는 칸까지 각 칸을 순회
 			for (int r = 1; r <= sr; r++) {
 				for (int c = 1; c <= sc; c++) {
 					
-					// 시작 위치인 경우 다음 위치를 순회
+					// 시작 칸인 경우 다음 칸을 순회
 					if (r == 1 && c == 1)
 						continue;
 					
-					// 해당 위치에 도달하는 방법의 수를 갱신
+					// 해당 칸에 도달하는 방법의 수를 갱신
 					counts[r][c] = counts[r - 1][c] + counts[r][c - 1];
 				}
 			}
 			
-			// for 반복문을 사용해 ○ 표시가 되어 있는 칸부터 도착 위치까지 각 위치를 순회
+			// for 반복문을 사용해 ○ 표시가 되어 있는 칸부터 도착 칸까지 각 칸을 순회
 			for (int r = sr; r <= height; r++) {
 				for (int c = sc; c <= width; c++) {
 					
-					// ○ 표시가 되어 있는 칸인 경우 다음 위치를 순회
+					// ○ 표시가 되어 있는 칸인 경우 다음 칸을 순회
 					if (r == sr && c == sc)
 						continue;
 					
-					// 해당 위치에 도달하는 방법의 수를 갱신
+					// 해당 칸에 도달하는 방법의 수를 갱신
 					counts[r][c] = counts[r - 1][c] + counts[r][c - 1];
 				}
 			}
 		}
 		
-		// valueOf() 및 write() 메서드를 사용해 도착 위치에 도달하는 방법의 수를 출력
+		// valueOf() 및 write() 메서드를 사용해 도착 칸에 도달하는 방법의 수를 출력
 		out.write(String.valueOf(counts[height][width]));
 		
 		// close() 메서드를 사용해 각 객체 종료
