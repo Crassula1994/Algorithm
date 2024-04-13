@@ -25,7 +25,7 @@ public class Main {
 		int start = Integer.parseInt(st.nextToken());
 		int end = Integer.parseInt(st.nextToken());
 		
-		// 해당 수열의 누적 합을 저장할 배열 sequence 초기화
+		// 해당 수열의 누적 합을 저장할 배열 sequenceSum 초기화
 		int[] sequenceSum = new int[1001];
 		
 		// for 반복문을 사용해 배열 sequenceSum의 각 원소를 순회
