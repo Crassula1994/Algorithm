@@ -23,7 +23,7 @@ public class Solution {
 		int[] sumNumbers = new int[sumSorter.size()];
 		
 		// sumNumbers 배열의 인덱스를 저장할 변수 index 초기화
-		int index = 0;
+		int index = 0;		
 		// for 반복문을 사용해 서로 다른 인덱스의 두 수를 더한 수를 배열 sumNumbers에 저장
 		for (int number : sumSorter)
 			sumNumbers[index++] = number;
