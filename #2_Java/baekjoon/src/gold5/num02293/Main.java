@@ -41,10 +41,9 @@ public class Main {
 		// for 반복문을 사용해 각 동전을 순회
 		for (int idx = 1; idx <= typeNum; idx++) {
 			
-			// for 반복문을 사용해 각 목표 금액의 경우를 갱신
-			for (int value = coins[idx]; value <= targetValue; value++) {
+			// for 반복문을 사용해 각 목표 금액의 경우의 수를 갱신
+			for (int value = coins[idx]; value <= targetValue; value++)
 				counter[value] += counter[value - coins[idx]];	
-			}
 		}
 		
 		// valueOf() 및 write() 메서드를 사용해 주어진 목표 가치를 만들기 위해 필요한 동전의 경우의 수를 출력
