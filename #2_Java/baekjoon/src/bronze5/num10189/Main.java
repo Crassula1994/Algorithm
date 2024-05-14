@@ -18,7 +18,7 @@ public class Main {
 		out.write("#  # #### #### #  #\n");
 		out.write("#### #  # #  # # #\n");
 		out.write("#### #  # #  # # #\n");
-		out.write("#  # #### #### #  #\n");
+		out.write("#  # #### #### #  #");
 		
 		// close() 메서드를 사용해 BufferedWriter 객체 종료
 		out.close();
