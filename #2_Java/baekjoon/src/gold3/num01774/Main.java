@@ -83,7 +83,7 @@ public class Main {
 			
 			// 두 신의 근원 신이 다른 경우 근원 신을 갱신
 			if (rootA != rootB)
-				rootGod[find(Math.max(rootA, rootB))] = find(Math.min(rootA, rootB));
+				rootGod[Math.max(rootA, rootB)] = Math.min(rootA, rootB);
 		}
 	}
 	
