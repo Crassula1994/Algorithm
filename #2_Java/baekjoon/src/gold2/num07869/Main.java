@@ -84,6 +84,8 @@ public class Main {
 
 	// angleCalculator() 메서드 정의
 	public static double angleCalculator(double r1, double r2, double d) {
+		
+		// pow() 및 acos() 메서드를 사용해 부채꼴의 중심각의 크기를 계산하고 이를 반환
 		return 2 * Math.acos((Math.pow(r1, 2) + Math.pow(d, 2) - Math.pow(r2, 2)) / (2 * r1 * d));
 	}
 	
@@ -91,6 +93,8 @@ public class Main {
 	
 	// areaCalculator() 메서드 정의
 	public static double areaCalculator(double radius, double angle) {
+		
+		// pow() 및 sin() 메서드를 사용해 겹치는 부분의 넓이를 계산하고 이를 반환
 		return Math.pow(radius, 2) * (angle - Math.sin(angle)) / 2;
 	}
 }
