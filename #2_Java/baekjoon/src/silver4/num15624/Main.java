@@ -13,9 +13,6 @@ public class Main {
 	// 피보나치 수를 나눌 제수를 저장할 상수 DIVISOR 초기화
 	static final int DIVISOR = 1000000007;
 	
-	// 각 피보나치 수를 저장할 배열 fibonacci 초기화
-	static long[] fibonacci;
-	
 	// ----------------------------------------------------------------------------------------------------
 	
 	// main() 메서드 정의
@@ -36,7 +33,7 @@ public class Main {
 		} else {
 			
 			// 각 피보나치 수를 저장할 배열 fibonacci 초기화
-			fibonacci = new long[number + 1];
+			long[] fibonacci = new long[number + 1];
 			
 			// 1번째 피보나치 수를 갱신
 			fibonacci[1] = 1;
