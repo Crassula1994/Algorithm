@@ -29,7 +29,7 @@ public class Solution {
 		for (String report : reports)
 			reportList.add(report);
 		
-		// for 반복문을 사용해 신고 결과를 저장할 List 객체 초기화
+		// for 반복문을 사용해 신고 결과를 저장할 List 객체, 각 유저가 받은 메일 수 초기화
 		for (int idx = 0; idx < idList.length; idx++) {
 			resultList.put(idList[idx], new ArrayList<>());
 			mailList.put(idList[idx], 0);
@@ -61,7 +61,7 @@ public class Solution {
 				mailList.put(reporter, mailList.get(reporter) + 1);
 		}
 		
-		// for 반복문을 사용해 각 유저가 받은 결과 메일 수를 배열에 저장
+		// for 반복문을 사용해 각 유저가 받은 결과 메일 수를 배열 mailCounts에 저장
 		for (int idx = 0; idx < mailCounts.length; idx++)
 			mailCounts[idx] = mailList.get(idList[idx]);
 		
