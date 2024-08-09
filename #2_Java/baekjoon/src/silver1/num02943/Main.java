@@ -51,7 +51,8 @@ public class Main {
 			while (curRabbit < start + berryNum) {
 				
 				// 성냥갑에 성냥을 넣어야 하는 경우 성냥갑에 넣은 성냥과 해당 날짜에 넣은 성냥의 수, 현재 토끼의 번호를 갱신
-				if (curRabbit % divisor != 0 || (start + berryNum != rabbitNum && curRabbit + divisor - 1 >= start + berryNum)) {
+				if (curRabbit % divisor != 0 ||
+						(start + berryNum != rabbitNum && curRabbit + divisor - 1 >= start + berryNum)) {
 					boxes[curRabbit]++;
 					count += boxes[curRabbit];
 					curRabbit++;
