@@ -23,7 +23,7 @@ public class Main {
 	// Color 클래스 정의
 	static class Color {
 		
-		// 색상의 RGB 값을 저장할 각 변수 초기화
+		// 물감의 RGB 값을 저장할 각 변수 초기화
 		int red;
 		int green;
 		int blue;
@@ -38,7 +38,7 @@ public class Main {
 		// add() 메서드 정의
 		public void add(Color otherColor) {
 			
-			// 두 색상을 더한 RGB 값을 저장
+			// 두 물감을 더한 RGB 값을 저장
 			this.red += otherColor.red;
 			this.green += otherColor.green;
 			this.blue += otherColor.blue;
@@ -47,7 +47,7 @@ public class Main {
 		// add() 메서드 정의
 		public void subtract(Color otherColor) {
 			
-			// 두 색상을 뺀 RGB 값을 저장
+			// 두 물감을 뺀 RGB 값을 저장
 			this.red -= otherColor.red;
 			this.green -= otherColor.green;
 			this.blue -= otherColor.blue;
@@ -119,20 +119,20 @@ public class Main {
 		if (mixedCnt >= 2)
 			minDifference = Math.min(colors[colorNum].getDifference(mixedColor, mixedCnt), minDifference);
 		
-		// 모든 색상을 확인하거나 혼합한 경우 메서드 종료
+		// 모든 물감을 확인하거나 혼합한 경우 메서드 종료
 		if (curColor >= colorNum || mixedCnt >= 7)
 			return;
 		
-		// 해당 색상을 섞지 않은 것으로 상정해 colorMixer() 메서드 재귀 호출
+		// 해당 물감을 섞지 않은 것으로 상정해 colorMixer() 메서드 재귀 호출
 		colorMixer(curColor + 1, mixedCnt, mixedColor);
 		
-		// add() 메서드를 사용해 해당 색상을 섞은 것으로 처리
+		// add() 메서드를 사용해 해당 물감을 섞은 것으로 처리
 		mixedColor.add(colors[curColor]);
 		
-		// 해당 색상을 섞은 것으로 상정해 colorMixer() 메서드 재귀 호출
+		// 해당 믈감을 섞은 것으로 상정해 colorMixer() 메서드 재귀 호출
 		colorMixer(curColor + 1, mixedCnt + 1, mixedColor);
 		
-		// subtract() 메서드를 사용해 해당 색상을 섞지 않은 것으로 처리
+		// subtract() 메서드를 사용해 해당 물감을 섞지 않은 것으로 처리
 		mixedColor.subtract(colors[curColor]);
 	}
 }
