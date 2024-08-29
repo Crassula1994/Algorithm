@@ -25,10 +25,10 @@ public class Main {
 		int cableNum = Integer.parseInt(st.nextToken());
 		int targetCount = Integer.parseInt(st.nextToken());
 		
-		// 필요한 케이블의 가능한 최대 길이와 그 범위, 전체 케이블의 길이를 나타낼 각 변수 초기화
+		// 필요한 케이블의 가능한 최대 길이와 그 범위를 나타낼 각 변수 초기화
+		int maxLength = 0;
 		int start = 1;
 		int end = 0;
-		int maxLength = 0;
 		
 		// 각 케이블의 길이를 cm 단위로 저장할 배열 cables 초기화
 		int[] cables = new int[cableNum];
