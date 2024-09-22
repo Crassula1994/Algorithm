@@ -40,22 +40,11 @@ public class Main {
 		
 		// for 반복문을 사용해 두 자리 숫자가 남을 때까지 순회
 		for (int count = 1; count < results.length - 1; count++) {
-			
-			System.out.print(count + "회차 : ");
-			
-			for (int idx = 0; idx < results.length; idx++)
-				System.out.print(results[idx] + " ");
-			System.out.println();
-			
+
 			// for 반복문을 사용해 각 회차의 이름 궁합의 결과를 갱신
 			for (int idx = 0; idx < results.length - count; idx++)
 				results[idx] = (results[idx] + results[idx + 1]) % 10;
 		}
-		
-		System.out.print("결과회차 : ");
-		for (int idx = 0; idx < results.length; idx++)
-			System.out.print(results[idx] + " ");
-		System.out.println();
 		
 		// valueOf() 및 write() 메서드를 사용해 이름 궁합의 결과를 두 자리 숫자로 출력
 		out.write(String.valueOf(results[0]) + String.valueOf(results[1]));
