@@ -117,7 +117,7 @@ public class Main {
 			}
 		}
 		
-		// values() 메서드를 사용해 각 의원의 정보를 List 객체 membersList에 저장
+		// values() 메서드를 사용해 각 의원의 정보를 List 객체 memberList에 저장
 		List<Member> memberList = new ArrayList<>(members.values());
 		
 		// sort() 메서드를 사용해 의원을 점수 순으로 정렬
