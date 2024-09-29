@@ -18,7 +18,7 @@ public class Main {
 	// Person 클래스 정의
 	static class Person {
 		
-		// 해당 사람의 컴퓨터 이용 시작 시각 및 종료 시각, 이용한 컴퓨터 번호를 각 변수에 할당
+		// 해당 사람의 컴퓨터 이용 시작 시각 및 종료 시각, 이용한 컴퓨터 번호를 저장할 각 변수 초기화
 		int startTime;
 		int endTime;
 		int computerNum;
@@ -47,7 +47,7 @@ public class Main {
 		List<Person> persons = new ArrayList<>();
 		List<Integer> seatCount = new ArrayList<>();
 		
-		// 가장 컴퓨터 이용 종료 시간이 빠른 사람과 가장 번호가 작은 컴퓨터 좌석을 찾을 각 PriorityQueue 객체 초기화
+		// 가장 컴퓨터 이용 종료 시간이 빠른 사람과 가장 번호가 작은 컴퓨터 빈 좌석을 찾을 각 PriorityQueue 객체 초기화
 		PriorityQueue<Person> seatFinder = new PriorityQueue<>((p1, p2) -> {
 			return p1.endTime - p2.endTime;
 		});
