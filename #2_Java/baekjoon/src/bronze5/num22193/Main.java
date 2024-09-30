@@ -13,6 +13,7 @@ import java.util.StringTokenizer;
 public class Main {
 	
 	// main() 메서드 정의
+	@SuppressWarnings("unused")
 	public static void main(String[] args) throws IOException {
 		
 		// BufferedReader 및 BufferedWriter 객체를 불러와 각 변수에 할당
