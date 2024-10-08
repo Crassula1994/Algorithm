@@ -25,7 +25,7 @@ public class Main {
 		int length1 = Integer.parseInt(st.nextToken());
 		int length2 = Integer.parseInt(st.nextToken());
 		
-		// 가장 긴 공통 부분 수열의 길이를 저장할 변수 maxLength 초기화
+		// 가장 긴 공통 연속 부분 수열의 길이를 저장할 변수 maxLength 초기화
 		int maxLength = 0;
 		
 		// 각 수열의 원소를 저장할 각 배열 초기화
@@ -40,7 +40,7 @@ public class Main {
 		for (int idx = 0; idx < sequence2.length; idx++)
 			sequence2[idx] = Integer.parseInt(in.readLine());
 		
-		// 해당 원소까지 가장 긴 공통 부분 수열의 길이를 저장할 2차원 배열 lcsLength 초기화
+		// 해당 원소까지 가장 긴 공통 연속 부분 수열의 길이를 저장할 2차원 배열 lcsLength 초기화
 		int[][] lcsLength = new int[length1 + 1][length2 + 1];
 		
 		// for 반복문을 사용해 2차원 배열 lcsLength의 행과 열을 순회
@@ -50,20 +50,20 @@ public class Main {
 				// 두 수열의 원소가 같은 경우 
 				if (sequence1[r - 1] == sequence2[c - 1]) {
 					
-					// 가장 긴 공통 부분 수열의 길이를 두 수열의 이전 공통 부분 수열의 길이에서 1을 더한 값을 저장
+					// 가장 긴 공통 부분 수열의 길이를 두 수열의 이전 공통 연속 부분 수열의 길이에서 1을 더한 값을 저장
 					lcsLength[r][c] = lcsLength[r - 1][c - 1] + 1;
 					
-					// max() 메서드를 사용해 가장 긴 공통 부분 수열의 길이를 갱신
+					// max() 메서드를 사용해 가장 긴 공통 연속 부분 수열의 길이를 갱신
 					maxLength = Math.max(lcsLength[r][c], maxLength);
 					
-				// 두 수열의 원소가 다른 경우 가장 긴 공통 부분 수열의 길이를 0으로 초기화
+				// 두 수열의 원소가 다른 경우 가장 긴 공통 연속 부분 수열의 길이를 0으로 초기화
 				} else {
 					lcsLength[r][c] = 0;
 				}
 			}
 		}
 		
-		// valueOf() 및 write() 메서드를 사용해 가장 긴 공통 부분 수열의 길이를 출력
+		// valueOf() 및 write() 메서드를 사용해 가장 긴 공통 연속 부분 수열의 길이를 출력
 		out.write(String.valueOf(maxLength));
 		
 		// close() 메서드를 사용해 각 객체 종료
