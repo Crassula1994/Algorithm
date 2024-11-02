@@ -61,7 +61,7 @@ public class Main {
 		}
 		
 		// valueOf() 및 write() 메서드를 사용해 가로등의 최소 높이를 출력
-		out.write(String.valueOf(low));
+		out.write(String.valueOf(high));
 		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
