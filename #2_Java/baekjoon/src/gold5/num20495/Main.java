@@ -93,7 +93,7 @@ public class Main {
 			if (maxSequence[mid] < targetValue) {
 				left = mid + 1;
 				
-			// 범위의 중간에 위치한 원소가 주어진 원소와 같거나 작은 경우 범위의 끝 부분을 갱신
+			// 범위의 중간에 위치한 원소가 주어진 원소와 같거나 큰 경우 범위의 끝 부분을 갱신
 			} else {
 				right = mid;
 			}
@@ -122,13 +122,13 @@ public class Main {
 			if (minSequence[mid] <= targetValue) {
 				left = mid + 1;
 				
-			// 범위의 중간에 위치한 원소가 주어진 원소와 작은 경우 범위의 끝 부분을 갱신
+			// 범위의 중간에 위치한 원소가 주어진 원소보다 큰 경우 범위의 끝 부분을 갱신
 			} else {
 				right = mid;
 			}
 		}
 		
-		// 해당 값이 들어갈 최소 인덱스의 위치를 반환
+		// 해당 값이 들어갈 최대 인덱스의 위치를 반환
 		return right;
 	}
 }
