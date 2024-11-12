@@ -22,8 +22,8 @@ public class Main {
 	static Zombie[] zombies;
 	
 	// 각 방향을 나타낼 델타 배열 초기화
-	static int[] dr = {-1, 1, 0, 0, 0};
-	static int[] dc = {0, 0, -1, 1, 0};
+	static int[] dr = {-1, 0, 1, 0, 0};
+	static int[] dc = {0, 1, 0, -1, 0};
 	
 	// 각 벽의 위치를 저장할 2차원 배열 fields 초기화
 	static boolean[][] fields;
@@ -114,10 +114,10 @@ public class Main {
 				case 'U':
 					zombies[idx] = new Zombie(zombieR, zombieC, category, 0, speed);
 					break;
-				case 'D':
+				case 'R':
 					zombies[idx] = new Zombie(zombieR, zombieC, category, 1, speed);
 					break;
-				case 'L':
+				case 'D':
 					zombies[idx] = new Zombie(zombieR, zombieC, category, 2, speed);
 					break;
 				default:
@@ -135,8 +135,15 @@ public class Main {
 			playerMover(day);
 			
 			// for 반복문을 사용해 각 좀비를 이동 처리
-			for (int idx = 0; idx < zombies.length; idx++)
-				zombieMover(zombies[idx]);
+			for (Zombie zombie : zombies)
+				zombieMover(zombie);
+			
+			// 플레이어가 죽은 경우 플레이어가 죽었는지 여부 및 죽은 일차를 갱신 후 반복문 탈출
+			if (!playerChecker()) {
+				isDead = true;
+				deathDay = day;
+				break;
+			}
 		}
 		
 		// write() 메서드를 사용해 플레이어가 죽었는지 여부를 출력
@@ -148,7 +155,7 @@ public class Main {
 	}
 
 	// ----------------------------------------------------------------------------------------------------
-	
+
 	// playerMover() 메서드 정의
 	public static void playerMover(int day) {
 		
@@ -163,13 +170,13 @@ public class Main {
 			case 'U':
 				direction = 0;
 				break;
-			case 'D':
+			case 'R':
 				direction = 1;
 				break;
-			case 'L':
+			case 'D':
 				direction = 2;
 				break;
-			case 'R':
+			case 'L':
 				direction = 3;
 		}
 		
@@ -199,7 +206,7 @@ public class Main {
 		if (zombie.category == 0) {
 			
 			// for 반복문을 사용해 좀비가 이동할 각 칸을 순회
-			for (int m = 0; m < zombie.speed; m++) {
+			for (int l = 0; l < zombie.speed; l++) {
 				
 				// 좀비가 새로 이동할 위치를 나타낼 각 변수 초기화
 				int nextZombieR = zombie.row + dr[zombie.direction];
@@ -209,20 +216,8 @@ public class Main {
 				if (nextZombieR < 1 || nextZombieR > size || nextZombieC < 1
 						|| nextZombieC > size || fields[nextZombieR][nextZombieC]) {
 					
-					// switch 조건문을 사용해 좀비의 이동 방향을 반대 방향으로 전환
-					switch (zombie.direction) {
-						case 0:
-							zombie.direction = 1;
-							break;
-						case 1:
-							zombie.direction = 0;
-							break;
-						case 2:
-							zombie.direction = 3;
-							break;
-						default:
-							zombie.direction = 2;
-					}
+					// 좀비의 이동 방향을 반대 방향으로 전환
+					zombie.direction = (zombie.direction + 2) % 4;
 					
 					// 메서드 종료
 					return;
@@ -236,6 +231,89 @@ public class Main {
 		// 상급 좀비인 경우
 		} else {
 			
+			// for 반복문을 사용해 좀비가 이동할 각 칸을 순회
+			for (int h = 0; h < zombie.speed; h++) {
+				
+				// 좀비가 새로 이동할 위치를 나타낼 각 변수 초기화
+				int nextZombieR = zombie.row + dr[zombie.direction];
+				int nextZombieC = zombie.column + dc[zombie.direction];
+				
+				// 새로 이동할 위치가 게임 필드를 벗어나는 경우 반복문 탈출
+				if (nextZombieR < 1 || nextZombieR > size || nextZombieC < 1 || nextZombieC > size)
+					break;
+				
+				// 새로 이동할 위치에 벽이 존재하는 경우 벽을 부순 뒤 반복문 탈출
+				if (fields[nextZombieR][nextZombieC]) {
+					fields[nextZombieR][nextZombieC] = false;
+					break;
+				}
+				
+				// 좀비 이동 처리
+				zombie.row = nextZombieR;
+				zombie.column = nextZombieC;
+			}
+			
+			// directionFinder() 메서드를 호출해 좀비의 이동 방향을 갱신
+			zombie.direction = directionFinder(zombie.row, zombie.column, zombie.direction);
 		}
+	}
+	
+	// ----------------------------------------------------------------------------------------------------
+
+	// directionFinder() 메서드 정의
+	public static int directionFinder(int curRow, int curColumn, int curDirection) {
+		
+		// 가장 많은 벽의 수 및 이동할 방향을 저장할 각 변수 초기화
+		int maxCount = -1;
+		int direction = -1;
+		
+		// for 반복문을 사용해 각 방향을 순회
+		for (int d = 0; d < 4; d++) {
+			
+			// 해당 방향에 위치한 벽의 수를 저장할 변수 count 초기화
+			int count = 0;
+			
+			// for 반복문을 사용해 해당 위치를 순회
+			for (int m = 1; m < size; m++) {
+				
+				// 해당 방향의 위치를 각 변수에 할당
+				int nr = curRow + dr[d] * m;
+				int nc = curColumn + dc[d] * m;
+				
+				// 해당 위치가 범위를 벗어난 경우 반복문 탈출
+				if (nr < 1 || nr > size || nc < 1 || nc > size)
+					break;
+				
+				// 해당 위치가 벽인 경우 해당 방향에 위치한 벽의 수를 갱신
+				if (fields[nr][nc])
+					count++;
+			}
+			
+			// 해당 방향에 위치한 벽의 수가 가장 많은 벽의 수인 경우 이동할 방향 및 가장 많은 벽의 수 갱신
+			if (count > maxCount) {
+				direction = d;
+				maxCount = count;
+			}
+		}
+		
+		// 이동할 방향을 반환
+		return direction;
+	}
+	
+	// ----------------------------------------------------------------------------------------------------
+	
+	// playerChecker() 메서드 정의
+	public static boolean playerChecker() {
+		
+		// for 반복문을 사용해 각 좀비를 순회
+		for (Zombie zombie : zombies) {
+			
+			// 해당 좀비의 위치에 플레이어가 위치한 경우 false 반환
+			if (zombie.row == playerR && zombie.column == playerC)
+				return false;
+		}
+		
+		// 플레이어가 살아 있는 경우 true 반환
+		return true;
 	}
 }
