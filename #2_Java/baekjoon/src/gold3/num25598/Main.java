@@ -195,5 +195,47 @@ public class Main {
 	// zombieMover() 메서드 정의
 	public static void zombieMover(Zombie zombie) {
 		
+		// 하급 좀비인 경우
+		if (zombie.category == 0) {
+			
+			// for 반복문을 사용해 좀비가 이동할 각 칸을 순회
+			for (int m = 0; m < zombie.speed; m++) {
+				
+				// 좀비가 새로 이동할 위치를 나타낼 각 변수 초기화
+				int nextZombieR = zombie.row + dr[zombie.direction];
+				int nextZombieC = zombie.column + dc[zombie.direction];
+				
+				// 새로 이동할 위치가 게임 필드를 벗어나거나 벽인 경우
+				if (nextZombieR < 1 || nextZombieR > size || nextZombieC < 1
+						|| nextZombieC > size || fields[nextZombieR][nextZombieC]) {
+					
+					// switch 조건문을 사용해 좀비의 이동 방향을 반대 방향으로 전환
+					switch (zombie.direction) {
+						case 0:
+							zombie.direction = 1;
+							break;
+						case 1:
+							zombie.direction = 0;
+							break;
+						case 2:
+							zombie.direction = 3;
+							break;
+						default:
+							zombie.direction = 2;
+					}
+					
+					// 메서드 종료
+					return;
+				}
+				
+				// 좀비 이동 처리
+				zombie.row = nextZombieR;
+				zombie.column = nextZombieC;
+			}
+		
+		// 상급 좀비인 경우
+		} else {
+			
+		}
 	}
 }
