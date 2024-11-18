@@ -23,7 +23,7 @@ public class Main {
 		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 임스가 공부한 기록의 개수를 변수 recordNum에 할당
 		int recordNum = Integer.parseInt(in.readLine());
 		
-		// 임스가 푼 백준 문제와 다른 공부를 저장할 각 List 객체 초기화
+		// 임스가 푼 백준 문제와 백준 문제가 아닌 다른 공부 기록을 저장할 각 List 객체 초기화
 		List<Integer> problems = new ArrayList<>();
 		List<String> records = new ArrayList<>();
 		
@@ -46,11 +46,11 @@ public class Main {
 				}
 			}
 			
-			// add() 메서드를 사용해 백준 문제가 아닌 다른 공부를 records에 저장
+			// add() 메서드를 사용해 백준 문제가 아닌 다른 공부 기록을 records에 저장
 			records.add(record);
 		}
 		
-		// sort() 메서드를 사용해 백준 문제 번호와 공부 기록을 정렬
+		// sort() 메서드를 사용해 백준 문제 번호와 백준 문제가 아닌 다른 공부 기록을 정렬
 		Collections.sort(problems);
 		Collections.sort(records, (r1, r2) -> {
 			if (r1.length() == r2.length())
@@ -58,7 +58,7 @@ public class Main {
 			return r1.length() - r2.length();
 		});
 		
-		// for 반복문을 사용해 공부 기록을 출력
+		// for 반복문을 사용해 백준 문제가 아닌 다른 공부 기록을 출력
 		for (String record : records)
 			out.write(record + "\n");
 		
