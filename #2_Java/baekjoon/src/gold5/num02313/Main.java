@@ -58,8 +58,7 @@ public class Main {
 			// for 반복문을 사용해 각 보석을 순회
 			for (int idx = 2; idx < jewels.length; idx++) {
 				
-				/* 이전 보석까지 최대 보석 가치의 합이 0 이하인 경우
-				해당 보석에서 최대 보석 가치의 합과 그때 보석의 개수를 갱신 */
+				// 이전 보석까지 최대 보석 가치의 합이 0 이하인 경우 해당 보석에서 최대 보석 가치의 합과 그때 보석의 개수를 갱신
 				if (maxValues[idx - 1][0] <= 0) {
 					maxValues[idx][0] = jewels[idx];
 					maxValues[idx][1] = 1;
