@@ -159,7 +159,7 @@ public class Main {
 		// sort() 메서드를 사용해 각 국가의 승점을 오름차순으로 정렬
 		Arrays.sort(sortedPoints);
 		
-		// 1위와 2위 국가의 수 및 그때의 승점, 진출 확률을 저장할 각 변수 초기화
+		// 1위와 2위 국가의 승점 및 그때의 국가 수, 진출 확률을 저장할 각 변수 초기화
 		int firstPoint = sortedPoints[3];
 		int secondPoint = sortedPoints[2];
 		int firstCount = 0;
