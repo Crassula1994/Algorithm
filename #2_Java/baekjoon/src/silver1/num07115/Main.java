@@ -25,35 +25,23 @@ public class Main {
 		int cellSize = Integer.parseInt(st.nextToken());
 		int radius = Integer.parseInt(st.nextToken());
 		
-		// 색칠된 칸의 개수를 저장할 변수 paintedCellCnt 초기화
+		// 칸의 크기에 따른 원의 반지름과 색칠된 칸의 개수를 저장할 각 변수 초기화
+		double cellRadius = (double) radius / cellSize;
 		int paintedCellCnt = 0;
 		
-		// for 반복문을 사용해 원의 중심 좌표를 기준으로 제1사분면에 위치한 칸을 순회
-		for (int x = 0; x * cellSize < radius; x++) {
-			for (int y = 0; y * cellSize < radius; y++) {
-				
-				// 원의 중심에서 가장 가까운 위치의 좌표를 각 변수에 할당
-				int nearX = x * cellSize;
-				int nearY = y * cellSize;
-				
-				// 원의 중심에서 가장 가까운 위치의 거리가 반지름 이상인 경우 다음 x좌표를 순회
-				if (nearX * nearX + nearY * nearY >= radius * radius)
-					break;
-				
-				// 원의 중심에서 가장 먼 위치의 좌표를 각 변수에 할당
-				int farX = (x + 1) * cellSize;
-				int farY = (y + 1) * cellSize;
-				
-				// 원의 중심에서 가장 먼 위치의 거리가 반지름 이하인 경우 다음 칸을 순회
-				if (farX * farX + farY * farY <= radius * radius)
-					continue;
-				
-				// 색칠된 칸의 개수를 갱신
-				paintedCellCnt++;
-			}
+		// for 반복문을 사용해 원의 중심 좌표를 기준으로 제1사분면의 사분원 내에 존재하는 모든 정수 x좌표를 순회
+		for (int x = 0; x < cellRadius; x++) {
+			
+			/* ceil(), floor(), sqrt() 메서드를 사용해 현재 정수 x좌표와 다음 정수 x좌표에서 원의 그래프가 지나는 상한과 하한의 값을 계산하고
+			이를 각 변수에 할당 */
+			int maxY = (int) Math.ceil(Math.sqrt(cellRadius * cellRadius - x * x));
+			int minY = (int) Math.floor(Math.sqrt(cellRadius * cellRadius - (x + 1) * (x + 1)));
+			
+			// 색칠된 칸의 개수를 갱신
+			paintedCellCnt += maxY - minY;
 		}
 		
-		// valueOf() 및 write() 메서드를 사용해 색칠된 칸의 개수를 출력
+		// valueOf() 및 write() 메서드를 사용해 전체 색칠된 칸의 개수를 출력
 		out.write(String.valueOf(paintedCellCnt * 4));
 		
 		// close() 메서드를 사용해 각 객체 종료
