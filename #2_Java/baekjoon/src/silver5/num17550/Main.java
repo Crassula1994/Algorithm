@@ -38,7 +38,7 @@ public class Main {
 			squareSum[idx] = squareSum[idx - 1] + number * number;
 		}
 		
-		// for 반복문을 사용해 주어진 수식을 만족하는 각 k의 위치를 순회
+		// for 반복문을 사용해 주어진 수식을 만족하는 각 위치를 순회
 		for (int idx = 1; idx < numberCount; idx++) {
 			
 			// 해당 위치에서 수식의 값을 계산해 변수 value에 할당
