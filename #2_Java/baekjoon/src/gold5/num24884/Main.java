@@ -138,7 +138,7 @@ public class Main {
 		}
 		
 		// arraycopy() 메서드를 사용해 모닥불의 화력이 변한 결과를 반영
-		System.arraycopy(newBonfires, 0, bonfires, 0, bonfires.length);
+		System.arraycopy(newBonfires, 0, bonfires, 0, bonfireNum);
 		
 		// 켜져 있는 모닥불의 개수를 반환
 		return onCount;
