@@ -82,7 +82,7 @@ public class Main {
 		// for 반복문을 사용해 숭고한이 이동할 수 있는 각 위치를 순회
 		for (int d = 0; d < 3; d++) {
 			
-			// 숭고한이 이동할 다음 모닥불의 위치를 변수 nextBonfire에 할당
+			// SKH가 이동할 다음 모닥불의 위치를 변수 nextBonfire에 할당
 			int nextBonfire = curBonfire + direction[d];
 			
 			// 다음 모닥불의 위치가 모닥불의 범위를 벗어나는 경우 다음 위치를 순회
