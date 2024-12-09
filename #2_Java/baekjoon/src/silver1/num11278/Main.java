@@ -11,9 +11,8 @@ import java.util.StringTokenizer;
 // Main 클래스 정의
 public class Main {
 	
-	// 변수의 개수, 절의 개수, 2-CNF식을 true로 만들 수 있는지 여부를 나타낼 각 변수 초기화
+	// 변수의 개수, 2-CNF식을 true로 만들 수 있는지 여부를 나타낼 각 변수 초기화
 	static int variableNum;
-	static int clauseNum;
 	static boolean hasSolution = false;
 	
 	// 각 변수의 true 및 false 여부를 저장할 배열 variables 초기화
@@ -36,7 +35,7 @@ public class Main {
 		
 		// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 변수의 개수와 절의 개수를 각 변수에 할당
 		variableNum = Integer.parseInt(st.nextToken());
-		clauseNum = Integer.parseInt(st.nextToken());
+		int clauseNum = Integer.parseInt(st.nextToken());
 		
 		// 각 변수의 true 및 false 여부를 저장할 배열 variables 초기화
 		variables = new int[variableNum + 1];
