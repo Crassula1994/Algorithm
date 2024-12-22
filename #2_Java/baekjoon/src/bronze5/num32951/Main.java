@@ -1,13 +1,13 @@
 package bronze5.num32951;
 
-//필요한 패키지 불러오기
+// 필요한 패키지 불러오기
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-//Main 클래스 정의
+// Main 클래스 정의
 public class Main {
 	
 	// main() 메서드 정의
