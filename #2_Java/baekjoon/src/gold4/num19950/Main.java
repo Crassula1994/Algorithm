@@ -1,4 +1,4 @@
-package gold5.num19950;
+package gold4.num19950;
 
 // 필요한 패키지 불러오기
 import java.io.BufferedReader;
