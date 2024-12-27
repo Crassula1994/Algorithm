@@ -31,14 +31,28 @@ public class Main {
 			int maxLength = 0;
 			
 			// for 반복문을 사용해 원본 문자열의 각 글자를 순회
-			for (int originIdx = 0;;) {
+			for (int originIdx = 0; originIdx < originString.length(); originIdx++) {
 				
-				// 
+				// 만들 수 있는 부분 문자열의 길이가 최대로 일치하는 부분 문자열의 길이와 같거나 짧은 경우 반복문 탈출
 				if (originIdx >= originString.length() - maxLength)
 					break;
 				
+				// 현재 위치부터 시작해 일치하는 부분 문자열의 길이를 저장할 변수 length 초기화
+				int length = 0;
 				
-				// max()
+				// while 반복문을 사용해 만들 수 있는 최대 길이의 부분 문자열까지 순회
+				while (originIdx + length < originString.length() && targetIdx + length < targetString.length()) {
+					
+					// 원본 문자열과 복사하여 만들 문자열의 글자가 다른 경우 반복문 탈출
+					if (originString.charAt(originIdx + length) != targetString.charAt(targetIdx + length))
+						break;
+					
+					// 현재 위치부터 시작해 일치하는 부분 문자열의 길이를 갱신
+					length++;
+				}
+				
+				// max() 메서드를 사용해 최대로 일치하는 부분 문자열의 길이을 갱신
+				maxLength = Math.max(length, maxLength);
 			}
 			
 			// 복사하여 만들 문자열의 글자 및 필요한 copy 함수의 최소 사용횟수를 갱신
