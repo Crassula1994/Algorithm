@@ -26,10 +26,28 @@ public class Main {
 			// readLine() 및 parseInt() 메서드를 사용해 입력 받은 오셀로 말의 개수를 변수 pieceNum에 할당
 			int pieceNum = Integer.parseInt(in.readLine());
 			
-			// readLine() 메서드를 사용해 입력 받은 오셀로 말의 초기 상태와 목표 상태를 각 변수에 할당
-			String initialPieces = in.readLine();
-			String targetPieces = in.readLine();
+			// readLine() 및 toCharArray() 메서드를 사용해 입력 받은 오셀로 말의 초기 상태와 목표 상태를 각 배열에 할당
+			char[] initialPieces = in.readLine().toCharArray();
+			char[] targetPieces = in.readLine().toCharArray();
 			
+			// 목표 상태와 일치하지 않는 각 색깔의 오셀로 말 개수를 저장할 각 변수 초기화
+			int countB = 0;
+			int countW = 0;
+			
+			// for 반복문을 사용해 각 오셀로 말을 순회
+			for (int idx = 0; idx < pieceNum; idx++) {
+				
+				// 초기 상태와 목표 상태가 일치하는 경우 다음 말을 순회
+				if (initialPieces[idx] == targetPieces[idx])
+					continue;
+				
+				// 목표 상태와 일치하지 않는 각 색깔의 오셀로 말 개수를 갱신
+				countB = (initialPieces[idx] == 'B') ? countB + 1 : countB;
+				countW = (initialPieces[idx] == 'B') ? countW : countW + 1;
+			}
+			
+			// max() 및 write() 메서드를 사용해 목표 상태에 도달할 수 있는 최소 횟수를 출력
+			out.write(Math.max(countB, countW) + "\n");
 		}
 		
 		// close() 메서드를 사용해 각 객체 종료
