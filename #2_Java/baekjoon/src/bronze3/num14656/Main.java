@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 // Main 클래스 정의
 public class Main {
 	
-		// main() 메서드 정의
+	// main() 메서드 정의
 	public static void main(String[] args) throws IOException {
 		
 		// BufferedReader 및 BufferedWriter 객체를 불러와 각 변수에 할당
