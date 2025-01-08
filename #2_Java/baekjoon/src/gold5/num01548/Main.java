@@ -32,7 +32,7 @@ public class Main {
 		for (int idx = 0; idx < sequence.length; idx++)
 			sequence[idx] = Integer.parseInt(st.nextToken());
 		
-		// 수열의 크기가 3 미만인 경우 그 자체로 가장 긴 부분 삼각 수열이므로 수열의 크기를 출력
+		// 수열의 크기가 3 미만인 경우 그 자체로 가장 긴 부분 삼각 수열이므로 입력 받은 수열의 크기를 출력
 		if (size < 3) {
 			out.write(String.valueOf(size));
 			
