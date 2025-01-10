@@ -23,9 +23,8 @@ public class Main {
 	static int[] dr = {-1, 1, 0, 0};
 	static int[] dc = {0, 0, -1, 1};
 	
-	// 미로의 정보, 세 악당의 시작 위치를 저장할 각 2차원 배열 초기화
+	// 미로의 정보를 저장할 2차원 배열 maze 초기화
 	static boolean[][] maze;
-	static int[][] startLocations = new int[3][2];
 	
 	// 세 악당이 각 위치로 이동하기 위해 필요한 최소 시간을 저장할 3차원 배열 minTimes 초기화
 	static Integer[][][] minTimes;
@@ -73,14 +72,13 @@ public class Main {
 			// StringTokenizer 객체를 불러와 변수 st에 재할당
 			st = new StringTokenizer(in.readLine());
 			
-			// nextToken() 및 parseInt() 메서드를 사용해 해당 악당의 시작 위치를 2차원 배열 startLocations에 저장
-			startLocations[idx][0] = Integer.parseInt(st.nextToken()) - 1;
-			startLocations[idx][1] = Integer.parseInt(st.nextToken()) - 1;
+			// nextToken() 및 parseInt() 메서드를 사용해 해당 악당의 시작 위치를 각 변수에 할당
+			int startRow = Integer.parseInt(st.nextToken()) - 1;
+			int startColumn = Integer.parseInt(st.nextToken()) - 1;
+			
+			// minTimeCalculator()를 호출해 각 악당이 각 위치로 이동하기 위해 필요한 최소 시간을 갱신
+			minTimeCalculator(idx, startRow, startColumn);
 		}
-		
-		// for 반복문을 사용해 각 악당이 각 위치로 이동하기 위해 필요한 최소 시간을 갱신
-		for (int idx = 0; idx < 3; idx++)
-			minTimeCalculator(idx);
 		
 		// minTimeFinder() 메서드를 호출해 한 지점에 세 악당이 모일 때 걸리는 최소 시간과 그러한 지점의 개수를 갱신
 		minTimeFinder();
@@ -102,14 +100,14 @@ public class Main {
 	// ----------------------------------------------------------------------------------------------------
 
 	// minTimeCalculator() 메서드 정의
-	public static void minTimeCalculator(int curVillain) {
+	public static void minTimeCalculator(int curVillain, int startRow, int startColumn) {
 		
 		// 다음에 악당이 이동할 위치를 저장할 Queue 객체 moveList 초기화
 		Queue<int[]> moveList = new LinkedList<>();
 		
 		// offer() 메서드를 사용해 해당 악당의 출발 위치를 moveList에 저장 및 출발 위치까지의 최소 시간을 갱신
-		moveList.offer(new int[] {startLocations[curVillain][0], startLocations[curVillain][1]});
-		minTimes[curVillain][startLocations[curVillain][0]][startLocations[curVillain][1]] = 0;
+		moveList.offer(new int[] {startRow, startColumn});
+		minTimes[curVillain][startRow][startColumn] = 0;
 		
 		// while 반복문을 사용해 moveList가 빌 때까지 순회
 		while (!moveList.isEmpty()) {
