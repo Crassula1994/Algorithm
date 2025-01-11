@@ -28,7 +28,7 @@ public class Main {
 				break;
 			
 			// format() 및 write() 메서드를 사용해 지구에서의 무게와 달에서의 무게를 출력
-			out.write(String.format("Object weighing %.2f on Earth will weigh %.2f on the moon.",
+			out.write(String.format("Objects weighing %.2f on Earth will weigh %.2f on the moon.",
 					earthWeight, earthWeight * 0.167));
 			
 			// newLine() 메서드를 사용해 줄바꿈 출력
