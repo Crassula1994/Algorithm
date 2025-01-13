@@ -45,7 +45,7 @@ public class Main {
 			}
 			
 			// asin() 메서드를 사용해 최소 거리일 때 샤워기 헤드에 만들 수 있는 구멍의 최대 개수를 갱신
-			maxCount += (int) (Math.PI / Math.asin((double) minDist / (2 * radius)) + 0.00001);
+			maxCount += (int) (Math.PI / Math.asin((double) minDist / (2 * radius)) + 0.000001);
 		}
 		
 		// valueOf() 및 write() 메서드를 사용해 샤워기 헤드에 만들 수 있는 구멍의 최대 개수를 출력
