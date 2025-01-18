@@ -56,7 +56,7 @@ public class Main {
 						count++;
 				}
 				
-				// 준오가 맞아야 하는 대수 및 각 행과 열에 존재하는 9의 개수를 갱신
+				// 모든 9의 개수 및 각 행과 열에 존재하는 9의 개수를 갱신
 				totalCount += count;
 				rowCounts[r] += count;
 				columnCounts[c] += count;
