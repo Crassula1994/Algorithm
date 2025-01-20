@@ -32,31 +32,14 @@ public class Main {
 			// 다항식을 계산한 결과를 저장할 배열 result 초기화
 			int[] result = new int[polynomialF.length + polynomialG.length - 1];
 			
-			// for 반복문을 사용해 다항식 f(x)의 각 항을 순회
+			// for 반복문을 사용해 두 다항식 f(x)와 G(x)의 곱셈의 결과를 갱신
 			for (int idxF = 0; idxF < polynomialF.length; idxF++) {
-				
-				// 해당 항의 값이 0인 경우 다음 항을 순회
-				if (polynomialF[idxF] == 0)
-					continue;
-				
-				// for 반복문을 사용해 다항식 g(x)의 각 항을 순회
-				for (int idxG = 0; idxG < polynomialG.length; idxG++) {
-					
-					// 해당 항의 값이 0인 경우 다음 항을 순회
-					if (polynomialG[idxG] == 0)
-						continue;
-					
-					// 두 다항식의 곱셈의 결과를 갱신
-					result[idxF + idxG]++;
-				}
+				for (int idxG = 0; idxG < polynomialG.length; idxG++)
+					result[idxF + idxG] ^= polynomialF[idxF] * polynomialG[idxG];
 			}
 			
-			// for 반복문을 사용해 두 다항식의 곱셈의 결과를 갱신
-			for (int idx = 0; idx < result.length; idx++)
-				result[idx] %= 2;
-			
 			// for 반복문을 사용해 곱셈 결과의 각 항을 순회
-			for (int idx = 0; idx < result.length; idx++) {
+			for (int idx = 0; idx <= result.length - polynomialH.length; idx++) {
 				
 				// 해당 항의 값이 0인 경우 다음 항을 순회
 				if (result[idx] == 0)
@@ -64,12 +47,33 @@ public class Main {
 				
 				// for 반복문을 사용해 나머지 연산의 결과를 갱신
 				for (int idxH = 0; idxH < polynomialH.length; idxH++)
-					result[idx + idxH] -= result[idx] * polynomialH[idxH];
+					result[idx + idxH] ^= polynomialH[idxH];
 			}
 			
-			// 다항식 연산 결과의 최고 차항을 찾았는지 여부를 저장할 변수 has
+			// 다항식 연산 결과의 최고차항을 찾았는지 여부를 저장할 변수 isLocated 초기화
+			boolean isLocated = false;
 			
-			// for 반복문을 사용해 각 
+			// for 반복문을 사용해 각 결과를 순회
+			for (int idx = 0; idx < result.length; idx++) {
+				
+				// 결과의 최고차항을 이미 찾은 경우 해당 항을 출력
+				if (isLocated) {
+					out.write(result[idx] + " ");
+					
+				// 결과의 최고차항을 찾은 경우 
+				} else if (result[idx] == 1) {
+					
+					// 다항식 연산 결과의 최고차항을 찾았는지 여부를 갱신
+					isLocated = true;
+					
+					// write() 메서드를 사용해 다항식의 길이와 해당 항을 출력
+					out.write((result.length - idx) + " ");
+					out.write(result[idx] + " ");
+				}
+			}
+			
+			// newLine() 메서드를 사용해 줄바꿈을 출력
+			out.newLine();
 		}
 		
 		// close() 메서드를 사용해 각 객체 종료
