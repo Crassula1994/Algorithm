@@ -42,10 +42,8 @@ public class Main {
 			// sort() 메서드를 사용해 입력 받은 게임의 숫자를 오름차순으로 정렬
 			Arrays.sort(numbers);
 			
-			// for 반복문을 사용해 각 숫자를 순회
+			// for 반복문을 사용해 각 숫자 쌍을 순회
 			for (int num1 = numbers.length - 1; num1 >= 0; num1--) {
-				
-				// for 반복문을 사용해 다른 숫자를 순회
 				for (int num2 = num1 - 1; num2 >= 0; num2--) {
 					
 					// 해당 숫자 쌍의 최대공약수가 1보다 큰 경우
