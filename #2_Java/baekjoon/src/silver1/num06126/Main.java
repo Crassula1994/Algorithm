@@ -21,7 +21,7 @@ public class Main {
 		// StringTokenizer 객체를 불러와 변수 st에 할당
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		
-		// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 동전의 종류 및 만들어야 하는 금액를 저장할 각 변수 초기화		
+		// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 동전의 종류 및 만들어야 하는 금액를 저장할 각 변수 초기화
 		int coinNum = Integer.parseInt(st.nextToken());
 		int targetValue = Integer.parseInt(st.nextToken());
 		
