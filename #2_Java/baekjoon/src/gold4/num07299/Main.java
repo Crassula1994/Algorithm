@@ -141,7 +141,7 @@ public class Main {
 					continue;
 				}
 				
-				// 해당 위치를 이미 확인했거나 식량 큐브가 위칭한 경우 다음 위치를 순회
+				// 해당 위치를 이미 확인했거나 식량 큐브가 위치한 경우 다음 위치를 순회
 				if (isFoodCube[nx][ny][nz])
 					continue;
 				
