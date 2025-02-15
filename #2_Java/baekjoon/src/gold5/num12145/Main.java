@@ -11,11 +11,6 @@ import java.util.StringTokenizer;
 // Main 클래스 정의
 public class Main {
 	
-	// 드럼을 장식하는 방법의 수를 나눌 제수 DIVISOR 초기화
-	static final int DIVISOR = 1000000007;
-	
-	// ----------------------------------------------------------------------------------------------------
-	
 	// main() 메서드 정의
 	public static void main(String[] args) throws IOException {
 		
@@ -56,7 +51,7 @@ public class Main {
 					)이 가능한 경우 해당 방법의 개수를 갱신
 					*/
 					if (counts[0][r][pattern] > 0 && r + 2 <= rowNum)
-						counts[1][r + 2][pattern] = (counts[1][r + 2][pattern] + counts[0][r][pattern]) % DIVISOR;
+						counts[1][r + 2][pattern] += counts[0][r][pattern];
 					
 					// 직전에 3으로 이루어진 조합으로 드럼을 장식한 경우 그 방법의 수를 변수 count에 할당
 					int count = counts[1][r][pattern];
@@ -69,7 +64,7 @@ public class Main {
 						222222222222…
 					)이 가능한 경우 해당 방법의 개수를 갱신 */
 					if (r + 1 <= rowNum)
-						counts[0][r + 1][pattern] = (counts[0][r + 1][pattern] + count) % DIVISOR;
+						counts[0][r + 1][pattern] += count;
 					
 					/* 2로 이루어진 너비 2의 정사각형과 1로 이루어진 너비 1의 직사각형으로 이루어진 두 줄 조합(
 						221221221221…
@@ -81,7 +76,7 @@ public class Main {
 						int newPattern = lcmCalculator(pattern, 3);
 						
 						// 해당 조합을 사용한 방법의 개수를 갱신
-						counts[0][r + 2][newPattern] = (counts[0][r + 2][newPattern] + count * 3) % DIVISOR;
+						counts[0][r + 2][newPattern] += count * 3;
 					}
 					
 					/* 2로 이루어진 띠와 1로 이루어진 너비 2의 직사각형으로 이루어진 두 줄 조합(
@@ -94,7 +89,7 @@ public class Main {
 						int newPattern = lcmCalculator(pattern, 6);
 						
 						// 해당 조합을 사용한 방법의 개수를 갱신
-						counts[0][r + 2][newPattern] = (counts[0][r + 2][newPattern] + count * 6) % DIVISOR;
+						counts[0][r + 2][newPattern] += count * 6;
 					}
 					
 					/* 2로 이루어진 띠와 1로 이루어진 너비 1의 직사각형으로 이루어진 세 줄 조합(
@@ -108,15 +103,15 @@ public class Main {
 						int newPattern = lcmCalculator(pattern, 4);
 						
 						// 해당 조합을 사용한 방법의 개수를 갱신
-						counts[0][r + 3][newPattern] = (counts[0][r + 3][newPattern] + count * 4) % DIVISOR;
+						counts[0][r + 3][newPattern] += count * 4;
 					}
 				}
 			}
 			
 			// for 반복문을 사용해 드럼을 장식하는 방법의 수를 갱신
 			for (int pattern = 1; pattern <= 12; pattern++) {
-				totalCount = (totalCount + counts[0][rowNum][pattern] / pattern) % DIVISOR;
-				totalCount = (totalCount + counts[1][rowNum][pattern] / pattern) % DIVISOR;
+				totalCount += counts[0][rowNum][pattern] / pattern;
+				totalCount += counts[1][rowNum][pattern] / pattern;
 			}
 			
 			// format() 및 write() 메서드를 사용해 테스트 케이스 번호와 드럼을 장식하는 방법의 수를 출력
