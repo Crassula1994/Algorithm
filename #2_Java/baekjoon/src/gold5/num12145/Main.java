@@ -39,54 +39,117 @@ public class Main {
 			// 드럼을 장식하는 방법의 수를 저장할 변수 totalCount 초기화
 			int totalCount = 0;
 			
-			/* 각 행과 패턴의 길이에서 3으로 이루어진 조합과 1과 2 또는 2로 이루어진 조합이 왔을 때
+			/* 1 또는 2로 이루어진 조합과 3으로 이루어진 조합이 왔을 때 각 행과 패턴의 주기에 대하여
 			드럼을 장식하는 방법의 개수를 저장할 3차원 배열 counts 초기화 */
 			int[][][] counts = new int[2][rowNum + 1][13];
 			
-			// 3으로 이루어진 조합과 1과 2 또는 2로 이루어진 조합을 장식하지 않는 방법의 개수를 초기화
+			// 드럼의 줄이 없을 때 장식하는 방법의 개수를 초기화
 			counts[0][0][1] = counts[1][0][1] = 1;
-			
-			// for 반복문을 사용해 3으로 이루어진 조합과 1과 2 또는 2로 이루어진 조합을 순회
-			for (int comb = 0; comb < 2; comb++) {
 				
-				// for 반복문을 사용해 각 행과 패턴의 시작 위치를 순회
-				for (int r = 0; r < rowNum; r++) {
-					for (int pattern = 1; pattern <= 12; pattern++) {
-						
-						// 현재 드럼을 장식하는 방법의 개수를 변수 count에 할당
-						int count = counts[comb][r][pattern];
-						
-						// 드럼을 장식할 수 없는 경우 다음 패턴의 시작 위치를 순회
-						if (count == 0)
-							continue;
-						
-						/* 해당 조합이 3으로 이루어진 조합인 경우 두 줄 뒤의 1과 2 또는 2로 이루어진 조합이 가능하므로
-						해당 방법의 개수를 갱신 후 다음 패턴의 시작 위치를 순회 */
-						if (comb == 0) {
-							counts[1][r + 2][pattern] = (counts[1][r + 2][pattern] + count) % DIVISOR;
-							continue;
-						}
-						
-						/* 해당 조합이 2로 이루어진 한 줄 조합인 경우 한 줄 뒤의 3으로 이루어진 조합이 가능하므로
-						해당 방법의 개수를 갱신 */
-						if (r + 1 <= rowNum)
-							counts[0][r + 1][pattern] = (counts[0][r + 1][pattern] + count) % DIVISOR;
-						
-						/* 해당 조합이 2로 이루어진 크기 2의 정사각형과 1로 이루어진 크기 1의 직사각형으로 이루어진 두 줄 조합인 경우
-						두 줄 뒤의 3으로 이루어진 조합이 가능하므로 해당 방법의 개수를 갱신 */
-						if (r + 2 <= rowNum && columnNum % 3 == 0)
-							counts[0][r + 2][pattern] = (counts[0][r + 2][pattern] + count * 3) % DIVISOR;
+			// for 반복문을 사용해 각 행과 패턴의 주기를 순회
+			for (int r = 0; r < rowNum; r++) {
+				for (int pattern = 1; pattern <= 12; pattern++) {
 					
+					/* 직전에 1 또는 2로 이루어진 조합으로 드럼을 장식할 수 있고, 3으로 이루어진 두 줄 조합(
+						333333333333…
+						333333333333…
+					)이 가능한 경우 해당 방법의 개수를 갱신
+					*/
+					if (counts[0][r][pattern] > 0 && r + 2 <= rowNum)
+						counts[1][r + 2][pattern] = (counts[1][r + 2][pattern] + counts[0][r][pattern]) % DIVISOR;
+					
+					// 직전에 3으로 이루어진 조합으로 드럼을 장식한 경우 그 방법의 수를 변수 count에 할당
+					int count = counts[1][r][pattern];
+					
+					// 직전에 3으로 이루어진 조합으로 드럼을 장식할 수 없는 경우 다음 패턴의 주기를 순회
+					if (count == 0)
+						continue;
+					
+					/* 2로 이루어진 한 줄 조합(
+						222222222222…
+					)이 가능한 경우 해당 방법의 개수를 갱신 */
+					if (r + 1 <= rowNum)
+						counts[0][r + 1][pattern] = (counts[0][r + 1][pattern] + count) % DIVISOR;
+					
+					/* 2로 이루어진 너비 2의 정사각형과 1로 이루어진 너비 1의 직사각형으로 이루어진 두 줄 조합(
+						221221221221…
+						221221221221…
+					)이 가능한 경우 */
+					if (r + 2 <= rowNum && columnNum % 3 == 0) {
+						
+						// lcmCalculator() 메서드를 호출해 해당 조합의 주기를 변수 newPattern에 할당
+						int newPattern = lcmCalculator(pattern, 3);
+						
+						// 해당 조합을 사용한 방법의 개수를 갱신
+						counts[0][r + 2][newPattern] = (counts[0][r + 2][newPattern] + count * 3) % DIVISOR;
+					}
+					
+					/* 2로 이루어진 띠와 1로 이루어진 너비 2의 직사각형으로 이루어진 두 줄 조합(
+						222211222211…
+						211222211222…
+					)이 가능한 경우 */
+					if (r + 2 <= rowNum && columnNum % 6 == 0) {
+						
+						// lcmCalculator() 메서드를 호출해 해당 조합의 주기를 변수 newPattern에 할당
+						int newPattern = lcmCalculator(pattern, 6);
+						
+						// 해당 조합을 사용한 방법의 개수를 갱신
+						counts[0][r + 2][newPattern] = (counts[0][r + 2][newPattern] + count * 6) % DIVISOR;
+					}
+					
+					/* 2로 이루어진 띠와 1로 이루어진 너비 1의 직사각형으로 이루어진 세 줄 조합(
+						212221222122…
+						212121212121…
+						222122212221…
+					)이 가능한 경우 */
+					if (r + 3 <= rowNum && columnNum % 4 == 0) {
+						
+						// lcmCalculator() 메서드를 호출해 해당 조합의 주기를 변수 newPattern에 할당
+						int newPattern = lcmCalculator(pattern, 4);
+						
+						// 해당 조합을 사용한 방법의 개수를 갱신
+						counts[0][r + 3][newPattern] = (counts[0][r + 3][newPattern] + count * 4) % DIVISOR;
 					}
 				}
 			}
 			
-			// format() 및 write()
+			// for 반복문을 사용해 드럼을 장식하는 방법의 수를 갱신
+			for (int pattern = 1; pattern <= 12; pattern++) {
+				totalCount = (totalCount + counts[0][rowNum][pattern] / pattern) % DIVISOR;
+				totalCount = (totalCount + counts[1][rowNum][pattern] / pattern) % DIVISOR;
+			}
+			
+			// format() 및 write() 메서드를 사용해 테스트 케이스 번호와 드럼을 장식하는 방법의 수를 출력
 			out.write(String.format("Case #%d: %d\n", tc, totalCount));
 		}
 		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
 		out.close();
+	}
+	
+	// ----------------------------------------------------------------------------------------------------
+	
+	// lcmCalculator() 메서드 정의
+	public static int lcmCalculator(int numberA, int numberB) {
+		
+		// gcdCalculator() 메서드를 호출해 두 숫자의 최대공약수를 변수 gcd에 할당
+		int gcd = gcdCalculator(numberA, numberB);
+		
+		// 두 숫자의 최소공배수를 계산해 반환
+		return gcd * (numberA / gcd) * (numberB / gcd);
+	}
+	
+	// ----------------------------------------------------------------------------------------------------
+	
+	// gcdCalculator() 메서드 정의
+	public static int gcdCalculator(int numberA, int numberB) {
+		
+		// 한 숫자가 다른 숫자로 나누어 떨어지는 경우 나눈 숫자가 최대공약수이므로 이를 반환
+		if (numberA % numberB == 0)
+			return numberB;
+		
+		// gcdCalculator() 메서드를 재귀 호출해 두 수의 최대공약수를 반환
+		return gcdCalculator(numberB, numberA % numberB);
 	}
 }
