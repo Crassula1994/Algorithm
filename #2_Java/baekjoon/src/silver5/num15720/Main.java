@@ -6,6 +6,8 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.StringTokenizer;
 
 // Main 클래스 정의
@@ -46,6 +48,13 @@ public class Main {
 		menuPriceCalculator(in.readLine(), sides);
 		menuPriceCalculator(in.readLine(), drinks);
 		
+		// for 반복문을 사용해 세트 할인이 적용된 후의 최소 가격을 갱신
+		for (int idx = 0; idx < setNum; idx++) {
+			minPrice -= burgers[idx] / 10;
+			minPrice -= sides[idx] / 10;
+			minPrice -= drinks[idx] / 10;
+		}
+		
 		// write() 메서드를 사용해 세트 할인이 적용되기 전 가격 및 세트 할인이 적용된 후의 최소 가격을 출력
 		out.write(totalPrice + "\n" + minPrice);
 		
@@ -65,6 +74,15 @@ public class Main {
 		// for 반복문을 사용해 각 메뉴의 가격을 순회
 		for (int idx = 0; idx < menuPrices.length; idx++) {
 			
+			// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 메뉴의 가격을 해당 메뉴 배열에 저장
+			menuPrices[idx] = Integer.parseInt(st.nextToken());
+			
+			// 세트 할인이 적용되기 전 가격 및 세트 할인이 적용된 후의 최소 가격을 갱신
+			totalPrice += menuPrices[idx];
+			minPrice += menuPrices[idx];
 		}
+		
+		// reverseOrder() 및 sort() 메서드를 사용해 해당 메뉴의 가격을 내림차순으로 정렬
+		Arrays.sort(menuPrices, Collections.reverseOrder());
 	}
 }
