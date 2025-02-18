@@ -51,7 +51,7 @@ public class Main {
 	public static int storageCounter(int targetNumber, int bitLimit) {
 		
 		// 목표 숫자가 가능한 수의 범위를 벗어나는 경우 0을 반환
-		if (targetNumber > (1 << (bitLimit - 1)))
+		if (targetNumber >= (1 << bitLimit))
 			return 0;
 		
 		// 이미 계산한 방법의 수가 존재하는 경우 해당 방법의 수를 반환
@@ -62,16 +62,10 @@ public class Main {
 		if (targetNumber == 0 || bitLimit == 1)
 			return counts[targetNumber][bitLimit] = 1;
 		
-		// 목표 숫자가 홀수인 경우
-		if ((targetNumber & 1) == 1) {
-			counts[targetNumber][bitLimit]
-					= storageCounter((targetNumber + 1) >> 1, bitLimit - 1)
-					+ storageCounter((targetNumber - 1) >> 1, bitLimit - 1);
-		} else {
-			counts[targetNumber][bitLimit] = storageCounter(targetNumber >> 1, bitLimit - 1);
-		}
-		
 		// 목표 숫자를 컴퓨터의 비트 수로 저장하는 방법의 수를 반환
-		return counts[targetNumber][bitLimit];
+		return counts[targetNumber][bitLimit] = ((targetNumber & 1) == 1)
+				? storageCounter((targetNumber + 1) >> 1, bitLimit - 1)
+				+ storageCounter((targetNumber - 1) >> 1, bitLimit - 1)
+				: storageCounter(targetNumber >> 1, bitLimit - 1);
 	}
 }
