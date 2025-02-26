@@ -17,10 +17,6 @@ public class Main {
 	static int targetCount;
 	static int maxSum = Integer.MIN_VALUE;
 	
-	// 인접한 칸을 나타낼 각 델타 배열 초기화
-	static int[] dr = {-1, 1, 0, 0};
-	static int[] dc = {0, 0, -1, 1};
-	
 	// 격자판에 들어있는 수 및 해당 숫자의 선택 여부를 저장할 각 2차원 배열 초기화
 	static int[][] grid;
 	static boolean[][] selected;
@@ -40,7 +36,7 @@ public class Main {
 		// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 격자판의 크기 및 선택할 칸의 수를 각 변수에 할당
 		height = Integer.parseInt(st.nextToken());
 		width = Integer.parseInt(st.nextToken());
-		maxSum = Integer.parseInt(st.nextToken());
+		targetCount = Integer.parseInt(st.nextToken());
 		
 		// 격자판에 들어있는 수 및 해당 숫자의 선택 여부를 저장할 각 2차원 배열 초기화
 		grid = new int[height][width];
@@ -54,7 +50,7 @@ public class Main {
 			
 			// for 반복문을 사용해 입력 받은 격자판에 들어있는 수를 2차원 배열 grid에 저장
 			for (int c = 0; c < width; c++)
-				grid[r][c] = Integer.parseInt(in.readLine());
+				grid[r][c] = Integer.parseInt(st.nextToken());
 		}
 		
 		// maxSumFinder() 메서드를 호출해 선택한 칸에 있는 수를 모두 더한 값의 최댓값을 갱신
@@ -79,21 +75,38 @@ public class Main {
 			return;
 		}
 		
-		// 현재 칸이 
+		// 현재 칸이 격자판의 열을 벗어난 경우 다음 줄의 첫 번째 칸으로 조정
+		if (curColumn >= width) {
+			curRow++;
+			curColumn = 0;
+		}
+		
+		// 현재 칸이 격자판의 행을 벗어난 경우 메서드 종료
+		if (curRow >= height)
+			return;
 		
 		// for 반복문을 사용해 시작 행부터 각 행을 순회
-//		for (int r = startRow; r < height; r++) {
-//			
-//			// 시작 칸의 위치를 행별로 계산해 변수 sc에 할당
-//			int sc = (r == startRow) ? startColumn : 0;
-//			
-//			// for 반복문을 사용해 각 칸을 순회
-//			for (int c = sc; c < width; c++) {
-//				
-//				//
-//				
-//				
-//			}
-//		}
+		for (int r = curRow; r < height; r++) {
+			
+			// 시작 칸의 위치를 행별로 계산해 변수 sc에 할당
+			int sc = (r == curRow) ? curColumn : 0;
+			
+			// for 반복문을 사용해 각 칸을 순회
+			for (int c = sc; c < width; c++) {
+				
+				// 위쪽 칸을 이미 선택한 경우 다음 칸을 순회
+				if (r >= 1 && selected[r - 1][c])
+					continue;
+				
+				// 해당 칸을 선택한 것으로 처리
+				selected[r][c] = true;
+				
+				// maxSumFinder() 메서드 재귀 호출
+				maxSumFinder(count + 1, sum + grid[r][c], r, c + 2);
+				
+				// 해당 칸을 선택하지 않은 것으로 원상 복구
+				selected[r][c] = false;
+			}
+		}
 	}
 }
