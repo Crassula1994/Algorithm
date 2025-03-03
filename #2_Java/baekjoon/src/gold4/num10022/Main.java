@@ -29,8 +29,8 @@ public class Main {
 		int maxAmount = 0;
 		
 		// 45도 회전한 풀의 양과 각 위치까지 풀 양의 합을 저장할 각 2차원 배열 초기화
-		int[][] field = new int[size * 2 + 1][size * 2 + 1];
-		int[][] maxAmounts = new int[size * 2 + 1][size * 2 + 1];
+		int[][] field = new int[size * 2][size * 2];
+		int[][] maxAmounts = new int[size * 2][size * 2];
 		
 		// for 반복문을 사용해 각 들판의 행을 순회
 		for (int r = 0; r < size; r++) {
@@ -43,26 +43,12 @@ public class Main {
 				field[r + c + 1][size - r + c] = Integer.parseInt(st.nextToken());
 		}
 		
-//		for (int i = 0; i <= 2 * size; i++) {
-//            for (int j = 0; j <= 2 * size; j++) {
-//                System.out.print(field[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-		
 		// for 반복문을 사용해 각 들판의 위치까지 풀 양의 합을 2차원 배열 maxAmounts에 저장
-		for (int r = 1; r <= size * 2; r++) {
-			for (int c = 1; c <= size * 2; c++)
+		for (int r = 1; r < size * 2; r++) {
+			for (int c = 1; c < size * 2; c++)
 				maxAmounts[r][c] = field[r][c] + maxAmounts[r - 1][c]
 						+ maxAmounts[r][c - 1] - maxAmounts[r - 1][c - 1];
 		}
-		
-//		for (int i = 0; i <= 2 * size; i++) {
-//            for (int j = 0; j <= 2 * size; j++) {
-//                System.out.print(maxAmounts[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
 		
 		// for 반복문을 사용해 각 들판의 위치를 순회
 		for (int r = 0; r < size; r++) {
@@ -74,20 +60,13 @@ public class Main {
 				
 				// min() 및 max() 메서드를 사용해 해당 위치에서 그린 범위의 각 극한 값을 각 변수에 할당
 				int upLimit = Math.max(1, curRow - stepLimit);
-				int downLimit = Math.min(size * 2, curRow + stepLimit);
+				int downLimit = Math.min(size * 2 - 1, curRow + stepLimit);
 				int leftLimit = Math.max(1, curColumn - stepLimit);
-				int rightLimit = Math.min(size * 2, curColumn + stepLimit);
+				int rightLimit = Math.min(size * 2 - 1, curColumn + stepLimit);
 				
 				// 해당 위치에서 베시가 도달할 수 있는 최대 풀의 양을 변수 amount에 할당
-				int amount = maxAmounts[downLimit][rightLimit] - maxAmounts[upLimit - 1][leftLimit]
-						- maxAmounts[upLimit][leftLimit - 1] + maxAmounts[upLimit][leftLimit];
-				
-				if (amount == 528) {
-					System.out.println("u: " + upLimit);
-					System.out.println("d: " + downLimit);
-					System.out.println("l: " + leftLimit);
-					System.out.println("r: " + rightLimit);
-				}
+				int amount = maxAmounts[downLimit][rightLimit] - maxAmounts[upLimit - 1][rightLimit]
+						- maxAmounts[downLimit][leftLimit - 1] + maxAmounts[upLimit - 1][leftLimit - 1];
 				
 				// max() 메서드를 사용해 베시가 도달할 수 있는 최대 풀의 양을 갱신
 				maxAmount = Math.max(amount, maxAmount);
