@@ -24,7 +24,7 @@ public class Main {
 		public Cow(int time, int damage) {
 			this.time = time;
 			this.damage = damage;
-			this.damagePerTime = (double) damage / (double) time;
+			this.damagePerTime = (double) damage / time;
 		}
 
 		// compareTo() 메서드 정의
