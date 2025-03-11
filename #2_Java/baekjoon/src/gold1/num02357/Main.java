@@ -30,15 +30,17 @@ public class Main {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		// StringTokenizer 객체를 불러와  변수 st에 할당
+		// StringTokenizer 객체를 불러와 변수 st에 할당
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		
 		// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 수의 개수, 구간의 최솟값과 최댓값을 구하는 횟수를 각 변수에 할당
 		int numberCnt = Integer.parseInt(st.nextToken());
 		int calcCnt = Integer.parseInt(st.nextToken());
 		
-		// 입력 받은 숫자를 배열 및 세그먼트 트리 형태로 저장할 각 배열 초기화
+		// 입력 받은 숫자를 배열 형태로 저장할 배열 numbers 초기화
 		numbers = new int[numberCnt];
+		
+		// 입력 받은 숫자를 세그먼트 트리 형태로 최솟값과 최댓값을 저장할 2차원 배열 segmentTree 초기화
 		segmentTree = new int[numberCnt * 4][2];
 		
 		// for 반복문을 사용해 입력 받은 숫자를 배열 numbers에 저장
@@ -51,10 +53,10 @@ public class Main {
 		// while 반복문을 사용해 각 수의 변경 및 구간의 합을 구하는 횟수를 순회
 		while (calcCnt-- > 0) {
 			
-			// StringTokenizer 객체를 불러와  변수 st에 재할당
+			// StringTokenizer 객체를 불러와 변수 st에 재할당
 			st = new StringTokenizer(in.readLine());
 			
-			// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 구간의 최솟값과 최댓값을 구할 범위를 각 변수에 할당
+			// nextToken() 및 parseInt() 메서드를 사용해 입력 받은 최솟값과 최댓값을 구할 범위를 각 변수에 할당
 			int startIdx = Integer.parseInt(st.nextToken()) - 1;
 			int endIdx = Integer.parseInt(st.nextToken()) - 1;
 			
@@ -105,7 +107,7 @@ public class Main {
 		if (startIdx > end || endIdx < start)
 			return new int[] {MAX_VALUE, MIN_VALUE};
 		
-		// 해당 범위가 더해야 할 범위 내에 존재하는 경우 현재 노드의 극값을 반환
+		// 해당 범위가 극값을 구해야 할 범위 내에 존재하는 경우 현재 노드의 극값을 반환
 		if (startIdx <= start && endIdx >= end)
 			return segmentTree[node];
 		
