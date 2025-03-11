@@ -128,8 +128,22 @@ public class Main {
 	// segmentTreeAggregator() 메서드 정의
 	public static long segmentTreeAggregator(int node, int start, int end, int startIdx, int endIdx) {
 		
+		// 해당 범위에 더해야 할 범위가 존재하지 않는 경우 0을 반환
+		if (startIdx > end || endIdx < start)
+			return 0;
 		
+		// 해당 범위가 더해야 할 범위 내에 존재하는 경우 현재 노드의 값을 반환
+		if (startIdx <= start && endIdx >= end)
+			return segmentTree[node];
 		
-		return 1;
+		// 범위의 중간 값을 계산해 변수 mid에 할당
+		int mid = (start + end) / 2;
+		
+		// segmentTreeAggregator() 메서드를 재귀 호출해 두 자식 노드에 대한 합산 결과를 각 변수에 할당
+		long leftChildSum = segmentTreeAggregator(node * 2, start, mid, startIdx, endIdx);
+		long rightChildSum = segmentTreeAggregator(node * 2 + 1, mid + 1, end, startIdx, endIdx);
+		
+		// 두 자식 노드에 대한 합산 결과를 더한 결과를 반환
+		return leftChildSum + rightChildSum;
 	}
 }
