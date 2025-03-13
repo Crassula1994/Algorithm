@@ -37,7 +37,7 @@ public class Main {
 			int difference = elementB - elementA;
 			
 			// 해당 수열이 등차수열인 경우 다음 항을 정해진 형식대로 출력
-			if (difference != 0 && difference == elementC - elementB) {
+			if (difference == elementC - elementB) {
 				out.write(String.format("AP %d\n", elementC + difference));
 			
 			// 해당 수열이 등비수열인 경우 다음 항을 정해진 형식대로 출력
