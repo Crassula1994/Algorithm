@@ -53,7 +53,7 @@ public class Main {
 	// nextNumber() 메서드 정의
 	public static int nextNumber() {
 		
-		// 입력 받은 숫자수를 저장할 변수 result 초기화
+		// 입력 받은 숫자를 저장할 변수 result 초기화
 		int result = 0;
 		
 		// while 반복문을 사용해 현재 문자가 숫자가 아닌 경우 다음 문자로 이동
