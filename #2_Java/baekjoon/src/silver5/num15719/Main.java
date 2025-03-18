@@ -12,7 +12,7 @@ public class Main {
 	// 한 번에 확인할 입력의 크기를 저장할 상수 BUFFER_SIZE 초기화
 	static final int BUFFER_SIZE = 79_000_000;
 	
-	// 현재 확인한 입력의 위치를 저장할 배열 bufferIdx 초기화
+	// 현재 확인 중인 입력의 위치를 저장할 배열 bufferIdx 초기화
 	static int bufferIdx = 0;
 	
 	// 한 번에 확인할 입력의 크기를 저장할 배열 buffer 초기화
@@ -57,14 +57,12 @@ public class Main {
 		int result = 0;
 		
 		// while 반복문을 사용해 현재 문자가 숫자가 아닌 경우 다음 문자로 이동
-		while (buffer[bufferIdx] < '0' || buffer[bufferIdx] > '9')
+		while (buffer[bufferIdx] < '0')
 			bufferIdx++;
 		
 		// while 반복문을 사용해 입력 받은 숫자를 갱신
-		while (buffer[bufferIdx] >= '0' && buffer[bufferIdx] <= '9')
+		while (buffer[bufferIdx] >= '0')
 			result = result * 10 + buffer[bufferIdx++] - '0';
-		
-		System.out.println(result);
 		
 		// 입력 받은 숫자를 반환
 		return result;
