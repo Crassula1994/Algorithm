@@ -27,7 +27,7 @@ public class Main {
 			int bounceCount = Integer.parseInt(in.readLine());
 			
 			// wayCounter() 및 write() 메서드를 사용해 주어진 횟수만큼 튕긴 뒤 원래 위치로 돌아오도록 레이저를 쏘는 방법의 수를 출력
-			out.write(wayCounter(bounceCount) + "\n");
+			out.write(wayCounter(bounceCount + 1) + "\n");
 		}
 		
 		// close() 메서드를 사용해 각 객체 종료
@@ -58,6 +58,11 @@ public class Main {
 			launchCount -= launchCount / factor;
 		}
 		
+		// 마지막 남은 소인수가 있는 경우 원래 위치로 돌아오도록 레이저를 쏘는 방법의 수를 갱신
+		if (bounceCount > 1)
+			launchCount -= launchCount / bounceCount;
+		
+		// 원래 위치로 돌아오도록 레이저를 쏘는 방법의 수를 반환
 		return launchCount;
 	}
 }
