@@ -38,7 +38,6 @@ public class Main {
 			// 질문의 답이 'Y'인 경우 주어진 양의 정수를 출력 후 반복문 탈출
 			if (answer.equals("Y")) {
 				out.write("! " + number + "\n");
-				out.flush();
 				break;
 			}
 		}
