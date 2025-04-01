@@ -3,7 +3,7 @@ package gold2.num17004;
 // 필요한 패키지 불러오기
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
+import java.io.IOException;  
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
