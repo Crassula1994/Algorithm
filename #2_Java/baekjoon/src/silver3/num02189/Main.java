@@ -1,4 +1,4 @@
-package silver2.num02189;
+package silver3.num02189;
 
 // 필요한 패키지 불러오기
 import java.io.BufferedReader;
