@@ -33,10 +33,10 @@ public class Main {
 		int islandNum = Integer.parseInt(st.nextToken());
 		int removeLimit = Integer.parseInt(st.nextToken());
 		
-		// 점프할 최소 거리의 최댓값과 해당 값을 찾기 위한 범위를 나타낼 각 변수 초기화
+		// 점프할 최소 거리의 최댓값 및 해당 값을 찾기 위한 범위를 나타낼 각 변수 초기화
 		int minDistance = 0;
 		int start = 0;
-		int end = totalDistance;
+		int end = totalDistance + 1;
 		
 		// 각 돌섬이 있는 위치를 저장할 배열 islands 초기화
 		islands = new int[islandNum + 2];
@@ -60,11 +60,12 @@ public class Main {
 			// islandRemover() 메서드를 호출해 제거한 돌섬의 개수를 변수 removeCount에 할당
 			int removeCount = islandRemover(mid);
 			
-			//
+			// 제거한 돌섬의 개수가 제거할 수 있는 작은 돌섬의 수 이하인 경우 범위의 처음과 점프할 최소 거리의 최댓값을 갱신
 			if (removeCount <= removeLimit) {
 				start = mid + 1;
-				minDistance = Math.max(mid, removeCount);
-			// 
+				minDistance = mid;
+				
+			// 제거한 돌섬의 개수가 제거할 수 있는 작은 돌섬의 수 초과인 경우 범위의 마지막을 갱신
 			} else {
 				end = mid;
 			}
@@ -82,7 +83,24 @@ public class Main {
 
 	// islandRemover() 메서드 정의
 	public static int islandRemover(int distance) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		// 제거한 돌섬의 개수를 저장할 변수 removeCount 초기화
+		int removeCount = 0;
+		
+		// for 반복문을 사용해 각 돌섬을 순회
+		for (int cur = 1, prev = 0; cur < islands.length; cur++) {
+			
+			// 현재 돌섬과 이전 돌섬의 거리가 점프할 최소 거리 이상인 경우 이전 돌섬을 갱신 후 다음 돌섬을 순회
+			if (islands[cur] - islands[prev] >= distance) {
+				prev = cur;
+				continue;
+			}
+			
+			// 제거한 돌섬의 개수를 갱신
+			removeCount++;
+		}
+		
+		// 제거한 돌섬의 개수를 반환
+		return removeCount;
 	}
 }
