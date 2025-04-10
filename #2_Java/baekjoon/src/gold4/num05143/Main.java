@@ -96,15 +96,15 @@ public class Main {
 	// herringFinder() 메서드 정의
 	public static void herringFinder(int startRow, int startColumn) {
 		
-		// 해당 위치까지 이동하기 위해 지나야 하는 검은 기름 칸의 수를 저장할 2차원 배열 blackGoops 초기화
-		Integer[][] blackGoops = new Integer[height][width];
+		// 지나갈 수 있는 검은 기름 칸의 수에 따른 이동 여부를 저장할 3차원 배열 moved 초기화
+		boolean[][][] moved = new boolean[height][width][4];
 		
 		// 다음에 이동할 위치를 저장할 Queue 객체 moveList 초기화
 		Queue<int[]> moveList = new LinkedList<>();
 		
-		// offer() 메서드를 사용해 시모어의 서식지를 moveList에 추가 및 서식지에서 지나야 하는 검은 기름 칸의 수를 갱신
-		moveList.offer(new int[] {startRow, startColumn});
-		blackGoops[startRow][startColumn] = 0;
+		// offer() 메서드를 사용해 시모어의 서식지를 moveList에 추가 및 지나갈 수 있는 검은 기름 칸의 수에 따른 이동 여부를 갱신
+		moveList.offer(new int[] {startRow, startColumn, 3});
+		moved[startRow][startColumn][3] = true;
 		
 		// while 반복문을 사용해 moveList가 빌 때까지 순회
 		while (!moveList.isEmpty()) {
@@ -112,25 +112,51 @@ public class Main {
 			// poll() 메서드를 사용해 현재 위치를 배열 curLocation에 할당
 			int[] curLocation = moveList.poll();
 			
-			// 현재 위치를 각 변수에 할당
-			int cr = curLocation[0];
-			int cc = curLocation[1];
+			// 현재 위치와 지나갈 수 있는 검은 기름 칸의 수를 각 변수에 할당
+			int curRow = curLocation[0];
+			int curColumn = curLocation[1];
+			int curCount = curLocation[2];
+			
+			// 현재 칸에 청어 먹이가 존재하는 경우 청어 먹이를 제거 후 시모어가 죽지 않고 도달할 수 있는 청어 먹이의 수를 갱신
+			if (map[curRow][curColumn] == 'H') {
+				map[curRow][curColumn] = '.';
+				herringCount++;
+			}
 			
 			// for 반복문을 사용해 현재 위치와 인접한 위치를 순회
 			for (int d = 0; d < 4; d++) {
 				
-				// 해당 위치를 각 변수에 할당
-				int nr = cr + dr[d];
-				int nc = cc + dc[d];
+				// 해당 위치 및 지나갈 수 있는 검은 기름 칸의 수를 각 변수에 할당
+				int nextRow = curRow + dr[d];
+				int nextColumn = curColumn + dc[d];
+				int nextCount = curCount;
 				
 				// 해당 위치가 지도의 범위를 벗어나는 경우 다음 위치를 순회
-				if (nr < 0 || nr >= height || nc < 0 || nc >= width)
+				if (nextRow < 0 || nextRow >= height || nextColumn < 0 || nextColumn >= width)
 					continue;
 				
-				// 해당 위치를 더 방문할 수 없는 경우
-				if (map[nr][nc] == 'G' && blackGoops[cr][cc] == 3)
+				// 해당 위치에 검은 기름이 존재하는 경우
+				if (map[nextRow][nextColumn] == 'G') {
+					
+					// 더 이상 검은 기름을 통과할 수 없는 경우 다음 위치를 순회
+					if (curCount == 0)
+						continue;
+					
+					// 지나갈 수 있는 검은 기름 칸의 수를 갱신
+					nextCount--;
+					
+				// 해당 위치에 바다표범을 씻겨 주는 사람이 존재하는 경우 지나갈 수 있는 검은 기름 칸의 수를 갱신
+				} else if (map[nextRow][nextColumn] == 'P') {
+					nextCount = 3;
+				}
+				
+				// 해당 위치를 이미 이동했던 경우 다음 위치를 순회
+				if (moved[nextRow][nextColumn][nextCount])
 					continue;
 				
+				// offer() 메서드를 사용해 해당 위치를 moveList에 추가 및 지나갈 수 있는 검은 기름 칸의 수에 따른 이동 여부를 갱신
+				moveList.offer(new int[] {nextRow, nextColumn, nextCount});
+				moved[nextRow][nextColumn][nextCount] = true;
 			}
 		}
 	}
