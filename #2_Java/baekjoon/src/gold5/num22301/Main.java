@@ -23,11 +23,11 @@ public class Main {
 		// while 반복문을 사용해 각 테스트 케이스를 순회
 		while (testCase-- > 0) {
 			
-			// readLine() 메서드를 사용해 입력 받은 숫자를 배열 originNumber에 할당
-			char[] originNumber = in.readLine().toCharArray();
+			// readLine() 메서드를 사용해 입력 받은 숫자를 변수 number에 할당
+			String number = in.readLine();
 			
 			// palindromeMaker() 및 write() 메서드를 사용해 해당 숫자 이상인 팰린드롬인 수를 출력
-			out.write(palindromeMaker(originNumber) + "\n");
+			out.write(palindromeMaker(number) + "\n");
 		}
 		
 		// close() 메서드를 사용해 각 객체 종료
@@ -38,28 +38,51 @@ public class Main {
 	// ----------------------------------------------------------------------------------------------------
 
 	// palindromeMaker() 메서드 정의
-	public static String palindromeMaker(char[] originNumber) {
+	public static String palindromeMaker(String number) {
 		
-		// 입력 받은 숫자의 길이를 변수 length에 할당
-		int length = originNumber.length;
+		// length() 메서드를 사용해 입력 받은 숫자의 길이, 해당 숫자의 중간 위치, 숫자 올림이 필요한지 여부를 각 변수에 할당
+		int length = number.length();
+		int midLeft = (length - 1) / 2;
+		int midRight = length / 2;
+		boolean isRoundedUp = false;
 		
-		// 해당 숫자 이상인 팰린드롬인 수를 저장할 배열 targetNumber 초기화
-		char[] targetNumber = new char[length];
+		// toCharArray() 메서드를 사용해 입력 받은 숫자의 자릿수를 저장할 배열 digits 초기화
+		char[] digits = number.toCharArray();
 		
-		// for 반복문을 사용해 해당 숫자 이상인 팰린드롬인 수를 초기화
-		for (int idx = 0; idx < length / 2; idx++) {
-			targetNumber[idx] = originNumber[idx];
-			targetNumber[length - idx - 1] = originNumber[idx];
+		// for 반복문을 사용해 각 대칭인 숫자 쌍을 순회
+		for (int left = midLeft, right = midRight; left >= 0; left--, right++) {
+			
+			// 왼쪽의 숫자가 더 큰 경우 숫자 올림이 필요 없으므로 반복문 탈출
+			if (digits[left] > digits[right]) {
+				break;
+			
+			// 오른쪽의 숫자가 더 큰 경우 숫자 올림이 필요한지 여부를 갱신 후 반복문 탈출
+			} else if (digits[left] < digits[right]) {
+				isRoundedUp = true;
+				break;
+			}
 		}
 		
-		// 숫자의 길이가 홀수인 경우 가운데 숫자를 배열 targetNumber에 저장
-		if ((length & 1) == 1)
-			targetNumber[length / 2] = originNumber[length / 2];
+		// 숫자 올림이 필요한 경우
+		if (isRoundedUp) {
+			
+			// for 반복문을 사용해 중간을 기준으로 왼쪽의 자릿수를 거꾸로 순회
+			for (int idx = midLeft, nextDigit = 1; idx >= 0 && nextDigit > 0; idx--) {
+				
+				// 현재 올림한 자릿수를 변수 curDigit에 할당
+				int curDigit = digits[idx] - '0' + nextDigit;
+				
+				// 현재 올림한 자릿수 및 다음 자릿수에 더할 숫자를 갱신
+				digits[idx] = (char) ((curDigit % 10) + '0');
+				nextDigit = curDigit / 10;
+			}
+		}
 		
-		// while 반복문을 사용해 만든 팰린드롬인 수가 주어진 숫자 이상일 때까지 순회
-		
+		// for 반복문을 사용해 해당 숫자를 대칭으로 변환
+		for (int left = midLeft, right = midRight; left >= 0; left--, right++)
+			digits[right] = digits[left];
 		
 		// 해당 숫자 이상인 팰린드롬인 수를 반환
-		return new String(targetNumber);
+		return new String(digits);
 	}
 }
