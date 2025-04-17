@@ -78,7 +78,7 @@ public class Main {
 			}
 		}
 		
-		// for 반복문을 사용해 해당 숫자를 대칭으로 변환
+		// for 반복문을 사용해 중간에서 왼쪽의 자릿수를 기준으로 해당 숫자를 팰린드롬인 수로 변환
 		for (int left = midLeft, right = midRight; left >= 0; left--, right++)
 			digits[right] = digits[left];
 		
