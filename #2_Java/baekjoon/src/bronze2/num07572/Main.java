@@ -26,7 +26,7 @@ public class Main {
 		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 주어진 연도를 변수 targetYear에 할당
 		int targetYear = Integer.parseInt(in.readLine());
 		
-		// write() 메서드를 사용해 서양식 간지 표현법으로 표현한 문자열을 출력
+		// write() 메서드를 사용해 주어진 연도를 서양식 간지 표현법으로 표현한 문자열을 출력
 		out.write(earthlyBranches[targetYear % 12]);
 		out.write(heavenlyStems[targetYear % 10]);
 		
