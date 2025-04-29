@@ -12,9 +12,8 @@ import java.util.StringTokenizer;
 // Main 클래스 정의
 public class Main {
 	
-	// 각 국가의 종주국과 병력을 저장할 각 배열 초기화
+	// 각 국가의 종주국을 저장할 배열 rootNations 초기화
 	static int[] rootNations;
-	static int[] troops;
 	
 	// ----------------------------------------------------------------------------------------------------
 	
@@ -37,7 +36,7 @@ public class Main {
 		
 		// 각 국가의 종주국과 병력을 저장할 각 배열 초기화
 		rootNations = new int[nationNum];
-		troops = new int[nationNum];
+		int[] troops = new int[nationNum];
 		
 		// for 반복문을 사용해 각 국가를 순회
 		for (int idx = 0; idx < nationNum; idx++) {
