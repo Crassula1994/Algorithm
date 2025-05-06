@@ -44,21 +44,21 @@ public class Main {
 			// while 반복문을 사용해 각 단어를 순회
 			while (wordNum-- > 0) {
 				
-				// readLine() 및 toCharArray() 메서드를 사용해 입력 받은 단어를 배열 word에 할당
-				char[] word = in.readLine().toCharArray();
+				// readLine() 메서드를 사용해 입력 받은 단어를 변수 word에 할당
+				String word = in.readLine();
 				
 				// 해당 단어의 가중치를 저장할 변수 weight 초기화
 				int weight = (wordNum == 0) ? -1 : 1;
 				
 				// 해당 단어가 두 글자 이상인 경우 해당 단어의 처음에 위치한 알파벳의 0이 될 수 없는지 여부를 갱신
-				if (word.length > 1)
-					isNotZero[word[0] - 'A'] = true;
+				if (word.length() > 1)
+					isNotZero[word.charAt(0) - 'A'] = true;
 				
 				// for 반복문을 사용해 단어의 각 알파벳을 거꾸로 순회
-				for (int idx = word.length - 1; idx >= 0; idx--) {
+				for (int idx = word.length() - 1; idx >= 0; idx--) {
 					
-					// 해당 알파벳의 순서를 변수 order에 할당
-					int order = word[idx] - 'A';
+					// charAt() 메서드를 사용해 해당 알파벳의 순서를 변수 order에 할당
+					int order = word.charAt(idx) - 'A';
 					
 					// 해당 알파벳의 등장 여부 및 수식에서의 가중치를 갱신
 					alphabets[order] = true;
