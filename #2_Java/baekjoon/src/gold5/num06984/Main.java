@@ -47,8 +47,8 @@ public class Main {
 			char endCity = st.nextToken().charAt(0);
 			
 			// computeIfAbsent() 및 add() 메서드를 사용해 길의 정보를 roads에 저장
-			roads.computeIfAbsent(startCity, key -> new ArrayList<>()).add(endCity);
-			roads.computeIfAbsent(endCity, key -> new ArrayList<>()).add(startCity);
+			roads.computeIfAbsent(startCity, _ -> new ArrayList<>()).add(endCity);
+			roads.computeIfAbsent(endCity, _ -> new ArrayList<>()).add(startCity);
 		}
 		
 		// while 반복문을 사용해 각 질문을 순회

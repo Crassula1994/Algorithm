@@ -62,8 +62,8 @@ public class Main {
 			String dwarfB = st.nextToken();
 			
 			// computeIfAbsent() 메서드를 사용해 각 난쟁이의 번호를 각 변수에 할당
-			int indexA = dwarves.computeIfAbsent(dwarfA, k -> dwarves.size());
-			int indexB = dwarves.computeIfAbsent(dwarfB, k -> dwarves.size());
+			int indexA = dwarves.computeIfAbsent(dwarfA, _ -> dwarves.size());
+			int indexB = dwarves.computeIfAbsent(dwarfB, _ -> dwarves.size());
 			
 			// 첫 번째 난쟁이가 두 번째 난쟁이보다 큰 경우 orders에 해당 관계를 저장
 			if (sign == '>') {
