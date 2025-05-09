@@ -98,7 +98,7 @@ public class Main {
 					// append() 메서드를 사용해 해당 정당의 이름을 sb에 추가
 					sb.append(party.name).append(" ");
 					
-					// 정다에 소속된 모든 상원 의원이 탈출하지 못한 경우 해당 정당을 parties에 추가
+					// 정당에 소속된 모든 상원 의원이 탈출하지 못한 경우 해당 정당을 parties에 추가
 					if (party.count-- > 1)
 						parties.offer(party);
 				}
