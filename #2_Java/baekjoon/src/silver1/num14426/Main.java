@@ -92,7 +92,7 @@ public class Main {
 		
 		// for 반복문을 사용해 문자열의 각 글자를 rootNode에 저장
 		for (char alphabet : string.toCharArray())
-			curNode = curNode.nextNodes.computeIfAbsent(alphabet, _ -> new Node());
+			curNode = curNode.nextNodes.computeIfAbsent(alphabet, _key -> new Node());
 		
 		// 마지막 글자의 위치를 갱신
 		curNode.isEnd = true;

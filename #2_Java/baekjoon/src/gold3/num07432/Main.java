@@ -78,7 +78,7 @@ public class Main {
 			String directory = st.nextToken();
 			
 			// computeIfAbsent() 메서드를 사용해 현재 디렉토리를 갱신
-			curDirectory = curDirectory.subdirectory.computeIfAbsent(directory, _ -> new Directory());
+			curDirectory = curDirectory.subdirectory.computeIfAbsent(directory, _key -> new Directory());
 		}
 	}
 	
