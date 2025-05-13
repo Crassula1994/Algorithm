@@ -26,7 +26,7 @@ public class Main {
 		// 0 이하의 숫자로 만들 수 있는 서로 다른 유리수의 개수를 초기화
 		counts[0] = 1;
 		
-		// for 반복문을 사용해 숫자 이하의 숫자로 만들 수 잇는 서로 다른 유리수의 개수를 갱신
+		// for 반복문을 사용해 숫자 이하의 숫자로 만들 수 있는 서로 다른 유리수의 개수를 갱신
 		for (int idx = 1; idx < counts.length; idx++)
 			counts[idx] = counts[idx - 1] + rationalNumberCounter(idx);
 		
