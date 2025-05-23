@@ -1,4 +1,4 @@
-package bronze4.num02742;
+package bronze5.num02742;
 
 // 필요한 패키지 불러오기
 import java.io.BufferedReader;
