@@ -31,13 +31,13 @@ public class Main {
 			int studentNum = Integer.parseInt(in.readLine());
 			
 			// 사탕 개수의 합을 저장할 변수 sum 초기화
-			BigInteger sum = new BigInteger("0");
+			BigInteger sum = BigInteger.ZERO;
 			
 			// for 반복문을 사용해 사탕 개수의 합을 갱신
 			for (int student = 0; student < studentNum; student++)
 				sum = sum.add(new BigInteger(in.readLine()));
 			
-			// write() 메서드를 사용해 모두에게 같은 사탕을 나눠줄 수 있는지 여부를 출력
+			// valueOf(), remainder(), toString(), equals(), write() 메서드를 사용해 모두에게 같은 사탕을 나눠줄 수 있는지 여부를 출력
 			out.write((sum.remainder(BigInteger.valueOf(studentNum)).toString().equals("0")) ? "YES" : "NO");
 			
 			// newLine() 메서드를 사용해 줄바꿈을 출력
