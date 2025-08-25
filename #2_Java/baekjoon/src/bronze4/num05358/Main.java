@@ -23,7 +23,7 @@ public class Main {
 		// while 반복문을 사용해 각 선수들의 이름을 순회
 		while ((playerName = in.readLine()) != null) {
 			
-			// for 반복문을 사용해 각 알파벳을 순회
+			// for 반복문을 사용해 해당 선수 이름의 각 알파벳을 순회
 			for (int idx = 0; idx < playerName.length(); idx++) {
 				
 				// charAt() 메서드를 사용해 해당 알파벳을 변수 alphabet에 할당
