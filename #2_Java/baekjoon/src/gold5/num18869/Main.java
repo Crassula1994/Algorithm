@@ -31,31 +31,31 @@ public class Main {
 		// 균등한 우주의 쌍의 개수를 저장할 변수 pairCount 초기화
 		int pairCount = 0;
 		
+		// 해당 우주의 각 행성의 크기 및 행성의 크기를 오름차순으로 정렬할 각 배열 초기화
+		int[] planets = new int[planetNum];
+		int[] sortedPlanets = new int[planetNum];
+		
 		// 각 균등한 우주의 개수를 저장할 Map 객체 multiverse 초기화
 		Map<Integer, Integer> multiverse = new HashMap<>();
 		
 		// for 반복문을 사용해 각 우주를 순회
 		for (int universe = 0; universe < universeNum; universe++) {
-
-			// 해당 우주의 각 행성의 크기를 순서대로 저장할 배열 planets 초기화
-			int[] planets = new int[planetNum];
 			
 			// StringTokenizer 객체를 불러와 변수 st에 재할당
 			st = new StringTokenizer(in.readLine());
 			
-			// for 반복문을 사용해 입력 받은 행성의 크기를 배열 planets에 저장
-			for (int idx = 0; idx < planets.length; idx++)
+			// for 반복문을 사용해 입력 받은 행성의 크기를 각 배열에 저장
+			for (int idx = 0; idx < planets.length; idx++) {
 				planets[idx] = Integer.parseInt(st.nextToken());
-			
-			// clone() 메서드를 사용해 행성의 크기를 순서대로 정렬할 배열 planetRanks 초기화
-			int[] planetRanks = planets.clone();
+				sortedPlanets[idx] = planets[idx];
+			}
 			
 			// sort() 메서드를 사용해 행성의 크기를 오름차순으로 정렬
-			Arrays.sort(planetRanks);
+			Arrays.sort(sortedPlanets);
 			
 			// for 반복문을 사용해 상대적인 행성의 크기를 배열 planets에 저장
 			for (int idx = 0; idx < planetNum; idx++)
-				planets[idx] = Arrays.binarySearch(planetRanks, planets[idx]);
+				planets[idx] = Arrays.binarySearch(sortedPlanets, planets[idx]);
 			
 			// hashCode() 메서드를 사용해 해당 우주의 행성의 배열 상태를 변수 universeType에 저장
 			int universeType = Arrays.hashCode(planets);
