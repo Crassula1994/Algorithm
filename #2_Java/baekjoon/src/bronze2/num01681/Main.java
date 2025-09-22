@@ -47,7 +47,7 @@ public class Main {
 	
 	// ----------------------------------------------------------------------------------------------------
 
-	// numberChecker() 메서드
+	// numberChecker() 메서드 정의
 	public static boolean numberChecker(int numberLabel, int digitLimit) {
 		
 		// while 반복문을 사용해 각 자릿수를 순회
