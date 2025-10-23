@@ -6,7 +6,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.StringTokenizer;
 
 // Main 클래스 정의
 public class Main {
@@ -18,44 +17,18 @@ public class Main {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 
-		// StringTokenizer 객체를 불러와 변수 st에 할당
-		StringTokenizer st = new StringTokenizer(in.readLine());
+		// readLine() 및 parseInt() 메서드를 사용해 입력 받은 문자열의 길이를 변수 length에 할당
+		int length = Integer.parseInt(in.readLine());
 		
-		// nextToken() 및 parseInt() 메서드를 사용해 페르세폴리스와 에스테그랄의 득점을 각 변수에 할당
-		int homeScoreP = Integer.parseInt(st.nextToken());
-		int awayScoreE = Integer.parseInt(st.nextToken());
+		// StringBuilder 객체를 불러와 변수 sb에 할당
+		StringBuilder sb = new StringBuilder();
 		
-		// StringTokenizer 객체를 불러와 변수 st에 재할당
-		st = new StringTokenizer(in.readLine());
+		// while 반복문을 사용해 수미상관이면서 팰린드롬인 문자열을 sb에 저장
+		while (length-- > 0)
+			sb.append("g");
 		
-		// nextToken() 및 parseInt() 메서드를 사용해 에스테그랄과 페르세폴리스의 득점을 각 변수에 할당
-		int homeScoreE = Integer.parseInt(st.nextToken());
-		int awayScoreP = Integer.parseInt(st.nextToken());
-		
-		// 페르세폴리스가 더 많은 득점을 한 경우 'Persepolis' 출력
-		if (homeScoreP + awayScoreP > homeScoreE + awayScoreE) {
-			out.write("Persepolis");
-			
-		// 에스테그랄이 더 많은 득점을 한 경우 'Esteghlal' 출력
-		} else if (homeScoreP + awayScoreP < homeScoreE + awayScoreE) {
-			out.write("Esteghlal");
-			
-		// 페르세폴리스와 에스테그랄이 같은 득점을 한 경우
-		} else {
-			
-			// 페르세폴리스가 원정 다득점인 경우 'Persepolis' 출력
-			if (awayScoreP > awayScoreE) {
-				out.write("Persepolis");
-			
-			// 에스테그랄이 원정 다득점인 경우 'Esteghlal' 출력
-			} else if (awayScoreP < awayScoreE) {
-				out.write("Esteghlal");
-			
-			// 승부차기를 해야 하는 경우 'Penalty' 출력
-			} else {
-				out.write("Penalty");
-			}
-		}
+		// toString() 및 write() 메서드를 사용해 수미상관이면서 팰린드롬인 문자열을 출력
+		out.write(sb.toString());
 		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
