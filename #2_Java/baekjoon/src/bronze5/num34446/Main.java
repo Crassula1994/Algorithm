@@ -18,7 +18,7 @@ public class Main {
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		
 		// readLine(), parseInt(), valueOf(), write() 메서드를 사용해 광석 수레가 이동한 거리를 출력
-		out.write(String.valueOf(Integer.parseInt(in.readLine()) * 2));;
+		out.write(String.valueOf(Integer.parseInt(in.readLine()) * 2));
 		
 		// close() 메서드를 사용해 각 객체 종료
 		in.close();
