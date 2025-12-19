@@ -17,8 +17,10 @@ public class Main {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 
+		// readLine() 및 charAt() 메서드를 사용해 입력 받은 교과목 번호의 첫 번째 문자를 변수 firstLetter에 할당
 		char firstLetter = in.readLine().charAt(0);
 		
+		// switch 조건문을 사용해 해당 교과목이 속한 영역을 출력
 		switch (firstLetter) {
 			case 'C':
 				out.write("Claves");
