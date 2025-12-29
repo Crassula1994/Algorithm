@@ -20,7 +20,7 @@ public class Main {
 		// StringBuilder 객체를 불러와 변수 sb에 할당
 		StringBuilder sb = new StringBuilder();
 		
-		// readLine() 및 메서드를 사용해 입력 받은 소수의 소수부를 변수 decimalString에 할당
+		// readLine() 및 substring() 메서드를 사용해 입력 받은 소수의 소수부를 변수 decimalString에 할당
 		String decimalString = in.readLine().substring(2);
 		
 		// append() 메서드를 사용해 조건을 만족하는 분수가 언제나 존재하므로 'YES'를 sb에 저장
